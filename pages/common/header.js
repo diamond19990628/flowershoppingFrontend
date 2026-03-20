@@ -1,11 +1,9 @@
 Component({
-  properties: {
-
-  },
 
   data: {
     categoryList: [],
-    config: require("../../config")
+    config: require("../../config"),
+    currentIndex:null
   },
 
   lifetimes: {
@@ -14,7 +12,6 @@ Component({
         url: this.data.config.BASE_URL + "/member/categories/all",
         method: "GET",
         success: (res) => {
-          console.log(res.data.data);
           if (res.statusCode === 200) {
             this.setData({
               categoryList: res.data.data || []
@@ -29,6 +26,11 @@ Component({
   },
 
   methods: {
-
+    switchTab(e){
+      const index = e.currentTarget.dataset.index;
+      this.setData({
+        currentIndex:index
+      })
+    }
   }
 });

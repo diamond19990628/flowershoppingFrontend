@@ -21,10 +21,12 @@
   
   <scroll-view scroll-x class="category-scroll" enable-flex>
     <view
-      class="cat-item active" wx:for="{{categoryList}}"
+      class="cat-item {{currentIndex==index ? 'active' : ''}}" wx:for="{{categoryList}}"
       wx:for-item="item"
+      wx:for-index="index"
       data-category_id="{{item.category_id}}"
-      >
+      data-index="{{index}}"
+      bind:tap="switchTab">
       {{item.category_name}}
     </view>
   </scroll-view>
