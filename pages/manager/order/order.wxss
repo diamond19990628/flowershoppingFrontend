@@ -1,0 +1,253 @@
+page {
+  background-color: #f4f6f8;
+  font-family: "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* 顶部固定栏 */
+.fixed-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  z-index: 100;
+  border-bottom: 1rpx solid #eee;
+}
+
+.search-section {
+  padding: 20rpx 30rpx;
+}
+
+.search-input-inner {
+  background: #f1f1f1;
+  height: 72rpx;
+  border-radius: 36rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 30rpx;
+}
+
+.ph-color { color: #999; font-size: 26rpx; }
+
+.admin-tabs {
+  display: flex;
+  justify-content: space-around;
+  padding: 10rpx 0;
+}
+
+.tab-item {
+  font-size: 28rpx;
+  color: #666;
+  padding: 15rpx 0;
+  position: relative;
+}
+
+.tab-item.active {
+  color: #000;
+  font-weight: bold;
+}
+
+.tab-item.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  right: 20%;
+  height: 6rpx;
+  background: #00c677; /* 延用图片中的绿色作为重点色 */
+  border-radius: 3rpx;
+}
+
+.badge {
+  font-size: 20rpx;
+  background: #ff4d4f;
+  color: #fff;
+  padding: 2rpx 10rpx;
+  border-radius: 20rpx;
+  margin-left: 6rpx;
+  vertical-align: top;
+}
+
+/* 列表滚动区 */
+.order-scroll-view {
+  margin-top: 200rpx; /* 留出顶部导航高度 */
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.order-card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.04);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1rpx solid #f8f8f8;
+  padding-bottom: 20rpx;
+  margin-bottom: 24rpx;
+}
+
+.order-no { font-size: 24rpx; color: #999; }
+.status-tag { font-size: 24rpx; font-weight: bold; }
+.status-to-ship { color: #00c677; }
+.status-after-sale { color: #ff4d4f; }
+
+/* 商品部分 */
+/* 商品部分 */
+.goods-section {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 24rpx;
+  padding: 20rpx;
+  background: linear-gradient(180deg, #fafbfc 0%, #f7f9fb 100%);
+  border-radius: 18rpx;
+  border: 1rpx solid #eef1f4;
+}
+
+.goods-img {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 16rpx;
+  background: #f3f5f7;
+  flex-shrink: 0;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.goods-right {
+  flex: 1;
+  margin-left: 24rpx;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.goods-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10rpx 0;
+  border-bottom: 1rpx solid #f1f3f5;
+}
+.goods-right-info {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+.goods-qty {
+  font-size: 24rpx;
+  color: #999;
+}
+.goods-price {
+  font-size: 26rpx;
+  color: #ff4d4f;
+  font-weight: 600;
+}
+.goods-row:last-of-type {
+  border-bottom: none;
+}
+
+.goods-title {
+  flex: 1;
+  min-width: 0;
+  font-size: 28rpx;
+  color: #2f3542;
+  font-weight: 500;
+  line-height: 1.5;
+  word-break: break-all;
+  padding-right: 20rpx;
+}
+
+.goods-qty {
+  flex-shrink: 0;
+  font-size: 26rpx;
+  color: #7a869a;
+  font-weight: 600;
+}
+.goods-remark {
+  margin-top: 16rpx;
+  padding: 16rpx 18rpx;
+  background: #fffdf7;
+  border: 1rpx solid #f3e7b3;
+  border-radius: 12rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.goods-remark-label {
+  font-size: 22rpx;
+  color: #b08b2d;
+  font-weight: 600;
+  margin-bottom: 8rpx;
+}
+
+.goods-remark-text {
+  font-size: 24rpx;
+  color: #5f6368;
+  line-height: 1.6;
+  word-break: break-all;
+}
+.total-price {
+  margin-top: 18rpx;
+  padding-top: 18rpx;
+  border-top: 1rpx dashed #e6eaf0;
+  text-align: right;
+  font-size: 24rpx;
+  color: #666;
+}
+
+.price-bold {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #1f2937;
+}
+.total-price { font-size: 24rpx; margin-top: 10rpx; text-align: right; }
+.price-bold { font-size: 32rpx; font-weight: bold; color: #333; }
+
+/* 地址与备注 - 管理员专供 */
+.delivery-address {
+  background: #f9f9f9;
+  padding: 20rpx;
+  border-radius: 12rpx;
+  margin-bottom: 20rpx;
+}
+
+.receiver-line { margin-bottom: 8rpx; }
+.receiver-line .name { font-weight: bold; font-size: 30rpx; margin-right: 15rpx; }
+.receiver-line .phone { color: #666; font-size: 26rpx; }
+.address-text { font-size: 26rpx; color: #444; line-height: 1.4; }
+
+.admin-memo {
+  background: #fff8e6; /* 浅黄警示 */
+  border: 1rpx solid #ffe58f;
+  padding: 15rpx;
+  border-radius: 8rpx;
+  margin-bottom: 24rpx;
+  display: flex;
+}
+
+.memo-icon { margin-right: 10rpx; font-size: 26rpx; }
+.memo-val { font-size: 26rpx; color: #856404; font-weight: 500; }
+
+/* 底部按钮 */
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 20rpx;
+}
+
+.action-btn {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  border-radius: 12rpx;
+  margin: 0 !important;
+}
+
+.btn-secondary { background: #eee; color: #666; }
+.btn-primary { background: #00c677; color: #fff; font-weight: bold; }
+.btn-warn { background: #ff4d4f; color: #fff; }

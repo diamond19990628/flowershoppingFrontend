@@ -1,0 +1,23 @@
+<!--pages/common/header.wxml-->
+<view class="custom-tab-bar">
+    <view class="tab-item">
+      <image class="tab-icon" src="../img/line-md_home.png"></image>
+      <text>首页</text>
+    </view>
+    <view class="tab-item">
+      <image class="tab-icon" src="../img/Group.png"></image>
+      <text>选购</text>
+    </view>
+    <view class="tab-item">
+      <image class="tab-icon" src="../img/Vector.png"></image>
+      <text>门店</text>
+    </view>
+    <view class="tab-item">
+      <image class="tab-icon" src="../img/icon-park-outline_shopping.png"></image>
+      <text>购物车</text>
+    </view>
+    <view class="tab-item">
+      <image class="tab-icon" src="../img/material-symbols_person-outline.png"></image>
+      <text>我的</text>
+    </view>
+  </view>

@@ -1,0 +1,121 @@
+<view class="admin-container">
+  <view class="fixed-top">
+    
+    <view class="admin-tabs">
+      <view class="tab-item active">全部分类 ({{categoryList.length}})</view>
+      <view class="add-main-btn" data-event="create" data-status="create_parent" bindtap="handleAddParent">+ 新增一级分类</view>
+    </view>
+  </view>
+<!-- dialog -->
+  <scroll-view scroll-y class="order-scroll-view">
+    <view class="category-card" wx:for="{{categoryList}}" wx:key="id" wx:for-item="parent">
+      
+      <view class="parent-header" bindtap="toggleExpand" data-id="{{parent.category_id}}">
+        <view class="parent-info">
+          <text class="expand-icon">{{parent.expanded ? '▼' : '▶'}}</text>
+          <text class="parent-name">{{parent.category_name}}</text>
+          <text class="child-count">{{parent.parent_category.length}}个子类</text>
+        </view>
+        <view class="parent-actions" catchtap="stopBubble">
+          <text class="edit-text" bindtap="handleEdit" data-id="{{parent.category_id}}" data-categoryParentName="{{parent.category_name}}" data-event="update">编辑</text>
+          <text class="add-text" bindtap="handleAddParent" data-pid="{{parent.category_id}}" data-status="create_child" data-event="create">添加子类</text>
+        </view>
+      </view>
+
+      <view class="child-list {{parent.expanded ? 'show' : ''}}">
+        <view class="child-item" wx:for="{{parent.parent_category}}" wx:key="id" wx:for-item="child">
+          <view class="child-left">
+            <view class="line-branch"></view>
+            <text class="child-name">{{child.categoryName}}</text>
+          </view>
+          <view class="child-right">
+            <text class="child-action-btn edit-text" 
+                  bindtap="handleEdit" 
+                  data-id="{{child.categoryId}}" data-categoryParentName="{{child.categoryName}}" data-event="update">编辑</text>
+            
+            <view class="action-divider"></view>
+
+            <text class="child-action-btn delete-text" 
+                  bindtap="handleDelete" 
+                  data-id="{{child.categoryId}}" 
+                  data-name="{{child.categoryName}}">删除</text>
+          </view>
+        </view>
+        
+        <view class="empty-child" wx:if="{{parent.children.length === 0}}">
+          暂无子分类
+        </view>
+      </view>
+
+      <view class="card-footer">
+        <button class="mini-btn btn-warn" size="mini" bindtap="handleDelete" data-categoryParentName="{{parent.category_name}}" data-id="{{parent.category_id}}">删除该大类</button>
+        <button class="mini-btn btn-secondary" size="mini">上移排序</button>
+      </view>
+    </view>
+    
+    <view style="height: 100rpx;"></view>
+  </scroll-view>
+</view>
+
+<view class="category-dialog-mask {{isDialogVisible ? 'modal-visible' : ''}}">
+  <view class="category-dialog-content">
+    <view class="dialog-header">
+      <text class="dialog-title">{{title}}</text>
+    </view>
+    
+    <view class="dialog-body">
+      <input 
+        class="single-input" 
+        placeholder="请输入分类名称" 
+        value="{{categoryName}}"
+        data-field="categoryName" 
+        bindinput="onInputName"
+        focus="{{isDialogVisible}}"
+      />
+    </view>
+
+    <view class="dialog-footer">
+      <view class="dialog-btn btn-cancel" bindtap="hideDialog">取消</view>
+      <view class="dialog-btn btn-confirm" bindtap="createCategory">确定</view>
+    </view>
+  </view>
+  <view class="modal-backdrop" bindtap="hideDialog"></view>
+</view>
+
+<view class="category-dialog-mask {{isDeleteVisible ? 'modal-visible' : ''}}">
+  <view class="category-dialog-content">
+    <view class="dialog-header">
+      <text class="dialog-title">确认删除</text>
+    </view>
+    
+    <view class="dialog-body">
+      <view class="delete-tips">
+        确定要删除分类 <text class="highlight-name">“{{deleteTargetName}}”</text> 吗？删除后不可恢复。
+      </view>
+    </view>
+
+    <view class="dialog-footer">
+      <view class="dialog-btn btn-cancel" bindtap="hideDeleteDialog">取消</view>
+      <view class="dialog-btn btn-delete" bindtap="confirmDelete">删除</view>
+    </view>
+  </view>
+  <view class="modal-backdrop" bindtap="hideDeleteDialog"></view>
+</view>
+
+<view class="category-dialog-mask {{isErrorVisible ? 'modal-visible' : ''}}">
+  <view class="category-dialog-content">
+    <view class="dialog-header">
+      <view class="error-icon-circle">!</view>
+      <text class="dialog-title">提示</text>
+    </view>
+    
+    <view class="dialog-body">
+      <view class="error-message">{{errorMessage}}</view>
+    </view>
+
+    <view class="dialog-footer">
+      <view class="dialog-btn btn-error-confirm" bindtap="hideErrorDialog">知道了</view>
+    </view>
+  </view>
+  <view class="modal-backdrop" bindtap="hideErrorDialog"></view>
+</view>

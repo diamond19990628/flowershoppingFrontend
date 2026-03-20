@@ -1,0 +1,22 @@
+{
+  "pages": [
+    "pages/loading/loading",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/manager/index/index",
+    "pages/manager/product/product",
+    "pages/manager/order/order",
+    "pages/manager/order/orderItem",
+    "pages/manager/category/category",
+    "pages/common/header"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarBackgroundColor": "#ffffff"
+  },
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

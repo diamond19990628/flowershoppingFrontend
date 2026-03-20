@@ -1,0 +1,74 @@
+<view class="admin-container">
+  <view class="fixed-top">
+    <view class="search-section">
+      <view class="search-input-inner">
+        <icon type="search" size="14" color="#999" />
+        <input placeholder="搜索订单号/姓名/手机号" placeholder-class="ph-color" />
+      </view>
+    </view>
+    
+    <view class="admin-tabs">
+      <view class="tab-item {{currentTab==0 ? 'active' : ''}}" data-index="0" bind:tap="switchTab">待发货</view>
+      <view class="tab-item {{currentTab==1 ? 'active' : ''}}" data-index="1" bind:tap="switchTab">待收货</view>
+      <view class="tab-item {{currentTab==2 ? 'active' : ''}}" data-index="2" bind:tap="switchTab">已完成</view>
+      <view class="tab-item {{currentTab==3 ? 'active' : ''}}" data-index="3" bind:tap="switchTab">售后</view>
+    </view>
+  </view>
+
+  <scroll-view scroll-y class="order-scroll-view">
+    <view class="order-card" wx:for="{{orderList}}" wx:key="id">
+      <view class="card-header">
+        <text class="order-no">单号: {{item.order_no}}</text>
+        <text class="status-tag {{item.status.statusId}}">{{item.status.statusName}}</text>
+      </view>
+
+      <view class="goods-section">
+  <image class="goods-img" src="{{item.order_items[0].attachedFilePath}}" mode="aspectFill"></image>
+
+  <view class="goods-right">
+    <view 
+      class="goods-row-wrap"
+      wx:for="{{item.order_items}}"
+      wx:key="index"
+      wx:for-item="orderItem"
+    >
+
+      <view class="goods-row">
+        <text class="goods-title">{{orderItem.product.productName}}</text>
+
+        <view class="goods-right-info">
+          <text class="goods-price">¥{{orderItem.product.amount}}</text>
+          <text class="goods-qty">×{{orderItem.quantity}}</text>
+        </view>
+      </view>
+    </view>
+
+    
+
+    <view class="total-price">
+      合计: <text class="price-bold">¥{{item.total_amount}}</text>
+    </view>
+  </view>
+</view>
+
+      <view class="delivery-address">
+        <view class="receiver-line">
+          <text class="name">{{item.user.nickName}}</text>
+          <text class="phone">{{item.user.tel}}</text>
+        </view>
+        <view class="address-text">{{item.deliveryAddress.delivery_address}}</view>
+      </view>
+
+      <view class="admin-memo" wx:if="{{item.memo}}">
+        <text class="memo-icon">📝</text>
+        <text class="memo-val">{{item.memo}}</text>
+      </view>
+
+      <view class="card-actions">
+        <button class="action-btn btn-secondary" bind:tap="navToOrderItem" data-items="{{item}}">订单详情</button>
+        <button class="action-btn btn-primary" wx:if="{{item.status.statusId === 1}}" data-status_id="2" data-order_id="{{item.order_id}}" bind:tap="shippedFunction">立即发货</button>
+        <button class="action-btn btn-warn" wx:if="{{item.status.statusId === 2}}" data-status_id="3" bind:tap="shippedFunction">处理售后</button>
+      </view>
+    </view>
+  </scroll-view>
+</view>

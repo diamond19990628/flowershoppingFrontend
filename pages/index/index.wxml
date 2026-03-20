@@ -1,0 +1,39 @@
+<view class="home-page">
+  <view class="header">
+    <text class="slogan">在最美的时光遇见你 🌷</text>
+    <text class="brand-title">汀山花语</text>
+  </view>
+
+  <view class="banner-box">
+    <image class="banner-img" src="/images/banner_placeholder.png" mode="aspectFill"></image>
+  </view>
+
+  <view class="nav-grid">
+    <view class="nav-item">
+      <view class="icon-wrap"><image src="../img/newProductIcon.png" mode="widthFix"></image></view>
+      <text class="nav-text text-orange">上新</text>
+    </view>
+    <view class="nav-item">
+      <view class="icon-wrap"><image src="../img/appointmentIcon.png" mode="widthFix"></image></view>
+      <text class="nav-text text-pink">订花</text>
+    </view>
+    <view class="nav-item">
+      <view class="icon-wrap"><image src="../img/greenIcon.png" mode="widthFix"></image></view>
+      <text class="nav-text text-green">绿植</text>
+    </view>
+  </view>
+
+  <view class="section-title-wrap">
+    <view class="classic-btn">经典系列</view>
+  </view>
+
+  <view class="product-list">
+    <view class="product-card" wx:for="{{[1,2]}}" wx:key="index">
+      <view class="card-top"></view> <view class="card-bottom">
+        <text class="price-unit">￥</text>
+      </view>
+    </view>
+  </view>
+
+  <common-header/>
+</view>

@@ -1,0 +1,140 @@
+<view class="admin-container">
+  <view class="search-section">
+    <view class="search-bar">
+      <icon type="search" size="16" bindtap="onSearch"></icon>
+      <input placeholder="搜索商品名称/货号" data-field="productNameSearch" bindinput="onInput"/>
+    </view>
+    <view class="add-btn" data-event_type="create" bindtap="onAddGoods">
+      <text class="add-icon">+</text>
+      <text>新增</text>
+    </view>
+  </view>
+
+  <view class="tabs">
+  <view 
+    class="tab-item {{currentTab==0 ? 'active' : ''}}" 
+    data-index="0" 
+    bindtap="switchTab"
+  >
+    全部
+  </view>
+
+  <view 
+    class="tab-item {{currentTab==1 ? 'active' : ''}}" 
+    data-index="1" 
+    bindtap="switchTab"
+  >
+    出售中
+  </view>
+
+  <view 
+    class="tab-item {{currentTab==2 ? 'active' : ''}}" 
+    data-index="2" 
+    bindtap="switchTab"
+  >
+    已下架
+  </view>
+
+  <view 
+    class="tab-item {{currentTab==3 ? 'active' : ''}}" 
+    data-index="3" 
+    bindtap="switchTab"
+  >
+    库存预警
+  </view>
+</view>
+
+  <scroll-view scroll-y class="goods-list">
+    <view class="goods-card" wx:for="{{productList}}" wx:key="index">
+      <view class="goods-info">
+        <view class="goods-img">
+          <image 
+            wx:if="{{item.attachedFile.attachedFilePath}}" 
+            src="{{item.attachedFile.attachedFilePath}}" 
+            class="upload-image"
+            mode="aspectFill"
+          ></image>
+        </view>
+        <view class="goods-detail">
+          <text class="goods-title">{{item.productName}}</text>
+          <view class="goods-price-row">
+            <text class="price">¥{{item.amount}}</text>
+            <text class="stock">库存: {{item.stock}}</text>
+          </view>
+        </view>
+      </view>
+      
+      <view class="goods-ops">
+        <button class="op-btn mini" data-event_type="update" bind:tap="onAddGoods" data-product_id="{{item.productId}}">编辑</button>
+        <button class="op-btn mini warning" bind:tap="unlistProduct" data-product_id="{{item.productId}}" data-status="{{item.status}}">{{item.status == 1 ? '下架' : '重新上架'}}</button>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+
+<view class="dialog-mask {{showAddDialog ? 'show' : ''}}" bindtap="closeDialog">
+  <view class="dialog-container" catchtap="stop">
+    <view class="dialog-header">
+      <text class="dialog-title">新增商品</text>
+      <view class="close-icon" bindtap="closeDialog">✕</view>
+    </view>
+
+    <scroll-view scroll-y class="dialog-content">
+      <view class="form-item" bind:tap="chooseImage">
+        <text class="form-label">商品图片</text>
+        <view class="upload-box">
+          <!-- 没有图片时显示 + -->
+          <block wx:if="{{!imagePath}}">
+            <text class="upload-plus">+</text>
+            <text class="upload-tip">添加图片</text>
+          </block>
+
+          <!-- 有图片时显示图片 -->
+          <image 
+            wx:if="{{imagePath}}" 
+            src="{{imagePath}}" 
+            class="upload-image"
+            mode="aspectFill"
+          ></image>
+        </view>
+        
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">商品名称</text>
+        <input class="form-input" value="{{productName}}" data-field="productName" placeholder="请输入商品全称" placeholder-class="p-class" bindinput="onInput"/>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">商品分类</text>
+        <picker 
+          mode="selector" 
+          range="{{categoryNameList}}" 
+          value="{{categoryIndex}}"
+          bindchange="onCategoryChange">
+
+          <view class="form-input">
+            {{categoryNameList[categoryIndex] || "请选择分类"}}
+          </view>
+
+        </picker>
+      </view>
+
+      <view class="form-row">
+        <view class="form-item half">
+          <text class="form-label">销售价格</text>
+          <input class="form-input" value="{{amount}}" data-field="amount" type="digit" placeholder="0.00" bindinput="onInput"/>
+        </view>
+        <view class="form-item half">
+          <text class="form-label">初始库存</text>
+          <input class="form-input" value="{{stock}}" data-field="stock" type="number" placeholder="0" bindinput="onInput"/>
+        </view>
+      </view>
+    </scroll-view>
+
+    <view class="dialog-footer">
+      <button class="btn-cancel" bindtap="closeDialog">取消</button>
+      <button class="btn-confirm" data-button_event="{{button_event}}" bind:tap="onCreate">确认上架</button>
+    </view>
+  </view>
+</view>

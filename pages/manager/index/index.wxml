@@ -1,0 +1,57 @@
+<view class="admin-container">
+  <view class="header">
+    <view class="user-info">
+      <view class="avatar">管</view>
+      <view class="welcome">
+        <text class="title">工作台</text>
+        <text class="subtitle">欢迎回来，{{username}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="stat-card">
+    <view class="stat-item">
+      <text class="num">{{waitShippedOrderList.length}}</text>
+      <text class="label">待发货</text>
+    </view>
+    <view class="stat-item">
+      <text class="num">{{stock_count}}</text>
+      <text class="label">库存预警</text>
+    </view>
+    <view class="stat-item">
+      <text class="num">{{todayorderList.length}}</text>
+      <text class="label">今日订单</text>
+    </view>
+  </view>
+
+  <view class="menu-grid">
+    <view class="menu-item" hover-class="btn-hover" bindtap="navToGoods">
+      <view class="icon-box bg-blue">📦</view>
+      <text class="menu-name">商品管理</text>
+      <text class="menu-desc">编辑、价格、下架</text>
+      <view class="badge">{{stock_count}}</view>
+    </view>
+
+    <view class="menu-item" hover-class="btn-hover" bindtap="navToCategory">
+    <view class="icon-box bg-orange" >⚠️</view>
+      <text class="menu-name">分类管理</text>
+      <text class="menu-desc">商品分类创建</text>
+    </view>
+
+    <view class="menu-item" hover-class="btn-hover" bindtap="navToOrder">
+      <view class="icon-box bg-green">📋</view>
+      <text class="menu-name">订单列表</text>
+      <text class="menu-desc">发货、退款、查询</text>
+    </view>
+
+    <view class="menu-item" hover-class="btn-hover" bindtap="navToNotice">
+      <view class="icon-box bg-red">🔔</view>
+      <text class="menu-name">通知中心</text>
+      <text class="menu-desc">发布公告、私信</text>
+    </view>
+  </view>
+
+  <view class="footer-action">
+    <button class="logout-btn">退出管理后台</button>
+  </view>
+</view>
