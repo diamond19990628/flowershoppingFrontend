@@ -32,6 +32,7 @@
   display: flex;
   justify-content: center;  /* 水平居中 */
   align-items: center;      /* 垂直居中 */
+  border-radius: 20rpx;
 }
 .notice-btn image{
   width: 44rpx;
@@ -115,6 +116,8 @@
   color: #999;
   padding: 16rpx 44rpx;
   margin-right: 10rpx;
+  border-radius: 999rpx; /* ⭐关键：一直保持圆形 */
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 .cat-item.active {
   background-color: #7a6a35;

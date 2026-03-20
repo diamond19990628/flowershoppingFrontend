@@ -1,24 +1,20 @@
 <view class="home-container">
   
-  <common-header/>
+  <common-header bind:change="onCategoryChange"/>
 
   <view class="goods-grid">
-    <view class="goods-item" wx:for="{{[1,2,3,4]}}" wx:key="index">
-      <view class="goods-image-space"></view> <view class="goods-info">
-        <view class="goods-name">商品名称</view>
+    <view class="goods-item" wx:for="{{productList}}" wx:key="index">
+      <view class="goods-image-space">
+        <image src="{{item.attachedFile.attachedFilePath}}"></image>
+      </view> <view class="goods-info">
+        <view class="goods-name">商品名称:{{item.productName}}</view>
         <view class="goods-price-row">
-          <text class="price-symbol">￥</text>
+          <text class="price-symbol">￥:{{item.amount}}</text>
           <view class="arrow-icon">→</view>
         </view>
       </view>
     </view>
   </view>
 
-  <view class="footer-tabbar">
-    <view class="tab-item active">首页</view>
-    <view class="tab-item">分类</view>
-    <view class="tab-item">门店</view>
-    <view class="tab-item">购物车</view>
-    <view class="tab-item">我的</view>
-  </view>
+  <common-footer/>
 </view>

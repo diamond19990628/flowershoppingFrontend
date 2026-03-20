@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "common-header": "../common/header"
+    "common-header": "../common/header",
+    "common-footer": "../common/footer"
   }
 }

@@ -3,7 +3,8 @@ Component({
   data: {
     categoryList: [],
     config: require("../../config"),
-    currentIndex:null
+    currentIndex:null,
+    initCategory_id:0,
   },
 
   lifetimes: {
@@ -14,8 +15,13 @@ Component({
         success: (res) => {
           if (res.statusCode === 200) {
             this.setData({
-              categoryList: res.data.data || []
+              categoryList: res.data.data || [],
+              currentIndex:0,
+              initCategory_id:res.data.data[0].category_id,
             });
+            this.triggerEvent("change",{
+              category_id:this.data.initCategory_id
+            })
           }
         },
         fail: (err) => {
@@ -30,6 +36,9 @@ Component({
       const index = e.currentTarget.dataset.index;
       this.setData({
         currentIndex:index
+      }),
+      this.triggerEvent("change",{
+        category_id:e.currentTarget.dataset.category_id
       })
     }
   }

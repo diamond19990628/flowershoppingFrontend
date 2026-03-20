@@ -14,7 +14,7 @@ page {
 }
 .goods-item {
   width: 335rpx;
-  background: #fff;
+  background: #EFEFEF;
   border-radius: 32rpx;
   margin-bottom: 24rpx;
   overflow: hidden;
@@ -24,6 +24,10 @@ page {
   width: 100%;
   height: 335rpx;
   background-color: #e0e0e0; /* 纯色块占位 */
+}
+.goods-image-space image{
+  width: 100%;
+  height: 100%;
 }
 .goods-info {
   padding: 24rpx;
@@ -51,36 +55,4 @@ page {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-/* 5. Custom TabBar */
-.footer-tabbar {
-  position: fixed;
-  bottom: 40rpx;
-  left: 30rpx;
-  right: 30rpx;
-  height: 120rpx;
-  background-color: #fff;
-  border-radius: 60rpx;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  box-shadow: 0 8rpx 40rpx rgba(0,0,0,0.08);
-}
-.tab-item {
-  font-size: 22rpx;
-  color: #ccc;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.tab-item.active {
-  color: #7a6a35;
-  font-weight: bold;
-}
-/* 顶部的装饰点 */
-.tab-item.active::before {
-  content: "•";
-  font-size: 30rpx;
-  margin-bottom: -10rpx;
 }

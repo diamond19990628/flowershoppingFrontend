@@ -1,1 +1,58 @@
-/* pages/common/footer.wxss */
+.footer-tabbar {
+  position: fixed;         /* 固定在底部 */
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 110rpx;          /* 设置一个固定高度 */
+  background: #fff;
+  display: flex;
+  align-items: flex-end;   /* 让内部子项整体靠下 */
+  justify-content: space-around;
+  padding-bottom: env(safe-area-inset-bottom); /* 适配苹果刘海屏底部的空白 */
+  box-shadow: 0 -2rpx 20rpx rgba(0, 0, 0, 0.05);
+  z-index: 999;
+  overflow: hidden;
+  border-radius: 5%;
+}
+
+.tab-item {
+  display: flex;
+  flex-direction: column;  /* 核心：设置排列方向为“纵向/列” */
+  align-items: center;     /* 居中对齐内部元素 */
+  justify-content: center; /* 垂直方向居中 */
+  width: 120rpx;           /* 根据你的需求调整宽度 */
+  
+}
+.cycle{
+  width: 120rpx;
+  height: 110rpx;
+  background-color: #8b741b; 
+  transform:translateY(-35rpx);
+  border-radius: 50%;
+  box-shadow: 0 -4rpx 10rpx rgba(0,0,0,0.1);
+  position: relative;  /* 必须加 */
+}
+/* 小圆 */
+.cycle::after{
+  content: "";
+  position: absolute;
+  width: 8rpx;
+  height: 8rpx;
+  background: #fff;   /* 小圆颜色 */
+  border-radius: 50%;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.menu-class{
+  display: flex;           /* 必须添加 */
+  width: 48rpx;            /* 必须给图片容器设置明确的宽高 */
+  height: 48rpx;           
+  align-items: center;
+  justify-content: center;
+}
+.menu-class image {
+  width: 100%;             /* 此时的 100% 就是 50rpx */
+  height: 100%;
+  display: block;          /* 消除图片底部空隙 */
+}
