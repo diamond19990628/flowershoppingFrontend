@@ -1,92 +1,86 @@
-/* 页面基础背景 */
+/* 全局背景 */
 page {
-  background-color: #ffffff;
+  background-color: #fbfbfb;
   color: #333;
-  padding-bottom: 140rpx;
 }
-
-/* 顶部 Header */
-.header {
-  padding: 40rpx 30rpx 20rpx;
+.home-container {
+  padding: 20rpx 30rpx 180rpx;
+}
+/* 4. Goods Grid */
+.goods-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.goods-item {
+  width: 335rpx;
+  background: #fff;
+  border-radius: 32rpx;
+  margin-bottom: 24rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.02);
+}
+.goods-image-space {
+  width: 100%;
+  height: 335rpx;
+  background-color: #e0e0e0; /* 纯色块占位 */
+}
+.goods-info {
+  padding: 24rpx;
+}
+.goods-name {
+  font-size: 28rpx;
+  color: #333;
+}
+.goods-price-row {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
+  margin-top: 20rpx;
 }
-.slogan { font-size: 24rpx; color: #8c764b; }
-.brand-title { font-size: 44rpx; color: #5d5131; font-weight: 500; }
-
-/* Banner */
-.banner-box {
-  width: 100%;
-  height: 500rpx;
-  background-color: #e0e0e0; /* 灰底占位 */
-  border-bottom: 2rpx dashed #ccc; /* 模拟设计稿虚线 */
+.price-symbol {
+  color: #8c764b;
+  font-weight: 600;
 }
-.banner-img { width: 100%; height: 100%; }
+.arrow-icon {
+  width: 44rpx;
+  height: 44rpx;
+  background: #f8f8f8;
+  color: #8c764b;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-/* 导航图标区 */
-.nav-grid {
+/* 5. Custom TabBar */
+.footer-tabbar {
+  position: fixed;
+  bottom: 40rpx;
+  left: 30rpx;
+  right: 30rpx;
+  height: 120rpx;
+  background-color: #fff;
+  border-radius: 60rpx;
   display: flex;
   justify-content: space-around;
-  padding: 50rpx 20rpx;
+  align-items: center;
+  box-shadow: 0 8rpx 40rpx rgba(0,0,0,0.08);
 }
-.nav-item {
+.tab-item {
+  font-size: 22rpx;
+  color: #ccc;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.icon-wrap {
-  width: 110rpx;
-  height: 110rpx;
-  margin-bottom: 15rpx;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.tab-item.active {
+  color: #7a6a35;
+  font-weight: bold;
 }
-.icon-wrap image { width: 100%; }
-.nav-text { font-size: 28rpx; font-weight: 500; }
-.text-orange { color: #f48e57; }
-.text-pink { color: #eb6877; }
-.text-green { color: #8ec060; }
-
-/* 经典系列按钮 */
-.section-title-wrap {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 40rpx;
+/* 顶部的装饰点 */
+.tab-item.active::before {
+  content: "•";
+  font-size: 30rpx;
+  margin-bottom: -10rpx;
 }
-.classic-btn {
-  background: #f7f3f0; /* 浅米色背景 */
-  padding: 18rpx 90rpx;
-  border-radius: 60rpx;
-  font-size: 32rpx;
-  color: #333;
-  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.1); /* 阴影 */
-  border: 1rpx solid #eee;
-}
-
-/* 商品卡片布局 */
-.product-list {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 30rpx;
-}
-.product-card {
-  width: 335rpx;
-  border-radius: 30rpx;
-  overflow: hidden;
-  box-shadow: 0 8rpx 20rpx rgba(0,0,0,0.08);
-  background: #fff;
-}
-.card-top {
-  height: 335rpx;
-  background-color: #ddd; /* 图片占位 */
-}
-.card-bottom {
-  height: 80rpx;
-  background-color: #fcfaf7; /* 卡片底部浅米色 */
-  padding: 10rpx 30rpx;
-  display: flex;
-  align-items: center;
-}
-.price-unit { color: #5d5131; font-weight: bold; font-size: 34rpx; }

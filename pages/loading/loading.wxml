@@ -1,22 +1,22 @@
 <view class="container">
-  <view class="content-box animation-fade-in-up">
-    <image class="logo-image" src="../img/logo.png" mode="aspectFit"></image>
+  <view class="text-section">
+    <text class="welcome-cn">欢迎进入</text>
+    <view class="brand-title">汀山花语</view>
     
-    <view class="text-group">
-      <text class="welcome-text animation-fade-in delay-500">欢迎进入</text>
-      
-      <view class="brand-title">
-        <text class="brand-char animation-grow-in delay-700">汀</text>
-        <text class="brand-char animation-grow-in delay-800">山</text>
-        <text class="dot animation-heartbeat">✦</text>
-        <text class="brand-char animation-grow-in delay-900">花</text>
-        <text class="brand-char animation-grow-in delay-1000">语</text>
-      </view>
+    <view class="en-group">
+      <text class="welcome-en">Welcome to</text>
+      <text class="brand-en">T—Sian Flower</text>
       <canvas
         id="lottieCanvas"
         type="2d"
         class="lottie-canvas"
       ></canvas>
     </view>
+  </view>
+
+  
+  
+  <view class="image-placeholder">
+  <image src="../img/loadingPhoto.png" mode="widthFix" style="width: 100%; display: block;"></image>
   </view>
 </view>

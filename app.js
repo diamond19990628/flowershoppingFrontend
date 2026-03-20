@@ -1,7 +1,12 @@
 // app.js
+const config = require("./config")
 App({
   onLaunch() {
-    
+    wx.loadFontFace({
+      family: 'Yellowtail',
+      source: 'url("http://192.168.3.68:8080/fonts/Yellowtail-Regular.ttf")',
+      global: true, // 设置为全局生效,
+    });
   },
   login(){
     return new Promise((resolve,reject)=>{
@@ -9,7 +14,7 @@ App({
       const logs = wx.getStorageSync('logs') || []
       logs.unshift(Date.now())
       wx.setStorageSync('logs', logs)
-      const config = require("config.js");
+      const config = require("./config");
       // 登录(暂时关闭)
       wx.login({
         success: res => {
@@ -38,9 +43,7 @@ App({
                       wx.setStorageSync('JSESSIONID', jsessionid)
                     }
                   }
-                this.globalData.isLogin = true;
-                this.globalData.userInfo = res.data.data;
-                resolve(res.data)
+                resolve('yes')
               }
             },
             fail(error){

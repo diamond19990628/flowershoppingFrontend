@@ -1,31 +1,124 @@
-/* pages/common/header.wxss */
-/* 底部 TabBar */
-.custom-tab-bar {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 110rpx;
-  background-color: #fcfaf7;
-  border-top: 1rpx solid #f0f0f0;
-  display: flex;
-  padding-bottom: env(safe-area-inset-bottom);
+
+.header_body{
+  position: fixed;  /* 或 fixed */
+  background: #fcfaf7; 
+  top: 20rpx;
+  left: 30rpx;
+  right: 30rpx;
 }
-.tab-item {
-  flex: 1;
+.header_body_placeholder{
+  height: 620rpx;
+}
+/* 1. Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100rpx;
+}
+.logo-text {
+  width: 104rpx;
+  height: 100rpx;
+}
+.logo-text image{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.notice-btn {
+  width: 72rpx;
+  height: 68rpx;
+  border: 2rpx solid rgba(55, 73, 87, 0.2);
+  display: flex;
+  justify-content: center;  /* 水平居中 */
+  align-items: center;      /* 垂直居中 */
+}
+.notice-btn image{
+  width: 44rpx;
+  height: 36rpx;
+  display: block;
+  margin: auto auto;
+}
+
+/* 2. Banner - 重点还原文字 */
+.banner-card {
+  margin-top: 60rpx;
+  background-color: #eceae5; /* 设计稿米灰色 */
+  border-radius: 40rpx;
+  height: 300rpx;
+  display: flex;
+  position: relative;
+  overflow: visible !important;
+}
+.banner-content {
+  padding: 60rpx 40rpx;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 22rpx;
-  color: #333;
 }
-/* 底部 TabBar 图标样式 - 已移除边框 */
-.tab-icon {
-  width: 48rpx;
-  height: 48rpx;
-  margin-bottom: 4rpx;
-  border: none; 
+.brand-title {
+  font-size: 56rpx;
+  margin-left: 150rpx;
+  font-weight: 600;
+  color: #7A6418;
+  letter-spacing: 4rpx;
 }
-.tab-item text{
-  font-size: 30rpx;
+.brand-en {
+  font-family: 'Yellowtail'; /* 使用加载好的外部字体 */
+  font-size: 28rpx;
+  color: #7A6418;
+  margin-top: 10rpx;
+  margin-left: 300rpx;
+}
+.join-btn {
+  width: 192rpx;
+  height: 58rpx;
+  margin-top: 40rpx;
+  background-color: #7a6a35;
+  color: #ffffff;
+  font-size: 24rpx;
+  padding: 14rpx 36rpx;
+  border-radius: 30rpx;
+  align-self: flex-start;
+  display: flex;
+  justify-content: center;  /* 水平居中 */
+  align-items: center;      /* 垂直居中 */
+  font-family: 'Semibold';
+}
+.banner-image-space {
+  position: absolute;
+  /* 1. 强制底部对齐 */
+  bottom: 0; 
+  /* 2. 强制右边冲出 (负值越大，冲出越多) */
+  right: -10rpx; 
+  
+  /* 3. 设定一个宽度，让图片按比例缩放 */
+  width: 212rpx; 
+  height: 360rpx;
+  display: flex;
+  align-items: flex-end; /* 确保内容向下对齐 */
+}
+
+.banner-image-space image {
+  width: 100%;
+  height: 100%;
+  display: block; 
+}
+
+/* 3. Categories */
+.category-scroll {
+  white-space: nowrap;
+  margin: 50rpx 0 30rpx;
+}
+.cat-item {
+  display: inline-block;
+  font-size: 28rpx;
+  color: #999;
+  padding: 16rpx 44rpx;
+  margin-right: 10rpx;
+}
+.cat-item.active {
+  background-color: #7a6a35;
+  color: #fff;
+  border-radius: 40rpx;
+  font-weight: 500;
 }

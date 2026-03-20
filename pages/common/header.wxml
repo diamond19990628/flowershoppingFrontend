@@ -1,23 +1,33 @@
-<!--pages/common/header.wxml-->
-<view class="custom-tab-bar">
-    <view class="tab-item">
-      <image class="tab-icon" src="../img/line-md_home.png"></image>
-      <text>首页</text>
-    </view>
-    <view class="tab-item">
-      <image class="tab-icon" src="../img/Group.png"></image>
-      <text>选购</text>
-    </view>
-    <view class="tab-item">
-      <image class="tab-icon" src="../img/Vector.png"></image>
-      <text>门店</text>
-    </view>
-    <view class="tab-item">
-      <image class="tab-icon" src="../img/icon-park-outline_shopping.png"></image>
-      <text>购物车</text>
-    </view>
-    <view class="tab-item">
-      <image class="tab-icon" src="../img/material-symbols_person-outline.png"></image>
-      <text>我的</text>
+<view class="header_body">
+  <view class="header">
+    <view class="logo-text">
+      <image src="../img/logo.png"/>
+    </view> 
+    <view class="notice-btn">
+      <image src="../img/notice.png"/>
     </view>
   </view>
+
+  <view class="banner-card">
+    <view class="banner-content">
+      <view class="brand-title">汀山花语</view>
+      <view class="brand-en">T—Sian Flower</view>
+      <view class="join-btn">加入我们</view>
+    </view>
+    <view class="banner-image-space">
+      <image src="../img/IMG_8775.png"></image>
+    </view>
+  </view>
+  
+  <scroll-view scroll-x class="category-scroll" enable-flex>
+    <view
+      class="cat-item active" wx:for="{{categoryList}}"
+      wx:for-item="item"
+      data-category_id="{{item.category_id}}"
+      >
+      {{item.category_name}}
+    </view>
+  </scroll-view>
+</view> 
+
+<view class="header_body_placeholder"></view>

@@ -45,7 +45,13 @@ Page({
    */
   onLoad() {
     app.login().then(res=>{
-      console.log(res);
+      if(res=='yes'){
+        setTimeout(()=>{
+          wx.navigateTo({
+            url: '/pages/index/index'
+          })
+        },5000)
+      }
     })
   },
 
