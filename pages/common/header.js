@@ -5,9 +5,9 @@ Component({
     config: require("../../config"),
     currentIndex:null,
     initCategory_id:0,
-    showNotice:false
+    showNotice:false,
+    noticeList:[]
   },
-
   lifetimes: {
     attached() {
       wx.request({
@@ -29,6 +29,7 @@ Component({
           console.log("请求失败", err);
         }
       });
+      this.loadingInformation();
     }
   },
 
@@ -51,6 +52,21 @@ Component({
       this.setData({
         showNotice:false
       })
-    }
+    },
+    loadingInformation(){
+      wx.request({
+        url:this.data.config.BASE_URL+"/member/informations",
+        method:"GET",
+        success:(res)=>{
+          switch(res.statusCode){
+            case 200:
+              this.setData({
+                noticeList:res.data.data
+              })
+            break;
+          }
+        },
+      })
+    },
   }
 });

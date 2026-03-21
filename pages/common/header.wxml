@@ -43,17 +43,17 @@
 >
 <view class="ts-notice-wrapper">
   <view class="ts-header-area">
-    <text class="ts-icon-back">〈</text>
+    <text class="ts-icon-back" bind:tap="onClose">〈</text>
     <text class="ts-header-title">店主公告</text>
   </view>
 
-  <view class="ts-announcement-card">
-    <text class="ts-post-date">2026.3.20</text>
+  <view class="ts-announcement-card" wx:for="{{noticeList}}">
+    <text class="ts-post-date">{{item.publishStartDate}}</text>
     
     <view class="ts-content-center">
-      <view class="ts-main-subject">标题</view>
+      <view class="ts-main-subject">{{item.informationTitle}}</view>
       <view class="ts-divider-line"></view>
-      <view class="ts-body-desc">内容</view>
+      <view class="ts-body-desc">{{item.informationContent}}</view>
     </view>
   </view>
 </view>
