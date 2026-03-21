@@ -13,7 +13,9 @@ Page({
     startDate:null,
     endDate:null,
     errorMessage:"",
-    isErrorVisible:false
+    isErrorVisible:false,
+    isDeleteVisible:false,
+    information_id:0
   },
   loadingInformations(){
     wx.request({
@@ -174,6 +176,56 @@ Page({
         }
       })
     }
+  },
+  /**
+   * 删除通知
+   */
+  deleteConfirmInformation(e){
+    const information_id = e.currentTarget.dataset.information_id;
+    this.setData({
+      isDeleteVisible:true,
+      information_id:information_id
+    })
+    
+  },
+  /**
+   * 取消
+   */
+  hideDeleteDialog(){
+    this.setData({
+      isDeleteVisible:false
+    })
+  },
+  /**
+   * 执行删除
+   */
+  confirmDelete(){
+    const information_id = this.data.information_id;
+    wx.request({
+      url:this.data.config.BASE_URL+"/informations/"+information_id,
+      method:"DELETE",
+      header: {
+        "Content-Type": "application/json",
+        "token": wx.getStorageSync("token"),
+        "Cookie": "JSESSIONID=" + wx.getStorageSync("JSESSIONID")
+      },
+      success:(res)=>{
+        switch(res.statusCode){
+          case 204:
+            this.setData({
+              isDeleteVisible:false
+            })
+            this.loadingInformations();
+          break;
+          case 400:
+            this.setData({
+              errorMessage:res.data.msg,
+              isErrorVisible:true
+            })
+          break;
+        }
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

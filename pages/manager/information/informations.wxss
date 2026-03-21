@@ -196,3 +196,104 @@ page { background-color: #f6f7f9; }
   font-size: 30rpx;
   box-shadow: 0 8rpx 16rpx rgba(7, 193, 96, 0.2);
 }
+/* 弹窗最外层容器 */
+.notice-modal-mask {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+/* 激活状态 */
+.notice-modal-mask.modal-active {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* 背景半透明遮罩 */
+.notice-modal-bg {
+  position: absolute;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: -1;
+}
+
+/* 弹窗主体白盒 */
+.notice-modal-container {
+  width: 560rpx;
+  background: #fff;
+  border-radius: 32rpx;
+  overflow: hidden;
+  transform: scale(0.9);
+  transition: all 0.2s ease-in-out;
+}
+
+/* 动画：弹出时从小变大 */
+.modal-active .notice-modal-container {
+  transform: scale(1);
+}
+
+/* 头部样式 */
+.notice-modal-header { 
+  padding: 45rpx 40rpx 15rpx; 
+  text-align: center; 
+}
+
+.notice-modal-title { 
+  font-size: 32rpx; 
+  font-weight: bold; 
+  color: #333; 
+}
+
+/* 内容区域样式 */
+.notice-modal-body { 
+  padding: 30rpx 45rpx 45rpx; 
+}
+
+.notice-delete-text {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+  text-align: center;
+  display: block;
+}
+
+/* 底部按钮栏 */
+.notice-modal-footer {
+  display: flex;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+/* 按钮通用样式 */
+.notice-footer-btn {
+  flex: 1;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 30rpx;
+}
+
+/* 取消按钮 */
+.btn-quit {
+  color: #999;
+  border-right: 1rpx solid #f0f0f0;
+}
+
+.btn-quit:active {
+  background: #f9f9f9;
+}
+
+/* 删除按钮（警告红） */
+.btn-warn {
+  color: #ff4d4f; 
+  font-weight: bold;
+}
+
+.btn-warn:active {
+  background: #fff1f0;
+}

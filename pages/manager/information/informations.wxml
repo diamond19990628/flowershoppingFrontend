@@ -31,7 +31,7 @@
 
       <view class="card-footer">
         <view class="footer-btn edit">编辑内容</view>
-        <view class="footer-btn delete">删除</view>
+        <view class="footer-btn delete" data-information_id="{{item.informationId}}" bind:tap="deleteConfirmInformation">删除</view>
       </view>
     </view>
   </view>
@@ -78,3 +78,20 @@
   </view>
 </view>
 <errorDialog isErrorVisible="{{isErrorVisible}}" errorMessage="{{errorMessage}}"/>
+<view class="notice-modal-mask {{isDeleteVisible ? 'modal-active' : ''}}">
+  <view class="notice-modal-container">
+    <view class="notice-modal-header">
+      <text class="notice-modal-title">确认删除</text>
+    </view>
+    
+    <view class="notice-modal-body">
+      <text class="notice-delete-text">确定要删除该公告吗？删除后不可恢复。</text>
+    </view>
+
+    <view class="notice-modal-footer">
+      <view class="notice-footer-btn btn-quit" bindtap="hideDeleteDialog">取消</view>
+      <view class="notice-footer-btn btn-warn" bindtap="confirmDelete">删除</view>
+    </view>
+  </view>
+  <view class="notice-modal-bg" bindtap="hideDeleteDialog"></view>
+</view>
