@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@babel/runtime": "^7.29.2",
-    "lottie-miniprogram": "^1.0.12"
+    "lottie-miniprogram": "^1.0.12",
+    "xss": "^1.0.15"
   }
 }

@@ -1,0 +1,198 @@
+page { background-color: #f6f7f9; }
+
+/* 固定头部高度约为 160rpx */
+.fixed-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+}
+
+.admin-hero {
+  background: #ffffff;
+  padding: 30rpx 40rpx;
+  display: flex; justify-content: space-between; align-items: center;
+  border-bottom-left-radius: 40rpx;
+  border-bottom-right-radius: 40rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.06);
+}
+
+.hero-title { font-size: 44rpx; font-weight: bold; color: #1a1a1a; }
+.hero-desc { font-size: 24rpx; color: #999; margin-top: 4rpx; display: block; }
+
+.btn-create {
+  background: #07c160; color: #fff; height: 76rpx; padding: 0 28rpx;
+  border-radius: 16rpx; display: flex; align-items: center; font-size: 28rpx;
+}
+
+/* 列表容器：padding-top 刚好让第一个卡片贴近头部 */
+.content-body {
+  padding: 180rpx 30rpx 40rpx; /* 如果间距还大，尝试 170rpx */
+}
+
+.card {
+  background: #fff; border-radius: 28rpx; margin-bottom: 24rpx;
+  overflow: hidden; box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.03);
+}
+
+.card-main { padding: 32rpx 32rpx 24rpx; }
+
+/* 标题样式：限制2行，多出省略 */
+.card-row-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.title-text {
+  flex: 1; font-size: 32rpx; font-weight: 600; color: #333;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; overflow: hidden;
+}
+
+.status-tag {
+  font-size: 20rpx; background: #e8f7ed; color: #07c160;
+  padding: 4rpx 12rpx; border-radius: 6rpx; margin-left: 20rpx; white-space: nowrap;
+}
+
+/* 内容摘要：多行省略 */
+.content-text {
+  font-size: 26rpx; color: #666; line-height: 1.6; margin-top: 16rpx;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
+}
+
+/* 显示期限盒子 */
+.duration-box {
+  margin-top: 24rpx; padding: 16rpx 20rpx; background: #f8f9fb;
+  border-radius: 12rpx; display: flex; align-items: center;
+}
+.time-label { font-size: 22rpx; color: #999; }
+.time-range { font-size: 22rpx; color: #576b95; font-weight: 500; }
+
+/* 底部按钮：改为更现代的扁平化风格 */
+.card-footer {
+  display: flex; border-top: 1rpx solid #f2f2f2;
+}
+.footer-btn {
+  flex: 1; height: 90rpx; display: flex; align-items: center; justify-content: center;
+  font-size: 26rpx; font-weight: 500;
+}
+.edit { color: #07c160; border-right: 1rpx solid #f2f2f2; }
+.delete { color: #fa5151; }
+
+.btn-active { opacity: 0.8; transform: scale(0.98); }
+
+/* 遮罩层 */
+.dialog-mask {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s;
+}
+.dialog-mask.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* 弹窗主体 */
+.dialog-container {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -45%); /* 默认位移 */
+  width: 650rpx;
+  background: #fff;
+  border-radius: 32rpx;
+  z-index: 1001;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+.dialog-container.show {
+  visibility: visible;
+  opacity: 1;
+  transform: translate(-50%, -50%); /* 弹出时的最终位置 */
+}
+
+/* 头部 */
+.dialog-header {
+  padding: 40rpx 40rpx 20rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dialog-title { font-size: 36rpx; font-weight: bold; color: #333; }
+.close-icon { font-size: 48rpx; color: #ccc; line-height: 1; }
+
+/* 表单区域 */
+.dialog-body {
+  max-height: 700rpx; /* 限制高度，防止溢出屏幕 */
+  padding: 20rpx 40rpx;
+  box-sizing: border-box;
+}
+
+.input-group { margin-bottom: 30rpx; }
+.label {
+  display: block;
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 12rpx;
+}
+
+.input-element {
+  background: #f7f8fa;
+  height: 88rpx;
+  padding: 0 24rpx;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+}
+
+.textarea-element {
+  background: #f7f8fa;
+  width: 100%;
+  height: 200rpx;
+  padding: 24rpx;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+}
+
+/* 日期组布局 */
+.date-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40rpx;
+}
+.date-item { width: 47%; }
+.picker-field {
+  background: #f7f8fa;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  border-radius: 12rpx;
+  font-size: 26rpx;
+  color: #333;
+}
+
+.p-class { color: #ccc; }
+
+/* 底部按钮 */
+.dialog-footer {
+  display: flex;
+  padding: 30rpx 40rpx 40rpx;
+  gap: 20rpx;
+}
+.btn-cancel {
+  flex: 1;
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  background: #f5f5f5;
+  color: #666;
+  border-radius: 16rpx;
+  font-size: 30rpx;
+}
+.btn-confirm {
+  flex: 2; /* 确认按钮更宽，突出重点 */
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  background: #07c160;
+  color: #fff;
+  border-radius: 16rpx;
+  font-size: 30rpx;
+  box-shadow: 0 8rpx 16rpx rgba(7, 193, 96, 0.2);
+}

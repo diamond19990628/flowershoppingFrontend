@@ -72,6 +72,11 @@ Page({
       url:'/pages/manager/category/category'
     })
   },
+  navToNotice(){
+    wx.navigateTo({
+      url:'/pages/manager/information/informations'
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

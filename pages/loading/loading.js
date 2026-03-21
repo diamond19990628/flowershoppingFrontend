@@ -48,7 +48,7 @@ Page({
       if(res=='yes'){
         setTimeout(()=>{
           wx.navigateTo({
-            url: '/pages/index/index'
+            url: '/pages/manager/index/index'
           })
         },5000)
       }

@@ -9,7 +9,8 @@
     "pages/manager/order/orderItem",
     "pages/manager/category/category",
     "pages/common/header",
-    "pages/common/footer"
+    "pages/common/footer",
+    "pages/manager/information/informations"
   ],
   "window": {
     "navigationBarTextStyle": "black",
