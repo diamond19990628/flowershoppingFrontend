@@ -48,12 +48,12 @@
   <scroll-view scroll-y="true" class="dialog-body">
     <view class="input-group">
       <text class="label">公告标题</text>
-      <input class="input-element" placeholder="请输入标题（20字以内）" placeholder-class="p-class" />
+      <input class="input-element" placeholder="请输入标题（20字以内）" placeholder-class="p-class" data-field="information_title" bindinput="onInput"/>
     </view>
 
     <view class="input-group">
       <text class="label">公告内容</text>
-      <textarea class="textarea-element" placeholder="请输入详细公告内容..." maxlength="500" />
+      <textarea class="textarea-element" placeholder="请输入详细公告内容..." maxlength="500" bindinput="onInput" data-field="information_content"></textarea>
     </view>
 
     <view class="date-group">
@@ -77,3 +77,4 @@
     <view class="btn-confirm" bindtap="submitNotice">立即发布</view>
   </view>
 </view>
+<errorDialog isErrorVisible="{{isErrorVisible}}" errorMessage="{{errorMessage}}"/>

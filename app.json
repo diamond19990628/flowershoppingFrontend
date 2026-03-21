@@ -10,7 +10,8 @@
     "pages/manager/category/category",
     "pages/common/header",
     "pages/common/footer",
-    "pages/manager/information/informations"
+    "pages/manager/information/informations",
+    "pages/manager/error/errorDialog"
   ],
   "window": {
     "navigationBarTextStyle": "black",

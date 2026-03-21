@@ -1,0 +1,17 @@
+<view class="category-dialog-mask {{isErrorVisible ? 'modal-visible' : ''}}">
+  <view class="category-dialog-content">
+    <view class="dialog-header">
+      <view class="error-icon-circle">!</view>
+      <text class="dialog-title">提示</text>
+    </view>
+    
+    <view class="dialog-body">
+      <view class="error-message">{{errorMessage}}</view>
+    </view>
+
+    <view class="dialog-footer">
+      <view class="dialog-btn btn-error-confirm" bindtap="hideErrorDialog">知道了</view>
+    </view>
+  </view>
+  <view class="modal-backdrop" bindtap="hideErrorDialog"></view>
+</view>

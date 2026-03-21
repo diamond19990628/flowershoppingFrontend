@@ -1,0 +1,19 @@
+Component({
+  properties:{
+    errorMessage:{
+      type:String,
+      value:""
+    },
+    isErrorVisible:{
+      type:Boolean,
+      value:""
+    }
+  },
+  methods:{
+    hideErrorDialog(){
+      this.setData({
+        isErrorVisible:false
+      })
+    }
+  }
+})

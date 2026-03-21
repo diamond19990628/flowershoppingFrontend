@@ -1,0 +1,184 @@
+/* 弹窗外层容器 */
+.category-dialog-mask {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 初始状态隐藏 */
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+/* 显示状态的类名 */
+.category-dialog-mask.modal-visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-backdrop {
+  position: absolute;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: -1;
+}
+
+.category-dialog-content {
+  width: 560rpx;
+  background: #fff;
+  border-radius: 32rpx;
+  overflow: hidden;
+  transform: scale(0.9);
+  transition: all 0.2s ease-in-out;
+}
+
+/* 当显示时，缩放回正常大小 */
+.modal-visible .category-dialog-content {
+  transform: scale(1);
+}
+
+.dialog-header { padding: 45rpx 40rpx 15rpx; text-align: center; }
+.dialog-title { font-size: 32rpx; font-weight: bold; color: #333; }
+
+.dialog-body { padding: 30rpx 45rpx 45rpx; }
+.single-input {
+  background: #f6f7f8;
+  height: 96rpx;
+  border-radius: 20rpx;
+  padding: 0 30rpx;
+  font-size: 30rpx;
+  text-align: center;
+  border: 1rpx solid #eee;
+}
+
+.dialog-footer {
+  display: flex;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.dialog-btn {
+  flex: 1;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 30rpx;
+}
+
+.btn-cancel {
+  color: #999;
+  border-right: 1rpx solid #f0f0f0;
+}
+
+.btn-confirm {
+  color: #00c677; /* 匹配你页面的主色 */
+  font-weight: bold;
+}
+
+.dialog-btn:active {
+  background: #f9f9f9;
+}
+
+/* 删除弹窗特有样式 */
+.delete-tips {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.highlight-name {
+  color: #333;
+  font-weight: bold;
+  padding: 0 4rpx;
+}
+
+.btn-delete {
+  color: #ff4d4f; /* 警示红 */
+  font-weight: bold;
+}
+
+/* 按钮点击反馈 */
+.btn-delete:active {
+  background: #fff1f0;
+}
+
+/* 错误图标样式 */
+.error-icon-circle {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background-color: #fff1f0;
+  color: #ff4d4f;
+  font-size: 50rpx;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20rpx;
+  border: 4rpx solid #ff4d4f;
+}
+
+/* 错误文字信息 */
+.error-message {
+  font-size: 28rpx;
+  color: #666;
+  text-align: center;
+  line-height: 1.5;
+  padding: 0 20rpx;
+}
+
+/* 错误弹窗的确定按钮 */
+.btn-error-confirm {
+  color: #333;
+  font-weight: bold;
+  background-color: #f5f5f5; /* 灰色背景，让用户感知这不是一个提交动作 */
+}
+
+.btn-error-confirm:active {
+  background-color: #eeeeee;
+}
+
+/* 子分类右侧操作区域容器 */
+.child-right {
+  display: flex;
+  align-items: center;
+  gap: 0; /* 配合分割线使用，如果不想要分割线可以调大 gap */
+}
+
+/* 子分类操作按钮通用样式 */
+.child-action-btn {
+  font-size: 24rpx;
+  padding: 10rpx 20rpx;
+  border-radius: 12rpx;
+  transition: all 0.2s;
+}
+
+/* 具体的颜色定义（复用你已有的配色） */
+.edit-text {
+  color: #00c677; /* 你的主绿 */
+}
+
+.delete-text {
+  color: #ff4d4f; /* 你的删除红 */
+}
+
+/* 点击态：背景微变色，让用户知道点中了 */
+.edit-text:active {
+  background-color: rgba(0, 198, 119, 0.1);
+  opacity: 0.7;
+}
+
+.delete-text:active {
+  background-color: rgba(255, 77, 79, 0.1);
+  opacity: 0.7;
+}
+
+/* 中间的细分割线 */
+.action-divider {
+  width: 1rpx;
+  height: 20rpx;
+  background-color: #eee;
+  margin: 0 10rpx;
+}
