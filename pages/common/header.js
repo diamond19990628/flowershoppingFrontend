@@ -5,6 +5,7 @@ Component({
     config: require("../../config"),
     currentIndex:null,
     initCategory_id:0,
+    showNotice:false
   },
 
   lifetimes: {
@@ -39,6 +40,16 @@ Component({
       }),
       this.triggerEvent("change",{
         category_id:e.currentTarget.dataset.category_id
+      })
+    },
+    openNotice(){
+      this.setData({
+        showNotice:true
+      })
+    },
+    onClose(){
+      this.setData({
+        showNotice:false
       })
     }
   }

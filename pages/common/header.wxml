@@ -3,7 +3,7 @@
     <view class="logo-text">
       <image src="../img/logo.png"/>
     </view> 
-    <view class="notice-btn">
+    <view class="notice-btn" bind:tap="openNotice">
       <image src="../img/notice.png"/>
     </view>
   </view>
@@ -33,3 +33,28 @@
 </view> 
 
 <view class="header_body_placeholder"></view>
+<van-popup
+  show="{{ showNotice }}"
+  position="right"
+  custom-style="width:80%"
+  overlay="false"
+  bind:close="onClose"
+  round
+>
+<view class="ts-notice-wrapper">
+  <view class="ts-header-area">
+    <text class="ts-icon-back">〈</text>
+    <text class="ts-header-title">店主公告</text>
+  </view>
+
+  <view class="ts-announcement-card">
+    <text class="ts-post-date">2026.3.20</text>
+    
+    <view class="ts-content-center">
+      <view class="ts-main-subject">标题</view>
+      <view class="ts-divider-line"></view>
+      <view class="ts-body-desc">内容</view>
+    </view>
+  </view>
+</view>
+</van-popup>
