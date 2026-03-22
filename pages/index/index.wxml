@@ -3,7 +3,7 @@
   <common-header bind:change="onCategoryChange"/>
 
   <view class="goods-grid">
-    <view class="goods-item" wx:for="{{productList}}" wx:key="index">
+    <view class="goods-item" wx:for="{{productList}}" wx:key="index" bind:tap="navToItem" data-items="{{item}}">
       <view class="goods-image-space">
         <image src="{{item.attachedFile.attachedFilePath}}"></image>
       </view> <view class="goods-info">

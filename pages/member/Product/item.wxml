@@ -1,0 +1,30 @@
+<view class="pdp-card-container">
+  
+  <view class="pdp-image-wrapper">
+    <image class="pdp-main-image" src="{{items.attachedFile.attachedFilePath}}" mode="aspectFill" />
+    
+    <view class="back-btn" hover-class="back-btn-hover" bindtap="onBack">
+      <text class="back-icon">◀</text>
+    </view>
+  </view>
+
+  <view class="pdp-info-section">
+    <view class="pdp-name">商品名:{{items.productName}}</view>
+    
+    <view class="pdp-price-wrapper">
+      <text class="pdp-currency">¥{{items.amount}}</text>
+      <text class="pdp-price-value"></text>
+    </view>
+  </view>
+
+  <view class="pdp-tips-section">
+    若遇花材不足等情况，默认用同等色系花材替换
+  </view>
+
+  <view class="pdp-action-footer">
+    <button class="btn-add-cart" hover-class="btn-hover-effect">
+      加入购物车
+    </button>
+  </view>
+  
+</view>

@@ -42,7 +42,16 @@ Page({
   onLoad(options) {
     this.loadingProduct();
   },
-
+  /**
+   * 画面移动
+   */
+  navToItem(e){
+    const item = e.currentTarget.dataset.items;
+    console.log(item);
+    wx.navigateTo({
+      url:"../member/Product/item?Items="+encodeURIComponent(JSON.stringify(item))
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

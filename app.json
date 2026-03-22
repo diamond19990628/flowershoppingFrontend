@@ -11,7 +11,8 @@
     "pages/common/header",
     "pages/common/footer",
     "pages/manager/information/informations",
-    "pages/manager/error/errorDialog"
+    "pages/manager/error/errorDialog",
+    "pages/member/Product/item"
   ],
   "window": {
     "navigationBarTextStyle": "black",
