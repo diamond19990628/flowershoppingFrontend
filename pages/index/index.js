@@ -20,7 +20,8 @@ Page({
       url:this.data.config.BASE_URL+"/member/product",
       method:"GET",
       data:{
-        category_id:this.data.current_parent_id
+        category_id:this.data.current_parent_id,
+        access_flag:1
       },
       success:(res)=>{
         switch(res.statusCode){

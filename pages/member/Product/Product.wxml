@@ -1,26 +1,26 @@
 <view class="ts-container">
-  <scroll-view scroll-x class="ts-nav-level1" enable-flex>
-    <view class="ts-nav-item1 active">花束</view>
-    <view class="ts-nav-item1">绿植</view>
-    <view class="ts-nav-item1">花篮</view>
-    <view class="ts-nav-item1">抱桶</view>
-    <view class="ts-nav-item1">花器</view>
-  </scroll-view>
+  <view class="ts-header">
+    <scroll-view scroll-x class="ts-nav-level1" enable-flex>
+      <view class="ts-nav-item1 {{currentParentIndex==index ? 'active':''}}" wx:for="{{categoryList
+      }}" data-category_id="{{item.category_id}}" wx:for-index="index" bind:tap="switchParent" data-parent_index="{{index}}">{{item.category_name}}</view>
+    </scroll-view>
 
-  <view class="ts-nav-level2">
-    <view class="ts-sub-tag active">经典系列</view>
-    <view class="ts-sub-tag outline">节日花束</view>
-    <view class="ts-sub-tag outline">生日花束</view>
+    <view class="ts-nav-level2">
+      <view class="ts-sub-tag {{currentChildIndex == index ? 'active':''}}" wx:for="{{categoryChildList}}" wx:for-index="index" wx:for-item="child" bind:tap="switchChild" data-child_index="{{index}}" data-category_id="{{child.categoryId}}">{{child.categoryName}}</view>
+    </view>
   </view>
+  
 
   <view class="ts-goods-grid">
-    <block wx:for="{{[1,2,3,4]}}" wx:key="index">
-      <view class="ts-goods-card">
-        <view class="ts-goods-img-box"></view>
+    <block wx:for="{{productList}}" wx:key="index">
+      <view class="ts-goods-card" data-items="{{item}}" bind:tap="navToItem">
+        <view class="ts-goods-img-box">
+          <image src="{{item.attachedFile.attachedFilePath}}"/>
+        </view>
         <view class="ts-goods-info">
-          <view class="ts-goods-name">商品名</view>
+          <view class="ts-goods-name">商品名:{{item.productName}}</view>
           <view class="ts-goods-bottom">
-            <text class="ts-goods-price">¥</text>
+            <text class="ts-goods-price">¥{{item.amount}}</text>
             <view class="ts-btn-go">
               <text class="ts-arrow">→</text>
             </view>

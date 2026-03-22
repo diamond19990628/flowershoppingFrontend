@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    items:null
+    items:null,
+    prevUrl:""
   },
 
   /**
@@ -13,17 +14,17 @@ Page({
    */
   onLoad(options) {
     const items = JSON.parse(decodeURIComponent(options.Items));
+    const prevURL = options.prevUrl;
     this.setData({
-      items:items
+      items:items,
+      prevUrl:prevURL
     })
   },
   /**
    * 返回主页面
    */
   onBack(){
-    wx.navigateTo({
-      url:"../../index/index"
-    })
+    wx.navigateBack()
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
