@@ -1,15 +1,15 @@
 <!--pages/common/footer.wxml-->
 <view class="footer-tabbar">
-  <view class="tab-item active">
-    <view class="cycle"></view>
+  <view class="tab-item {{index==1 ? 'active' : ''}} " bind:tap="navToPage" data-url="/pages/index/index" data-index="1">
+    <view class="{{index==1 ? 'cycle' : ''}}"></view>
     <view class="menu-class">
-      <image src="../img/fi-rr-home-active.png" mode="aspectFit"/>
+      <image src="{{index==1 ? '../img/fi-rr-home-active.png':'../img/fi-rr-home.png'}}" mode="aspectFit"/>
     </view>
   </view>
-  <view class="tab-item">
-    <view class=""></view>
+  <view class="tab-item {{index==2 ? 'active' : ''}}" bind:tap="navToPage" data-url="/pages/member/Product/Product" data-index="2">
+    <view class="{{index==2 ? 'cycle' : ''}}"></view>
     <view class="menu-class">
-      <image src="../img/Vector.png" mode="aspectFit"/>
+      <image src="{{index==2 ? '../img/Vector-active.png' : '../img/Vector.png'}}" mode="aspectFit"/>
     </view>
   </view>
   <view class="tab-item">

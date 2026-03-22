@@ -47,7 +47,6 @@ Page({
    */
   navToItem(e){
     const item = e.currentTarget.dataset.items;
-    console.log(item);
     wx.navigateTo({
       url:"../member/Product/item?Items="+encodeURIComponent(JSON.stringify(item))
     })

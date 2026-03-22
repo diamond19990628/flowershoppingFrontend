@@ -1,0 +1,117 @@
+.ts-container {
+  min-height: 100vh;
+  background-color: #f8f8f8;
+  padding-bottom: 40rpx;
+}
+
+/* 一级分类导航 */
+.ts-nav-level1 {
+  display: flex;
+  white-space: nowrap;
+  padding: 30rpx 20rpx;
+  background-color: #fff;
+}
+
+.ts-nav-item1 {
+  display: inline-block;
+  padding: 12rpx 40rpx;
+  font-size: 28rpx;
+  color: #999;
+  border-radius: 40rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.ts-nav-item1.active {
+  background-color: #71602e;
+  color: #fff;
+}
+
+/* 二级子分类标签 */
+.ts-nav-level2 {
+  display: flex;
+  padding: 20rpx 30rpx;
+  gap: 20rpx;
+}
+
+.ts-sub-tag {
+  padding: 10rpx 24rpx;
+  font-size: 24rpx;
+  border-radius: 12rpx;
+}
+
+.ts-sub-tag.active {
+  background-color: #71602e;
+  color: #fff;
+  border: 1px solid #71602e;
+}
+
+.ts-sub-tag.outline {
+  background-color: #fff;
+  color: #71602e;
+  border: 1px dashed #71602e; /* 还原图中的虚线边框 */
+}
+
+/* 商品网格布局 */
+.ts-goods-grid {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10rpx 25rpx;
+  justify-content: space-between;
+}
+
+.ts-goods-card {
+  width: 340rpx;
+  background-color: #efefef;
+  border-radius: 30rpx;
+  margin-bottom: 25rpx;
+  overflow: hidden;
+}
+
+/* 图片区域：比例参考图中大约 1:1.1 */
+.ts-goods-img-box {
+  width: 100%;
+  height: 380rpx;
+  background-color: #bcbaaf; /* 图中占位图颜色 */
+}
+
+/* 信息区域 */
+.ts-goods-info {
+  padding: 20rpx;
+}
+
+.ts-goods-name {
+  font-size: 28rpx;
+  color: #71602e;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.ts-goods-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ts-goods-price {
+  font-size: 30rpx;
+  color: #71602e;
+  font-weight: bold;
+}
+
+/* 圆角箭头按钮 */
+.ts-btn-go {
+  width: 50rpx;
+  height: 40rpx;
+  background-color: #fff;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2rpx 6rpx rgba(0,0,0,0.05);
+}
+
+.ts-arrow {
+  font-size: 24rpx;
+  color: #71602e;
+}

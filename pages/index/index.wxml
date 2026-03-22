@@ -16,5 +16,5 @@
     </view>
   </view>
 
-  <common-footer/>
+  <common-footer index="1" url="/pages/index/index"/>
 </view>
