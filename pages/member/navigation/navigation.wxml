@@ -1,0 +1,49 @@
+<view class="ts-about-container">
+  <swiper 
+  indicator-dots="true" 
+  indicator-color="rgba(0,0,0,.3)" 
+  indicator-active-color="#71602e"
+  autoplay="true" 
+  interval="3000" 
+  circular="true"
+  class="ts-swiper-section"
+>
+  <swiper-item>
+    <image src="../../img/Rectangle1.png" mode="aspectFill"></image>
+    <view class="ts-swiper-section-font">走至麦当劳旁进入拐角</view>
+  </swiper-item>
+  <swiper-item>
+    <image src="../../img/Rectangle2.png" mode="aspectFill"></image>
+    <view class="ts-swiper-section-font">从拐角进电梯上至二楼</view>
+  </swiper-item>
+  <swiper-item>
+    <image src="../../img/Rectangle3.png" mode="aspectFill"></image>
+    <view class="ts-swiper-section-font">出电梯右转一直走</view>
+  </swiper-item>
+</swiper>
+
+  <view class="ts-address-card">
+    <view class="ts-address-title">南京市江宁区诚信大道669号</view>
+    <view class="ts-address-sub">金隅六维IN有街市二楼</view>
+    <view class="ts-nav-btn" bind:tap="openLocation">点击导航</view>
+  </view>
+
+  <view class="ts-detail-info">
+    <view class="ts-info-item">
+      <text class="ts-label">营业时间：</text>
+      <text class="ts-value">9:30—20:30 （特殊节日可能有变动）</text>
+    </view>
+    <view class="ts-info-item">
+      <text class="ts-label">拨打门店电话：</text>
+      <text class="ts-value">15195983633</text>
+    </view>
+    <view class="ts-info-item ts-flex-start">
+      <text class="ts-label">微信联系门店：</text>
+      <view class="ts-qrcode-box">
+        <image class="ts-qrcode" src="../../img/wechat.png" mode="aspectFit"></image>
+      </view>
+    </view>
+  </view>
+
+  <common-footer index="3" url="/pages/member/navigation/navigation"/>
+</view>

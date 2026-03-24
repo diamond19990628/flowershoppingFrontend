@@ -13,7 +13,9 @@
     "pages/manager/information/informations",
     "pages/manager/error/errorDialog",
     "pages/member/Product/item",
-    "pages/member/Product/Product"
+    "pages/member/Product/Product",
+    "pages/member/navigation/navigation",
+    "pages/member/user/user"
   ],
   "window": {
     "navigationBarTextStyle": "black",

@@ -1,0 +1,19 @@
+<view class="ts-login-page">
+  <view class="ts-header-slogan">
+    <text class="ts-slogan-left">在最美的时光遇见你 🌷</text>
+    <text class="ts-slogan-right">汀山花语</text>
+  </view>
+  <view class="ts-header-line"></view>
+
+  <view class="ts-main-content">
+    <image class="ts-illustration" src="../../img/welcome.png" mode="widthFix"></image>
+    <view class="ts-flower-image"><image src="../../img/flower_water.png"/></view>
+    <view class="ts-login-card">
+      
+      <view class="ts-welcome-msg">欢迎您的加入！</view>
+      <button class="ts-login-btn" open-type="getPhoneNumber" bindgetphonenumber="onGetPhoneNumber">登陆/注册</button>
+    </view>
+  </view>
+
+  <common-footer index="5" url="/pages/member/user/user"/>
+</view>

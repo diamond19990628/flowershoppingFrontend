@@ -12,8 +12,8 @@
       <image src="{{index==2 ? '../img/Vector-active.png' : '../img/Vector.png'}}" mode="aspectFit"/>
     </view>
   </view>
-  <view class="tab-item">
-    <view class=""></view>
+  <view class="tab-item {{index==3 ? 'active' : ''}}" bind:tap="navToPage" data-url="/pages/member/navigation/navigation" data-index="3">
+    <view class="{{index==3 ? 'cycle' : ''}}"></view>
     <view class="menu-class">
       <image src="../img/address.png"/>
     </view>
@@ -24,8 +24,8 @@
       <image src="../img/bag.png" mode="aspectFit"/>
     </view>
   </view>
-  <view class="tab-item">
-    <view class=""></view>
+  <view class="tab-item {{index==4 ? 'active' : ''}}" bind:tap="navToPage" data-url="/pages/member/user/user" data-index="5">
+    <view class="{{index==5 ? 'cycle' : ''}}"></view>
     <view class="menu-class">
       <image src="../img/fi-rr-user.png" mode="aspectFit"/>
     </view>

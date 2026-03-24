@@ -1,0 +1,145 @@
+.ts-login-page {
+  min-height: 100vh;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+
+/* 顶部标语样式 */
+.ts-header-slogan {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 60rpx;
+  padding-bottom: 10rpx;
+}
+
+.ts-slogan-left {
+  font-size: 24rpx;
+  color: #71602e;
+}
+
+.ts-slogan-right {
+  font-size: 38rpx;
+  font-weight: bold;
+  color: #71602e;
+  letter-spacing: 2rpx;
+}
+
+.ts-header-line {
+  width: 100%;
+  height: 1rpx;
+  border-bottom: 1px dashed #71602e; /* 还原图中的虚线分割 */
+  margin-bottom: 40rpx;
+}
+
+/* 插画与卡片布局 */
+.ts-main-content {
+  position: relative;
+  width: 100%;
+  margin-top: 50rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.ts-illustration {
+  width: 90%;
+  opacity: 0.9;
+  margin-top: 200rpx;
+}
+.ts-flower-image{
+  position: absolute;
+  width: 184rpx;
+  height: 184rpx;
+  top: 0px;
+  margin-left:450rpx;
+}
+.ts-flower-image image{
+  width: 100%;
+  height: 100%;
+}
+/* 悬浮登录卡片 */
+.ts-login-card {
+  position: absolute;
+  top: 15%; /* 根据插画位置微调 */
+  width: 80%;
+  background-color: #71602e;
+  border-radius: 40rpx;
+  padding: 60rpx 40rpx;
+  text-align: center;
+  box-shadow: 0 20rpx 40rpx rgba(0, 0, 0, 0.3); /* 还原图中较重的阴影 */
+  z-index: 10;
+  top: 150rpx;
+}
+
+.ts-welcome-msg {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 26rpx;
+  margin-bottom: 20rpx;
+  text-align: left;
+}
+
+.ts-login-btn {
+  font-size: 40rpx;
+  font-weight: 500;
+  letter-spacing: 4rpx;
+  background-color: #71602e;
+  color: #fff;
+}
+
+/* 底部 TabBar */
+.ts-tabbar-box {
+  position: fixed;
+  bottom: 40rpx;
+  left: 30rpx;
+  right: 30rpx;
+  height: 120rpx;
+  background: #ffffff;
+  border-radius: 60rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 4rpx 30rpx rgba(0, 0, 0, 0.1);
+  border: 1px solid #eee;
+}
+
+.ts-tab-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.ts-iconfont {
+  font-size: 44rpx;
+  color: #999;
+}
+
+/* 选中状态：顶部半圆修饰 */
+.ts-tab-item.ts-active .ts-iconfont {
+  color: #71602e;
+}
+
+.ts-active-circle {
+  position: absolute;
+  width: 100rpx;
+  height: 50rpx;
+  background-color: #71602e;
+  border-radius: 0 0 50rpx 50rpx; /* 向上突出的半圆 */
+}
+
+/* 在半圆中心加个小点，对应图中设计 */
+.ts-active-circle::after {
+  content: '';
+  position: absolute;
+  bottom: 10rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8rpx;
+  height: 8rpx;
+  background: #fff;
+  border-radius: 50%;
+}
