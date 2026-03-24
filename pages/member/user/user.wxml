@@ -6,12 +6,29 @@
   <view class="ts-header-line"></view>
 
   <view class="ts-main-content">
-    <image class="ts-illustration" src="../../img/welcome.png" mode="widthFix"></image>
+    <image class="ts-illustration {{isLogined ? 'is-logined-img' : ''}}" src="../../img/welcome.png" mode="widthFix"></image>
     <view class="ts-flower-image"><image src="../../img/flower_water.png"/></view>
-    <view class="ts-login-card">
-      
-      <view class="ts-welcome-msg">欢迎您的加入！</view>
-      <button class="ts-login-btn" open-type="getPhoneNumber" bindgetphonenumber="onGetPhoneNumber">登陆/注册</button>
+    
+    <view class="ts-login-card {{isLogined ? 'ts-logged-card' : ''}}">
+      <block wx:if="{{!isLogined}}">
+        <view class="ts-welcome-msg">欢迎您的加入！</view>
+        <button class="ts-login-btn" open-type="getPhoneNumber" bindgetphonenumber="onGetPhoneNumber">登陆/注册</button>
+      </block>
+
+      <block wx:else>
+        <view class="ts-logged-user">
+          <view class="ts-user-avatar">
+            <image src="{{userInfo.avatarUrl || '../../img/default_avatar.png'}}" mode="aspectFill"></image>
+          </view>
+          <text class="ts-user-name">{{nickName}}</text>
+        </view>
+      </block>
+    </view>
+
+    <view class="ts-logged-menu" wx:if="{{isLogined}}">
+      <view class="ts-menu-item" bindtap="toOrder">我的订单</view>
+      <view class="ts-menu-item" bindtap="toAddress">收货地址</view>
+      <view class="ts-menu-item" bindtap="toContact">联系商家</view>
     </view>
   </view>
 
@@ -39,7 +56,7 @@
     </view>
 
     <view class="ts-dialog-footer">
-      <button class="ts-submit-btn" bind:tap="login">快速注册</button>
+      <button class="ts-submit-btn" bind:tap="onNewUserLogin">快速注册</button>
       <view class="ts-skip-btn">暂时跳过</view>
     </view>
   </view>

@@ -116,7 +116,8 @@ Page({
                   }
                   this.setData({
                     isLogined:true,
-                    nickName:res.data.data.nickName
+                    nickName:res.data.data.nickName,
+                    showdialog:false
                   })
               }
             },
