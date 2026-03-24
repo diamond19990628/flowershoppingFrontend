@@ -17,3 +17,31 @@
 
   <common-footer index="5" url="/pages/member/user/user"/>
 </view>
+<view class="ts-dialog-mask {{showdialog ?'':'hiddendialog'}}">
+  <view class="ts-dialog-container">
+    <view class="ts-dialog-avatar-box">
+      <view class="ts-dialog-avatar-circle">
+        <text class="ts-dialog-avatar-icon">👤</text>
+        <view class="ts-dialog-edit-icon">✎</view>
+      </view>
+    </view>
+
+    <view class="ts-dialog-header">
+      <view class="ts-dialog-title">欢迎加入汀山花语</view>
+      <view class="ts-dialog-subtitle">请完善个人信息完成注册</view>
+    </view>
+
+    <view class="ts-dialog-form">
+      <view class="ts-form-item">
+        <text class="ts-label">昵称<text class="ts-required">*</text></text>
+        <input data-field="nickName" bindinput="onInput" type="nickname" class="ts-input" placeholder="请输入昵称" placeholder-class="ts-placeholder" />
+      </view>
+    </view>
+
+    <view class="ts-dialog-footer">
+      <button class="ts-submit-btn" bind:tap="login">快速注册</button>
+      <view class="ts-skip-btn">暂时跳过</view>
+    </view>
+  </view>
+</view>
+<errorDialog isErrorVisible="{{isErrorVisible}}" errorMessage="{{errorMessage}}"/>

@@ -44,15 +44,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    app.login().then(res=>{
-      if(res=='yes'){
-        setTimeout(()=>{
-          wx.navigateTo({
-            url: '/pages/index/index'
-          })
-        },5000)
-      }
-    })
+    setTimeout(()=>{
+      wx.navigateTo({
+        url: '/pages/index/index'
+      })
+    },5000)
   },
 
   /**
