@@ -18,8 +18,8 @@
       <image src="../img/address.png"/>
     </view>
   </view>
-  <view class="tab-item">
-    <view class=""></view>
+  <view class="tab-item {{index==4 ? 'active' : ''}}" bind:tap="navToPage" data-url="/pages/member/shoppingCart/shoppingCart" data-index="4">
+    <view class="{{index==4 ? 'cycle' : ''}}"></view>
     <view class="menu-class">
       <image src="../img/bag.png" mode="aspectFit"/>
     </view>

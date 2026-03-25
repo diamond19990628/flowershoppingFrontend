@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "common-footer": "../../common/footer",
+    "errorDialog":"/pages/manager/error/errorDialog"
+  }
+}
