@@ -52,6 +52,6 @@
   </view>
 
   <view class="footer-action">
-    <button class="logout-btn">退出管理后台</button>
+    <button class="logout-btn" bind:tap="toUser">返回用户界面</button>
   </view>
 </view>

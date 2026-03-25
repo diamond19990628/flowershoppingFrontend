@@ -29,6 +29,7 @@
       <view class="ts-menu-item" bindtap="toOrder">我的订单</view>
       <view class="ts-menu-item" bindtap="toAddress">收货地址</view>
       <view class="ts-menu-item" bindtap="toContact">联系商家</view>
+      <view class="ts-menu-item" bind:tap="toAdmin" wx:if="{{isAdmin==1}}">前往管理员界面</view>
     </view>
   </view>
 

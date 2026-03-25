@@ -1,6 +1,6 @@
 <view class="home-container">
   
-  <common-header bind:change="onCategoryChange"/>
+  <common-header bind:change="onCategoryChange" bind:loaded="onheaderLoaded"/>
 
   <view class="goods-grid">
     <view class="goods-item" wx:for="{{productList}}" wx:key="index" bind:tap="navToItem" data-items="{{item}}">
