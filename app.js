@@ -1,6 +1,10 @@
 // app.js
 const config = require("./config")
 App({
+  globalData:{
+    isLogined:false,
+    userInfo:null
+  },
   onLaunch() {
     wx.loadFontFace({
       family: 'Yellowtail',

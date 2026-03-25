@@ -1,5 +1,6 @@
 // pages/member/user/user.js
 const xss = require('xss')
+const app = getApp();
 Page({
 
   /**
@@ -13,7 +14,8 @@ Page({
     phoneNumber:"",
     isErrorVisible:false,
     errorMessage:"",
-    isLogined:false
+    isLogined:app.globalData.isLogined,
+    isAdmin:0
   },
 
   /**
@@ -114,10 +116,14 @@ Page({
                       wx.setStorageSync('JSESSIONID', jsessionid)
                     }
                   }
+                  const app = getApp();
+                  app.globalData.isLogined = true;
+                  app.globalData.userInfo = res.data.data;
                   this.setData({
-                    isLogined:true,
                     nickName:res.data.data.nickName,
-                    showdialog:false
+                    showdialog:false,
+                    isLogined: true,
+                    isAdmin:res.data.data.isAdmin
                   })
               }
             },
@@ -139,9 +145,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    const app = getApp()
 
+    this.setData({
+      isLogined: app.globalData.isLogined,
+      nickName:app.globalData.userInfo.nickName,
+      isAdmin:app.globalData.userInfo.isAdmin
+    })
   },
-
+  toAdmin(){
+    wx.redirectTo({
+      url:"/pages/manager/index/index"
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
