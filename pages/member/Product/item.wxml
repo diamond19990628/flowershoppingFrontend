@@ -66,35 +66,34 @@
     </view>
   </view>
 </page-container>
-<view class="dialog-mask" wx:if="{{isShowCommentDialog}}">
-  <view class="dialog-container">
-    
-    <view class="dialog-header">
-      <text>备注/代写内容</text>
-    </view>
+<root-portal wx:if="{{isShowCommentDialog}}">
+  <view class="dialog-mask">
+    <view class="dialog-container">
+      
+      <view class="dialog-header">
+        <text>备注/代写内容</text>
+      </view>
 
-    <view class="dialog-content">
-      <textarea 
-        class="input-area" 
-        placeholder="请在此输入您的具体代写要求，例如：节日祝福语、书信、笔记等，不超过200字。" 
-        maxlength="200"
-        fixed="true"
-        cursor-spacing="140"
-        bindinput="onInput"
-      ></textarea>
-      <view class="slogan">请写下您的祝福语</view>
-    </view>
+      <view class="dialog-content">
+        <textarea 
+          class="input-area" 
+          placeholder="请在此输入您的具体代写要求，例如：节日祝福语、书信、笔记等，不超过200字。" 
+          maxlength="200"
+          fixed="true" 
+          cursor-spacing="140"
+          bindinput="onInput"
+        ></textarea>
+        <view class="slogan">请写下您的祝福语</view>
+      </view>
 
-    <view class="dialog-footer">
-      <button class="btn-confirm" bindtap="onConfirmShoppingCart">确认</button>
-      <button class="btn-back" bindtap="onCloseComment">返回</button>
-      <view class="safe-area"></view>
-    </view>
+      <view class="dialog-footer">
+        <button class="btn-confirm" bindtap="onConfirmShoppingCart">确认</button>
+        <button class="btn-back" bindtap="onCloseComment">返回</button>
+        <view class="safe-area"></view>
+      </view>
 
-  </view>
-</view>
-<errorDialog isErrorVisible="{{isErrorVisible}}" errorMessage="{{errorMessage}}"/>
-<view class="confirm-dialog-mask" wx:if="{{isConfirmDialogShow}}">
+    </view>
+    <view class="confirm-dialog-mask" wx:if="{{isConfirmDialogShow}}">
   <view class="confirm-dialog-container">
     
     <view class="confirm-dialog-header">
@@ -112,7 +111,8 @@
     </view>
 
   </view>
-</view><view class="success-dialog-mask" wx:if="{{isSuccessShow}}">
+</view>
+<view class="success-dialog-mask" wx:if="{{isSuccessShow}}">
   <view class="success-container">
     
     <view class="success-icon-wrapper">
@@ -129,3 +129,6 @@
 
   </view>
 </view>
+  </view>
+</root-portal>
+<errorDialog isErrorVisible="{{isErrorVisible}}" errorMessage="{{errorMessage}}"/>

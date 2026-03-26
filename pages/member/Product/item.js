@@ -1,3 +1,4 @@
+const xss = require('xss')
 // pages/member/Product/item.js
 Page({
 
@@ -156,7 +157,7 @@ Page({
   onInput(e){
     const comment = e.detail.value;
     this.setData({
-      comment:comment
+      comment:xss(comment)
     })
   },
 
@@ -173,6 +174,9 @@ Page({
    */
   onFinalConfirm(){
     this.createShoppingCart();
+    this.setData({
+      isConfirmDialogShow:false
+    })
   },
 
   /**

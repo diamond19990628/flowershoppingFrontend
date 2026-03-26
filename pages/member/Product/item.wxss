@@ -210,23 +210,23 @@ page {
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
   width: 100vw;
   height: 100vh;
-  background: #ffffff; /* 改为白色全屏背景，不再透明 */
-  z-index: 99999;      /* 确保在所有组件（包括page-container）之上 */
+  background: #ffffff; 
+  z-index: 999999; /* 极高层级 */
   display: flex;
   flex-direction: column;
 }
-
 /* 2. 对话框容器：改为填满屏幕 */
+/* 容器：适配刘海屏 */
 .dialog-container {
-  width: 100%;
-  height: 100%;
-  padding: 40rpx 40rpx;
-  box-sizing: border-box;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  padding-top: env(safe-area-inset-top); /* 避开摄像头/刘海屏区域 */
+  padding: env(safe-area-inset-top) 40rpx 0; /* 避开状态栏 */
+  box-sizing: border-box;
 }
 
 /* 3. 标题样式：保持原稿设计 */
@@ -239,29 +239,29 @@ page {
   margin-bottom: 40rpx;
   flex-shrink: 0; /* 防止标题被压缩 */
 }
-
+/* 内部内容自动撑开 */
+.dialog-content {
+  flex: 1;
+  background: #f9f9f9;
+  border-radius: 24rpx;
+  padding: 30rpx;
+  margin: 30rpx 0;
+  display: flex;
+  flex-direction: column;
+  /* 竖纹背景 */
+  background-image: linear-gradient(90deg, rgba(140, 115, 64, 0.05) 1rpx, transparent 0);
+  background-size: 20rpx 100%;
+}
 .dialog-header text {
   color: #7b7135;
   font-weight: bold;
   font-size: 34rpx;
 }
 
-/* 4. 内容输入区：自动撑开剩余空间 */
-.dialog-content {
-  flex: 1; /* 占据屏幕中间剩余所有空间 */
-  background: #f9f9f9;
-  border-radius: 24rpx;
-  padding: 30rpx;
-  margin-bottom: 40rpx;
-  background-image: linear-gradient(90deg, rgba(123, 113, 53, 0.05) 1rpx, transparent 0);
-  background-size: 20rpx 100%;
-  display: flex;
-  flex-direction: column;
-}
 
 .input-area {
   width: 100%;
-  height: 100%; /* 填满中间区域 */
+  flex: 1; /* 占据中间所有位置 */
   font-size: 30rpx;
   color: #333;
   line-height: 1.8;
@@ -277,35 +277,26 @@ page {
 }
 
 /* 5. 底部按钮样式 */
+/* 底部按钮固定在最下方 */
 .dialog-footer {
-  display: flex;
-  flex-direction: column;
-  gap: 24rpx;
+  padding: 20rpx 0 env(safe-area-inset-bottom);
   flex-shrink: 0;
-  padding-bottom: 20rpx;
 }
-
 .btn-confirm {
   width: 100% !important;
-  background: #7b7135 !important;
-  color: #ffffff !important;
+  background-color: #8c7340 !important;
+  color: #fff !important;
   border-radius: 50rpx;
-  font-weight: bold;
   height: 100rpx;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-bottom: 20rpx;
 }
 
 .btn-back {
   width: 100% !important;
-  background: #f5f6f7 !important;
+  background-color: #f5f6f7 !important;
   color: #666 !important;
   border-radius: 50rpx;
   height: 100rpx;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .safe-area {
