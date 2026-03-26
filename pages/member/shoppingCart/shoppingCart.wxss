@@ -206,7 +206,19 @@ page {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
+/* 当父级 .radio-item 有 active 类时，它内部的 .radio-circle 显示实心点 */
+.radio-item.active .radio-circle::after {
+  content: '';
+  width: 14rpx;
+  height: 14rpx;
+  background: #71602e;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block; /* 确保显示 */
+}
 .item-divider {
   height: 1rpx;
   background: #71602e;

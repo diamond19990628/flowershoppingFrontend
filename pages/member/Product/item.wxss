@@ -118,3 +118,426 @@ page {
   transform: translateY(2rpx); /* 点击时轻微下沉 */
   box-shadow: 0 6rpx 20rpx rgba(140, 115, 64, 0.2);
 }
+/* 容器内部样式 */
+.ts-service-container {
+  padding: 30rpx 40rpx 80rpx; /* 底部多留点距离给 iOS 底部横条 */
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ts-dialog-line {
+  width: 80rpx;
+  height: 8rpx;
+  background: #f0f0f0;
+  border-radius: 4rpx;
+  margin-bottom: 40rpx;
+}
+
+.ts-service-title {
+  font-size: 34rpx;
+  color: #71602e;
+  font-weight: bold;
+  margin-bottom: 50rpx;
+}
+
+.ts-service-grid {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.ts-grid-item {
+  width: 48%;
+  height: 110rpx;
+  background: #f5f6f7;
+  border-radius: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30rpx;
+  margin-bottom: 20rpx;
+  box-sizing: border-box;
+}
+
+/* 选中状态：文字变色，圆点变色 */
+.ts-grid-item.ts-active .ts-grid-label {
+  color: #71602e;
+}
+.ts-grid-item.ts-active .ts-radio-circle {
+  background: #71602e;
+}
+
+.ts-grid-label {
+  font-size: 28rpx;
+  color: #999;
+}
+
+.ts-radio-circle {
+  width: 36rpx;
+  height: 36rpx;
+  background: #e0e0e0;
+  border-radius: 50%;
+}
+
+.ts-service-footer {
+  width: 100%;
+  margin-top: 40rpx;
+}
+
+.ts-confirm-btn {
+  width: 100% !important;
+  background: #71602e !important;
+  color: #fff !important;
+  height: 90rpx;
+  border-radius: 45rpx;
+  font-size: 32rpx;
+  margin-bottom: 20rpx;
+}
+
+.ts-cancel-btn {
+  width: 100% !important;
+  background: #f5f6f7 !important;
+  color: #3e4a6b !important;
+  height: 90rpx;
+  border-radius: 45rpx;
+  font-size: 32rpx;
+}
+/* 1. 遮罩背景：直接作为全屏容器 */
+.dialog-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #ffffff; /* 改为白色全屏背景，不再透明 */
+  z-index: 99999;      /* 确保在所有组件（包括page-container）之上 */
+  display: flex;
+  flex-direction: column;
+}
+
+/* 2. 对话框容器：改为填满屏幕 */
+.dialog-container {
+  width: 100%;
+  height: 100%;
+  padding: 40rpx 40rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding-top: env(safe-area-inset-top); /* 避开摄像头/刘海屏区域 */
+}
+
+/* 3. 标题样式：保持原稿设计 */
+.dialog-header {
+  background: #f5f6f7;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  border-radius: 12rpx;
+  margin-bottom: 40rpx;
+  flex-shrink: 0; /* 防止标题被压缩 */
+}
+
+.dialog-header text {
+  color: #7b7135;
+  font-weight: bold;
+  font-size: 34rpx;
+}
+
+/* 4. 内容输入区：自动撑开剩余空间 */
+.dialog-content {
+  flex: 1; /* 占据屏幕中间剩余所有空间 */
+  background: #f9f9f9;
+  border-radius: 24rpx;
+  padding: 30rpx;
+  margin-bottom: 40rpx;
+  background-image: linear-gradient(90deg, rgba(123, 113, 53, 0.05) 1rpx, transparent 0);
+  background-size: 20rpx 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-area {
+  width: 100%;
+  height: 100%; /* 填满中间区域 */
+  font-size: 30rpx;
+  color: #333;
+  line-height: 1.8;
+}
+
+.slogan {
+  text-align: right;
+  color: #7b7135;
+  font-size: 36rpx;
+  margin-top: 20rpx;
+  font-family: "STKaiti", "KaiTi", serif;
+  padding-bottom: 10rpx;
+}
+
+/* 5. 底部按钮样式 */
+.dialog-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+  flex-shrink: 0;
+  padding-bottom: 20rpx;
+}
+
+.btn-confirm {
+  width: 100% !important;
+  background: #7b7135 !important;
+  color: #ffffff !important;
+  border-radius: 50rpx;
+  font-weight: bold;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-back {
+  width: 100% !important;
+  background: #f5f6f7 !important;
+  color: #666 !important;
+  border-radius: 50rpx;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.safe-area {
+  height: env(safe-area-inset-bottom);
+}
+
+button::after {
+  border: none;
+}
+/* --- 二级确认弹窗专用样式 --- */
+
+/* 1. 遮罩层：比上一个弹窗层级更高（Z-index: 100000），背景更深以突出新弹窗 */
+.confirm-dialog-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6); /* 更深的黑色透明遮罩，营造覆盖感 */
+  z-index: 100000;    /* 必须比上一个全屏弹窗的 99999 更大 */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* 居中显示 */
+  /* 可选：增加一个入场动画，体验更好 */
+  animation: fadeInMask 0.3s ease;
+}
+
+/* 2. 对话框容器：更小、更精致，营造卡片悬浮感 */
+.confirm-dialog-container {
+  width: 75%;          /* 缩小宽度，不撑满屏幕，使其看起来像个卡片 */
+  background: #ffffff;
+  border-radius: 36rpx; /* 更大的圆角，显高级 */
+  padding: 50rpx 40rpx;
+  box-sizing: border-box;
+  box-shadow: 0 20rpx 60rpx rgba(0, 0, 0, 0.2); /* 更柔和、范围更广的阴影，强化立体感 */
+  animation: scaleInContainer 0.3s ease;
+}
+
+/* 3. 标题样式：使用了楷体和品牌色图标，与整体风格响应 */
+.confirm-dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40rpx;
+}
+
+.check-circle-icon {
+  width: 48rpx;
+  height: 48rpx;
+  background: #7b7135; /* 品牌主色 */
+  border-radius: 50%;
+  margin-right: 16rpx;
+  position: relative;
+}
+/* 用伪元素画一个简单的对号 */
+.check-circle-icon::after {
+  content: '';
+  position: absolute;
+  top: 14rpx; left: 18rpx;
+  width: 12rpx; height: 20rpx;
+  border-right: 4rpx solid #fff;
+  border-bottom: 4rpx solid #fff;
+  transform: rotate(45deg);
+}
+
+.confirm-dialog-header text {
+  color: #7b7135; /* 品牌主色 */
+  font-weight: bold;
+  font-size: 36rpx;
+  font-family: "STKaiti", "KaiTi", serif; /* 沿用楷体风格 */
+}
+
+/* 4. 内容区样式：字号适中，居中对齐 */
+.confirm-dialog-content {
+  text-align: center;
+  margin-bottom: 50rpx;
+  padding: 0 20rpx;
+}
+
+.confirm-text {
+  font-size: 32rpx;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* 5. 底部按钮区：水平并排 */
+.confirm-dialog-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20rpx;
+}
+
+/* “取消”按钮：浅色背景，强调不操作 */
+.btn-cancel {
+  flex: 1; /* 均分宽度 */
+  width: 100% !important;
+  background: #f5f6f7 !important;
+  color: #666 !important;
+  border-radius: 40rpx;
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  border: none;
+}
+
+/* “确定”按钮：品牌主色，强调最终操作 */
+.btn-confirm-action {
+  flex: 1; /* 均分宽度 */
+  width: 100% !important;
+  background: #7b7135 !important;
+  color: #ffffff !important;
+  border-radius: 40rpx;
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  font-weight: bold;
+  border: none;
+  box-shadow: 0 8rpx 20rpx rgba(123, 113, 53, 0.3);
+}
+
+button::after {
+  border: none;
+}
+
+/* 动画效果定义（可选） */
+@keyframes fadeInMask {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes scaleInContainer {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+/* --- 添加成功弹窗专用样式 --- */
+
+.success-dialog-mask {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 110000; /* 比之前的确认弹窗层级更高 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.success-container {
+  width: 80%;
+  background: #ffffff;
+  border-radius: 40rpx;
+  padding: 60rpx 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  box-shadow: 0 20rpx 80rpx rgba(0, 0, 0, 0.2);
+}
+
+/* 成功勾选动画图标 */
+.success-icon-wrapper {
+  width: 120rpx;
+  height: 120rpx;
+  background: #fdfaf2; /* 极浅的品牌色背景 */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.success-checkmark {
+  width: 40rpx;
+  height: 20rpx;
+  border-left: 6rpx solid #7b7135;
+  border-bottom: 6rpx solid #7b7135;
+  transform: rotate(-45deg);
+  margin-top: -10rpx;
+}
+
+.success-title {
+  font-size: 38rpx;
+  font-weight: bold;
+  color: #7b7135;
+  margin-bottom: 16rpx;
+  font-family: "STKaiti", "KaiTi", serif;
+}
+
+.success-desc {
+  font-size: 28rpx;
+  color: #999;
+  margin-bottom: 50rpx;
+}
+
+/* 按钮组 */
+.success-footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.btn-go-cart {
+  width: 100% !important;
+  background: #7b7135 !important;
+  color: #ffffff !important;
+  border-radius: 50rpx;
+  height: 90rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-continue {
+  width: 100% !important;
+  background: transparent !important;
+  color: #7b7135 !important;
+  border: 2rpx solid #7b7135; /* 线框风格，区分主次 */
+  border-radius: 50rpx;
+  height: 90rpx;
+  font-size: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}

@@ -15,7 +15,6 @@ Page({
    * 查询自己的购物车
    */
   onLoadingShoppingCart(){
-    console.log(this.data.isLogined);
     if(!this.data.isLogined){
       this.setData({
         errorMessage:"请先登录才能查看购物车",
@@ -38,6 +37,15 @@ Page({
             this.setData({
               shoppingCartList:res.data.data
             })
+          break;
+          case 401:
+            this.setData({
+              isErrorVisible:false,
+              errorMessage:"登录已失效，请重新登录"
+            })
+            const app = getApp();
+            app.globalData.userInfo=null;
+            app.globalData.isLogined=false;
           break;
         }
       }

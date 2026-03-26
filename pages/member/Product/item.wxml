@@ -22,9 +22,110 @@
   </view>
 
   <view class="pdp-action-footer">
-    <button class="btn-add-cart" hover-class="btn-hover-effect">
+    <button class="btn-add-cart" hover-class="btn-hover-effect" data-product_id="{{items.productId}}" bind:tap="insertShoppingCart">
       加入购物车
     </button>
   </view>
   
+</view>
+<page-container 
+  show="{{showServiceDialog}}" 
+  position="bottom" 
+  round="{{true}}" 
+  custom-style="height: auto; min-height: 600rpx;"
+  bindenter="onEnter"
+  bindleave="onLeave"
+>
+  <view class="ts-service-container">
+    <view class="ts-dialog-line"></view>
+    
+    <view class="ts-service-header">
+      <text class="ts-service-title">请选择您需要的服务</text>
+    </view>
+
+    <view class="ts-service-grid">
+      <view class="ts-grid-item {{currentType === 'anonymous' ? 'ts-active' : ''}}" bindtap="selectType" data-type="anonymous">
+        <text class="ts-grid-label">匿名</text>
+        <view class="ts-radio-circle"></view>
+      </view>
+
+      <view class="ts-grid-item {{currentType === 'named' ? 'ts-active' : ''}}" bindtap="selectType" data-type="named">
+        <text class="ts-grid-label">不匿名</text>
+        <view class="ts-radio-circle"></view>
+      </view>
+
+      <view class="ts-grid-item {{currentCard === item.card_id ? 'ts-active' : ''}}" bindtap="selectCard" data-card="write" wx:for="{{cardList}}" data-card_id="{{item.card_id}}">
+        <text class="ts-grid-label">{{item.card_name}}</text>
+        <view class="ts-radio-circle"></view>
+      </view>
+    </view>
+
+    <view class="ts-service-footer">
+      <button class="ts-confirm-btn" bindtap="onConfirm">确认</button>
+      <button class="ts-cancel-btn" bindtap="onClose">取消</button>
+    </view>
+  </view>
+</page-container>
+<view class="dialog-mask" wx:if="{{isShowCommentDialog}}">
+  <view class="dialog-container">
+    
+    <view class="dialog-header">
+      <text>备注/代写内容</text>
+    </view>
+
+    <view class="dialog-content">
+      <textarea 
+        class="input-area" 
+        placeholder="请在此输入您的具体代写要求，例如：节日祝福语、书信、笔记等，不超过200字。" 
+        maxlength="200"
+        fixed="true"
+        cursor-spacing="140"
+        bindinput="onInput"
+      ></textarea>
+      <view class="slogan">请写下您的祝福语</view>
+    </view>
+
+    <view class="dialog-footer">
+      <button class="btn-confirm" bindtap="onConfirmShoppingCart">确认</button>
+      <button class="btn-back" bindtap="onCloseComment">返回</button>
+      <view class="safe-area"></view>
+    </view>
+
+  </view>
+</view>
+<errorDialog isErrorVisible="{{isErrorVisible}}" errorMessage="{{errorMessage}}"/>
+<view class="confirm-dialog-mask" wx:if="{{isConfirmDialogShow}}">
+  <view class="confirm-dialog-container">
+    
+    <view class="confirm-dialog-header">
+      <view class="check-circle-icon"></view> 
+      <text>确认提示</text>
+    </view>
+
+    <view class="confirm-dialog-content">
+      <text class="confirm-text">确定不输入任何内容直接加入购物车吗？</text>
+    </view>
+
+    <view class="confirm-dialog-footer">
+      <button class="btn-cancel" bindtap="onConfirmClose">取消</button>
+      <button class="btn-confirm-action" bindtap="onFinalConfirm">确定</button>
+    </view>
+
+  </view>
+</view><view class="success-dialog-mask" wx:if="{{isSuccessShow}}">
+  <view class="success-container">
+    
+    <view class="success-icon-wrapper">
+      <view class="success-checkmark"></view>
+    </view>
+
+    <view class="success-title">添加成功</view>
+    <view class="success-desc">商品已成功放入您的购物车</view>
+
+    <view class="success-footer">
+      <button class="btn-go-cart" bindtap="navToCart">查看购物车</button>
+      <button class="btn-continue" bindtap="closeSuccess">继续购物</button>
+    </view>
+
+  </view>
 </view>
