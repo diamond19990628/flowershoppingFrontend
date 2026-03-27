@@ -40,7 +40,7 @@ Page({
           break;
           case 401:
             this.setData({
-              isErrorVisible:false,
+              isErrorVisible:true,
               errorMessage:"登录已失效，请重新登录"
             })
             const app = getApp();
