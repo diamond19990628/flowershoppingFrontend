@@ -9,7 +9,10 @@ Page({
     shoppingCartList:[],
     isErrorVisible:false,
     errorMessage:"",
-    isLogined:app.globalData.isLogined
+    isLogined:app.globalData.isLogined,
+    isConfirmDialogShow:false,
+    deleteTargetProduct_id:0,
+    user_id:0
   },
   /**
    * 查询自己的购物车
@@ -62,7 +65,67 @@ Page({
     this.onLoadingShoppingCart();
     
   },
-
+  /**
+   * 打开删除购物车的最终确认
+   */
+  onDelete(e){
+    const product_id = e.currentTarget.dataset.product_id;
+    const app = getApp();
+    const user_id = app.globalData.userInfo.user_id;
+    this.setData({
+      isConfirmDialogShow:true,
+      deleteTargetProduct_id:product_id,
+      user_id:user_id
+    })
+  },
+  /**
+   * 取消删除
+   */
+  onConfirmClose(){
+    this.setData({
+      isConfirmDialogShow:false,
+    })
+  },
+  /**
+   * 删除购物车 
+   */
+  doDelete(){
+    wx.request({
+      url:this.data.config.BASE_URL+"/member/shoppingCart/"+this.data.user_id+"/"+this.data.deleteTargetProduct_id,
+      method:"DELETE",
+      header: {
+        "Content-Type": "application/json",
+        "token": wx.getStorageSync("token"),
+        "Cookie": "JSESSIONID=" + wx.getStorageSync("JSESSIONID")
+      },
+      success:(res)=>{
+        switch(res.statusCode){
+          case 204:
+            this.setData({
+              isConfirmDialogShow:false,
+            })
+            this.onLoadingShoppingCart();
+          break;
+          case 401:
+            this.setData({
+              isErrorVisible:true,
+              errorMessage:"登录验证已经失效，请重新登录",
+            })
+            const app = getApp();
+            app.globalData.userInfo=null;
+            app.globalData.isLogined=false;
+          break;
+          case 404:
+            this.setData({
+              isErrorVisible:true,
+              errorMessage:"删除失败，未找到该商品",
+            })
+            this.onLoadingShoppingCart();
+          break;
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

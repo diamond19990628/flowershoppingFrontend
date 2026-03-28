@@ -93,7 +93,7 @@
       </view>
 
     </view>
-    <view class="confirm-dialog-mask" wx:if="{{isConfirmDialogShow}}">
+  <view class="confirm-dialog-mask" wx:if="{{isConfirmDialogShow}}">
   <view class="confirm-dialog-container">
     
     <view class="confirm-dialog-header">

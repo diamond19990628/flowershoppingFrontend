@@ -4,60 +4,70 @@
   </view>
 
   <view class="cart-card">
-    <view class="cart-item" wx:for="{{shoppingCartList}}" wx:key="*this" data-product_id="{{item.product.productId}}">
-      
-      <view class="item-main">
-        <view class="item-left">
-          <view class="item-image">
-            <image src="{{item.attachedFilePath}}"/>
-          </view>
-        </view>
-
-        <view class="item-center">
-          <view class="item-name" data-productName="{{item.product.productName}}">{{item.product.productName}}</view>
-          <view class="item-price">￥{{item.product.amount}}</view>
-        </view>
-
-        <view class="item-right">
-          <view class="item-check-icon is-active">✔</view>
-          <view class="item-count">
-            <view class="count-btn">-</view>
-            <view class="count-num">{{item.quantity}}</view>
-            <view class="count-btn">+</view>
-          </view>
-        </view>
-      </view>
-
-      <view class="item-config-area">
-        <view class="config-row">
-          <text class="config-label">选项卡</text>
-          <view class="config-content">
-            <view class="config-tag" data-card_id="{{item.card.card_id}}">{{item.card.card_name}}</view>
-            <text class="config-tag-arrow">▼</text>
-          </view>
-        </view>
-
-        <view class="config-row">
-          <text class="config-label">祝福语</text>
-          <view class="config-textarea-static" data-comment="{{item.comment}}">
-            {{item.comment}}
-          </view>
-        </view>
-
-        <view class="config-anonymous">
-          <view class="anonymous-group">
-            <view class="radio-item">
-              <view class="radio-circle {{item.is_anonymous==0?'active':''}}" data-is_anonymouys="{{item.is_anonymous}}"></view>
-              <text>实名</text>
+    <view class="cart-item" wx:for="{{shoppingCartList}}" wx:key="index">
+      <movable-area class="movable-area">
+        <movable-view 
+          class="movable-view" 
+          direction="horizontal" 
+          x="{{item.x}}" 
+          out-of-bounds="false"
+          damping="50"
+          friction="2"
+          bindtouchend="onTouchEnd"
+          data-index="{{index}}"
+        >
+          <view class="item-content-box">
+            <view class="item-main">
+              <view class="item-left">
+                <view class="item-image"><image src="{{item.attachedFilePath}}" mode="aspectFill"/></view>
+              </view>
+              <view class="item-center">
+                <view class="item-name">{{item.product.productName}}</view>
+                <view class="item-price">￥{{item.product.amount}}</view>
+              </view>
+              <view class="item-right">
+                <view class="item-check-icon is-active">✔</view>
+                <view class="item-count">
+                  <view class="count-btn">-</view>
+                  <view class="count-num">{{item.quantity}}</view>
+                  <view class="count-btn">+</view>
+                </view>
+              </view>
             </view>
-            <view class="radio-item {{item.is_anonymous==1?'active':''}}">
-              <view class="radio-circle"></view>
-              <text>匿名</text>
+
+            <view class="item-config-area">
+              <view class="config-row">
+                <text class="config-label">选项卡</text>
+                <view class="config-content">
+                  <view class="config-tag">{{item.card.card_name}}</view>
+                  <text class="config-tag-arrow">▼</text>
+                </view>
+              </view>
+              <view class="config-row">
+                <text class="config-label">祝福语</text>
+                <view class="config-textarea-static">{{item.comment || '无'}}</view>
+              </view>
+              <view class="config-anonymous">
+                <view class="anonymous-group">
+                  <view class="radio-item {{item.is_anonymous == 0 ? 'active' : ''}}">
+                    <view class="radio-circle"></view>
+                    <text>实名</text>
+                  </view>
+                  <view class="radio-item {{item.is_anonymous == 1 ? 'active' : ''}}">
+                    <view class="radio-circle"></view>
+                    <text>匿名</text>
+                  </view>
+                </view>
+              </view>
             </view>
           </view>
-        </view>
-      </view>
-      
+
+          <view class="item-delete-btn" catchtap="onDelete" data-product_id="{{item.product.productId}}">
+            <image src="../../img/delete.png"/>
+            <view class="item-delete-font">删除</view>
+          </view>
+        </movable-view>
+      </movable-area>
       <view class="item-divider"></view>
     </view>
   </view>
@@ -69,3 +79,22 @@
   <common-footer index="4" url="/pages/member/shoppingCart/shoppingCart"/>
 </view>
 <errorDialog isErrorVisible="{{isErrorVisible}}" errorMessage="{{errorMessage}}"/>
+<view class="confirm-dialog-mask" wx:if="{{isConfirmDialogShow}}">
+  <view class="confirm-dialog-container">
+    
+    <view class="confirm-dialog-header">
+      <view class="check-circle-icon"></view> 
+      <text>确认提示</text>
+    </view>
+
+    <view class="confirm-dialog-content">
+      <text class="confirm-text">确定删除该产品吗，删除后无法恢复</text>
+    </view>
+
+    <view class="confirm-dialog-footer">
+      <button class="btn-cancel" bindtap="onConfirmClose">取消</button>
+      <button class="btn-confirm-action" bindtap="doDelete">确定</button>
+    </view>
+
+  </view>
+</view>

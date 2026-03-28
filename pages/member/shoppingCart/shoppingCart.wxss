@@ -20,19 +20,75 @@ page {
   letter-spacing: 2rpx;
 }
 
-/* 白色内容区 */
+/* 白色内容区容器 */
 .cart-card {
   width: 100%;
   min-height: calc(100vh - 180rpx);
   background: #ffffff;
   border-radius: 50rpx 50rpx 0 0;
-  padding: 40rpx 40rpx 300rpx;
+  /* 增加 padding-top，给第一个卡片的阴影留空间 */
+  padding: 60rpx 40rpx 300rpx;
   box-sizing: border-box;
 }
 
 .cart-item {
   margin-bottom: 30rpx;
 }
+
+/* --- 滑动区域修正重点开始 --- */
+
+.movable-area {
+  width: 100%;
+  /* 必须根据你的内容高度手动设置一个足够高的高度，确保内容撑开且不被裁切 */
+  height: 520rpx; 
+  overflow: hidden;
+  background: #ffffff; /* 确保 area 也是白的 */
+}
+
+.movable-view {
+  /* 宽度设置：100% + 按钮宽度 */
+  width: calc(100% + 150rpx);
+  height: 100%;
+  display: flex;
+}
+
+.item-content-box {
+  /* 重点 1：使用 101% 或者多加 4rpx，确保它物理上比父容器宽一点点 */
+  width: calc(100vw - 80rpx + 4rpx); 
+  flex-shrink: 0;
+  background: #ffffff;
+  
+  /* 重点 2：利用 z-index 提升层级，确保压在删除按钮上方 */
+  position: relative;
+  z-index: 10;
+  
+  /* 重点 3：向左微调 2rpx，配合 width 的增加，实现左右两端都“出头” */
+  margin-left: -2rpx; 
+  
+  box-sizing: border-box;
+}
+
+.item-delete-btn {
+  width: 150rpx;
+  background-color: #77662E;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;   /* 👈 关键：上下排列 */
+  justify-content: center;  /* 垂直居中 */
+  align-items: center;   
+  font-size: 28rpx;
+  flex-shrink: 0;
+}
+.item-delete-btn image{
+  width: 42rpx;
+  height: 52rpx;
+}
+.item-delete-font{
+  font-size: 32rpx;
+  margin-top: 30rpx;
+}
+
+/* --- 滑动区域修正重点结束 --- */
 
 .item-main {
   display: flex;
@@ -168,10 +224,11 @@ page {
   border: 1rpx solid #eee;
 }
 
-/* 自定义单选样式 (静态模拟) */
+/* 匿名区底部安全距离 */
 .config-anonymous {
   display: flex;
   justify-content: flex-end;
+  padding-bottom: 10rpx; /* 确保圆圈不被容器底边切掉 */
 }
 
 .anonymous-group {
@@ -195,18 +252,6 @@ page {
   position: relative;
 }
 
-.radio-circle.active::after {
-  content: '';
-  width: 14rpx;
-  height: 14rpx;
-  background: #71602e;
-  border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-/* 当父级 .radio-item 有 active 类时，它内部的 .radio-circle 显示实心点 */
 .radio-item.active .radio-circle::after {
   content: '';
   width: 14rpx;
@@ -246,4 +291,130 @@ page {
   justify-content: center;
   align-items: center;
   box-shadow: 0 10rpx 20rpx rgba(113, 96, 46, 0.3);
+}
+/* 1. 遮罩层：比上一个弹窗层级更高（Z-index: 100000），背景更深以突出新弹窗 */
+.confirm-dialog-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6); /* 更深的黑色透明遮罩，营造覆盖感 */
+  z-index: 100000;    /* 必须比上一个全屏弹窗的 99999 更大 */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* 居中显示 */
+  /* 可选：增加一个入场动画，体验更好 */
+  animation: fadeInMask 0.3s ease;
+}
+
+/* 2. 对话框容器：更小、更精致，营造卡片悬浮感 */
+.confirm-dialog-container {
+  width: 75%;          /* 缩小宽度，不撑满屏幕，使其看起来像个卡片 */
+  background: #ffffff;
+  border-radius: 36rpx; /* 更大的圆角，显高级 */
+  padding: 50rpx 40rpx;
+  box-sizing: border-box;
+  box-shadow: 0 20rpx 60rpx rgba(0, 0, 0, 0.2); /* 更柔和、范围更广的阴影，强化立体感 */
+  animation: scaleInContainer 0.3s ease;
+}
+
+/* 3. 标题样式：使用了楷体和品牌色图标，与整体风格响应 */
+.confirm-dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40rpx;
+}
+
+.check-circle-icon {
+  width: 48rpx;
+  height: 48rpx;
+  background: #7b7135; /* 品牌主色 */
+  border-radius: 50%;
+  margin-right: 16rpx;
+  position: relative;
+}
+/* 用伪元素画一个简单的对号 */
+.check-circle-icon::after {
+  content: '';
+  position: absolute;
+  top: 14rpx; left: 18rpx;
+  width: 12rpx; height: 20rpx;
+  border-right: 4rpx solid #fff;
+  border-bottom: 4rpx solid #fff;
+  transform: rotate(45deg);
+}
+
+.confirm-dialog-header text {
+  color: #7b7135; /* 品牌主色 */
+  font-weight: bold;
+  font-size: 36rpx;
+  font-family: "STKaiti", "KaiTi", serif; /* 沿用楷体风格 */
+}
+
+/* 4. 内容区样式：字号适中，居中对齐 */
+.confirm-dialog-content {
+  text-align: center;
+  margin-bottom: 50rpx;
+  padding: 0 20rpx;
+}
+
+.confirm-text {
+  font-size: 32rpx;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* 5. 底部按钮区：水平并排 */
+.confirm-dialog-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20rpx;
+}
+
+/* “取消”按钮：浅色背景，强调不操作 */
+.btn-cancel {
+  flex: 1; /* 均分宽度 */
+  width: 100% !important;
+  background: #f5f6f7 !important;
+  color: #666 !important;
+  border-radius: 40rpx;
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  border: none;
+}
+
+/* “确定”按钮：品牌主色，强调最终操作 */
+.btn-confirm-action {
+  flex: 1; /* 均分宽度 */
+  width: 100% !important;
+  background: #7b7135 !important;
+  color: #ffffff !important;
+  border-radius: 40rpx;
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  font-weight: bold;
+  border: none;
+  box-shadow: 0 8rpx 20rpx rgba(123, 113, 53, 0.3);
+}
+
+button::after {
+  border: none;
+}
+
+/* 动画效果定义（可选） */
+@keyframes fadeInMask {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes scaleInContainer {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
 }
