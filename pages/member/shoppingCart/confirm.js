@@ -20,7 +20,8 @@ Page({
     delivery_address_id:0,
     deliveryDate:null,
     deliveryTime:null,
-    isSubmitting:false
+    isSubmitting:false,
+    requestNo:null
   },
   toggleType(){
     this.setData({
@@ -83,6 +84,30 @@ Page({
               addressList:res.data.data,
               deliveryAddressNameList:deliveryAddressNameList,
               addressIndex:index
+            })
+          break;
+          case 401:
+            this.setData({
+              isErrorVisible:true,
+              errorMessage:"登录已失效，请重新登录"
+            })
+          break;
+        }
+      }
+    })
+    wx.request({
+      url:this.data.config.BASE_URL+"/member/orders/requestNo",
+      method:"POST",
+      header: {
+        "Content-Type": "application/json",
+        "token": wx.getStorageSync("token"),
+        "Cookie": "JSESSIONID=" + wx.getStorageSync("JSESSIONID")
+      },
+      success:(res)=>{
+        switch(res.statusCode){
+          case 200:
+            this.setData({
+              requestNo:res.data.data
             })
           break;
           case 401:
@@ -214,7 +239,8 @@ Page({
         total_amount:total_amount,
         delivery_type_id:deliveryType,
         delivery_address_id:delivery_address_id,
-        delivery_date:delivery_date
+        delivery_date:delivery_date,
+        requestNo:this.data.requestNo
       },
       header: {
         "Content-Type": "application/json",
