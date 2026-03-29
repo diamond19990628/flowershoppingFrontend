@@ -16,7 +16,9 @@
     "pages/member/Product/Product",
     "pages/member/navigation/navigation",
     "pages/member/user/user",
-    "pages/member/shoppingCart/shoppingCart"
+    "pages/member/shoppingCart/shoppingCart",
+    "pages/member/shoppingCart/confirm",
+    "pages/member/shoppingCart/success"
   ],
   "window": {
     "navigationBarTextStyle": "black",

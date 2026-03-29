@@ -1,0 +1,103 @@
+<view class="full-page">
+  <view class="status-bar"></view>
+
+  <view class="header-section">
+    <view class="tab-pill" bindtap="toggleType">
+      <text>{{isSelfPickup ? '自提' : '配送'}}</text>
+      <text class="swap-icon">⇌</text>
+    </view>
+  </view>
+
+  <view class="main-card">
+    <view class="select-group">
+      <view class="list-row" wx:if="{{!isSelfPickup}}">
+        <text class="row-label">收货地址</text>
+        
+        <picker 
+          class="address-picker" 
+          bindchange="onAddressChange" 
+          value="{{addressIndex}}" 
+          range="{{deliveryAddressNameList}}"
+        >
+        <view class="picker-content">
+        <text class="{{addressIndex >= 0 ? 'selected-text' : 'placeholder-text'}}">
+          {{addressIndex >= 0 ? deliveryAddressNameList[addressIndex] : '请选择收货地址'}}
+        </text>
+        <view class="chevron"></view>
+        </view>
+        </picker>
+      </view>
+      <picker 
+  mode="date" 
+  value="{{deliveryDate}}" 
+  start="2024-01-01" 
+  end="2030-12-31" 
+  bindchange="bindDateChange" 
+  class="list-row"
+>
+  <view class="picker-inner-container">
+    <text class="row-label">{{isSelfPickup ? '自提日期' : '配送日期'}}</text>
+    
+    <view class="picker-value-wrap">
+      <text class="{{deliveryDate ? 'selected-text' : 'placeholder-text'}}">
+        {{deliveryDate || '请选择'}}
+      </text>
+      <view class="chevron"></view>
+    </view>
+  </view>
+</picker>
+<picker 
+  mode="time" 
+  value="{{deliveryTime}}" 
+  start="09:00" 
+  end="21:00" 
+  bindchange="bindTimeChange" 
+  class="list-row"
+>
+  <view class="picker-inner-container">
+    <text class="row-label">{{isSelfPickup ? '自提时间' : '配送时间'}}</text>
+    
+    <view class="picker-value-wrap">
+      <text class="{{deliveryTime ? 'selected-text' : 'placeholder-text'}}">
+        {{deliveryTime || '请选择'}}
+      </text>
+      <view class="chevron"></view>
+    </view>
+  </view>
+</picker>
+    </view>
+
+    <scroll-view scroll-y class="product-scroll">
+      <view class="product-wrap" wx:for="{{shoppingCartList}}" wx:key="index">
+        <view class="divider"></view>
+        <view class="product-body">
+          <view class="img-box">
+            <image src="{{item.attachedFilePath}}" mode="aspectFill"/>
+          </view>
+          <view class="info-box">
+            <view class="name">{{item.product.productName}}</view>
+            <view class="price">¥{{item.product.amount}} × {{item.quantity}}</view>
+            <view class="card-name">{{item.card.card_name}}</view>
+            <view class="tag" wx:if="{{item.comment}}">{{item.comment}}</view>
+          </view>
+        </view>
+        <view class="divider"></view>
+      </view>
+    </scroll-view>
+
+    <view class="total-section">
+      <text class="total-label">合计金额</text>
+      <view class="total-amount">
+        <text class="symbol">¥</text>
+        <text class="number">{{total_amount}}</text>
+      </view>
+    </view>
+
+    <view class="action-area">
+      <button class="btn-gold" bindtap="onPay" disabled="{{isSubmitting}}">付款</button>
+      <button class="btn-ghost" bindtap="onBack">返回</button>
+    </view>
+  </view>
+</view>
+
+<errorDialog isErrorVisible="{{isErrorVisible}}" errorMessage="{{errorMessage}}"/>

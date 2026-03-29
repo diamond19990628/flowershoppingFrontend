@@ -73,7 +73,7 @@
   </view>
 
   <view class="bottom-bar">
-    <view class="checkout-btn">结算</view>
+    <view class="checkout-btn" bind:tap="navToConfirm">结算</view>
   </view>
   
   <common-footer index="4" url="/pages/member/shoppingCart/shoppingCart"/>

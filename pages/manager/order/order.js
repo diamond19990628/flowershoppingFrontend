@@ -24,15 +24,18 @@ Page({
     let index = this.data.currentTab;
     let status_id = 0;
     if(index==0){
-      status_id = 1;
+      status_id = 0;
     }
     if(index==1){
-      status_id = 2;
+      status_id = 1;
     }
     if(index==2){
-      status_id = 3;
+      status_id = 2;
     }
     if(index==3){
+      status_id = 3;
+    }
+    if(index==4){
       status_id = 4;
     }
     wx.request({

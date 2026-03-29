@@ -1,0 +1,58 @@
+/* 页面整体容器 */
+.success-page {
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60rpx 0;
+  box-sizing: border-box;
+}
+
+/* 顶部插画区域 */
+.illustration-top {
+  width: 80%;
+  min-height: 350rpx;
+  /* 如果暂时没图片，可以用下面背景色占位查看位置 */
+  /* background-color: #f9f9f9;  */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 文字区块 */
+.text-section {
+  margin: 60rpx 0;
+  text-align: center;
+}
+
+.main-tips {
+  font-size: 36rpx;
+  color: #7A6E39; /* 延续下单页的主题金色 */
+  font-weight: 500;
+  margin-bottom: 40rpx;
+  letter-spacing: 2rpx;
+}
+
+.sub-tips {
+  font-size: 40rpx;
+  color: #7A6E39;
+  font-weight: bold;
+}
+
+/* 底部插画区域 */
+.illustration-bottom {
+  width: 85%;
+  flex: 1; /* 占据剩余空间 */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* 让图片靠底部对齐 */
+  padding-bottom: 40rpx;
+}
+
+/* 图片通用样式 */
+.promo-img {
+  width: 100%;
+  display: block;
+}

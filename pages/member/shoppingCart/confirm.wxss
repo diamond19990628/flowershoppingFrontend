@@ -1,0 +1,231 @@
+/* --- 1. 全屏基础布局 --- */
+page {
+  height: 100%;
+}
+
+.full-page {
+  width: 100vw;
+  height: 100vh;
+  background-color: #7A6E39;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.status-bar {
+  flex-shrink: 0;
+  height: 44px; /* 建议根据机型动态获取，此处设为常规模拟值 */
+}
+
+.header-section {
+  flex-shrink: 0;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tab-pill {
+  border: 1rpx dashed rgba(255,255,255,0.7);
+  border-radius: 50rpx;
+  padding: 12rpx 70rpx;
+  color: #fff;
+  font-size: 34rpx;
+}
+
+.swap-icon {
+  margin-left: 15rpx;
+}
+
+/* --- 2. 白色主卡片区域 --- */
+.main-card {
+  flex: 1;
+  background-color: #fff;
+  border-top-left-radius: 40rpx;
+  border-top-right-radius: 40rpx;
+  display: flex;
+  flex-direction: column;
+  padding: 0 40rpx;
+  overflow: hidden;
+}
+
+/* --- 3. 统一的选择行样式 (List-Row) --- */
+.select-group {
+  margin-top: 10rpx;
+  flex-shrink: 0;
+}
+
+/* 关键修复：让 picker 和普通的 view 在视觉上完全一致 */
+.list-row {
+  display: flex; /* 基础设为 flex */
+  background-color: #F7F7F7;
+  height: 106rpx;
+  margin-top: 20rpx;
+  border-radius: 8rpx;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+  color: #7A6E39;
+  font-size: 32rpx;
+}
+
+/* 当 list-row 是 picker 组件时的特殊处理 */
+picker.list-row {
+  display: block; /* picker 必须为 block */
+}
+
+/* picker 内部的容器，模拟 flex 布局 */
+.picker-inner-container, .picker-content {
+  width: 100%;
+  height: 106rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.picker-value-wrap {
+  display: flex;
+  align-items: center;
+}
+
+/* 文字状态样式 */
+.placeholder-text {
+  color: #ccc;
+  font-size: 28rpx;
+}
+
+.selected-text {
+  color: #7A6E39;
+  font-weight: 500;
+  max-width: 380rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chevron {
+  width: 14rpx;
+  height: 14rpx;
+  border-top: 3rpx solid #7A6E39;
+  border-right: 3rpx solid #7A6E39;
+  transform: rotate(45deg);
+  margin-left: 15rpx;
+  flex-shrink: 0;
+}
+
+/* --- 4. 商品滚动区域 --- */
+.product-scroll {
+  flex: 1;
+  margin-top: 20rpx;
+  height: 10rpx; /* 触发 flex 滚动 */
+}
+
+.divider {
+  height: 1rpx;
+  background-color: #E0D8C0;
+  margin: 10rpx 0;
+}
+
+.product-body {
+  display: flex;
+  padding: 25rpx 0;
+}
+
+.img-box {
+  width: 160rpx;
+  height: 160rpx;
+  background-color: #E8E8E8;
+  border-radius: 8rpx;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.img-box image {
+  width: 100%;
+  height: 100%;
+}
+
+.info-box {
+  flex: 1;
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.name {
+  color: #7A6E39;
+  font-size: 30rpx;
+  font-weight: 500;
+}
+
+.price {
+  color: #7A6E39;
+  font-size: 34rpx;
+  font-weight: bold;
+  margin-top: 10rpx;
+}
+
+.card-name {
+  font-size: 24rpx;
+  color: #888;
+}
+
+.tag {
+  align-self: flex-start;
+  background-color: #F5F5F5;
+  color: #999;
+  font-size: 22rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 4rpx;
+  margin-top: 8rpx;
+}
+
+/* --- 5. 合计与按钮 --- */
+.total-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx 10rpx;
+  border-top: 1rpx solid #f5f5f5;
+  flex-shrink: 0;
+}
+
+.total-label {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.total-amount {
+  color: #7A6E39;
+}
+
+.total-amount .number {
+  font-size: 46rpx;
+  font-weight: bold;
+}
+
+.action-area {
+  flex-shrink: 0;
+  padding-bottom: calc(env(safe-area-inset-bottom) + 20rpx);
+}
+
+button {
+  width: 100% !important;
+  height: 94rpx;
+  line-height: 94rpx;
+  border-radius: 47rpx;
+  font-size: 32rpx;
+  margin-bottom: 20rpx;
+}
+
+.btn-gold {
+  background-color: #7A6E39;
+  color: #fff;
+}
+
+.btn-ghost {
+  background-color: #F4F5F9;
+  color: #3B4461;
+}

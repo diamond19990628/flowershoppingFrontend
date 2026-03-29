@@ -127,6 +127,30 @@ Page({
     })
   },
   /**
+   * 结算
+   */
+  navToConfirm(){
+    const shopppingCartList = this.data.shoppingCartList;
+    if(shopppingCartList.length>0){
+      wx.navigateTo({
+        url:"../shoppingCart/confirm?shoppingCartList="+JSON.stringify(this.data.shoppingCartList)
+      })
+    }else if(shopppingCartList.length<=0){
+      this.setData({
+        isErrorVisible:true,
+        errorMessage:"购物车里无商品，无法结算"
+      })
+      return;
+    }else if(!isLogined){
+      this.setData({
+        isErrorVisible:true,
+        errorMessage:"登录已失效，请重新登录"
+      })
+      return;
+    }
+    
+  },
+  /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {

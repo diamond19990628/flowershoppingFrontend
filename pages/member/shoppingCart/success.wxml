@@ -1,0 +1,14 @@
+<view class="success-page">
+  <view class="illustration-top">
+    <image src="../../img/MaskGroupBottom.png" mode="widthFix" class="promo-img" />
+  </view>
+
+  <view class="text-section">
+    <view class="main-tips">感谢您的信任与购买！</view>
+    <view class="sub-tips">下单成功 ♡</view>
+  </view>
+
+  <view class="illustration-bottom">
+    <image src="../../img/MaskGroupTop.png" mode="widthFix" class="promo-img" />
+  </view>
+</view>

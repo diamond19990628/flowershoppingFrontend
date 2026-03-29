@@ -8,10 +8,10 @@
     </view>
     
     <view class="admin-tabs">
-      <view class="tab-item {{currentTab==0 ? 'active' : ''}}" data-index="0" bind:tap="switchTab">待发货</view>
-      <view class="tab-item {{currentTab==1 ? 'active' : ''}}" data-index="1" bind:tap="switchTab">待收货</view>
-      <view class="tab-item {{currentTab==2 ? 'active' : ''}}" data-index="2" bind:tap="switchTab">已完成</view>
-      <view class="tab-item {{currentTab==3 ? 'active' : ''}}" data-index="3" bind:tap="switchTab">售后</view>
+      <view class="tab-item {{currentTab==0 ? 'active' : ''}}" data-index="0" bind:tap="switchTab">待付款</view>
+      <view class="tab-item {{currentTab==1 ? 'active' : ''}}" data-index="1" bind:tap="switchTab">待发货</view>
+      <view class="tab-item {{currentTab==2 ? 'active' : ''}}" data-index="2" bind:tap="switchTab">待收货</view>
+      <view class="tab-item {{currentTab==3 ? 'active' : ''}}" data-index="3" bind:tap="switchTab">已完成</view>
     </view>
   </view>
 
