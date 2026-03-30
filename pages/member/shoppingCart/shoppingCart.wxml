@@ -28,9 +28,9 @@
               <view class="item-right">
                 <view class="item-check-icon is-active">✔</view>
                 <view class="item-count">
-                  <view class="count-btn">-</view>
+                  <view class="count-btn" data-index="{{index}}" data-product_id="{{item.product.productId}}" bind:tap="onMinus">-</view>
                   <view class="count-num">{{item.quantity}}</view>
-                  <view class="count-btn">+</view>
+                  <view class="count-btn" bind:tap="onPlus" data-index="{{index}}">+</view>
                 </view>
               </view>
             </view>

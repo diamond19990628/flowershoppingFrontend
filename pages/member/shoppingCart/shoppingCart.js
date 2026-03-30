@@ -156,6 +156,37 @@ Page({
   onReady() {
 
   },
+  /**
+   * 数量增加
+   */
+  onPlus(e){
+    const index = e.currentTarget.dataset.index;
+    const list = this.data.shoppingCartList;
+    list[index].quantity = list[index].quantity+1;
+    this.setData({
+      shoppingCartList:list
+    })
+  },
+
+  /**
+   * 数量减少
+   */
+  onMinus(e){
+    const index = e.currentTarget.dataset.index;
+    const list = this.data.shoppingCartList;
+    const product_id = e.currentTarget.dataset.product_id;
+    let currentQuantity = list[index].quantity-1;
+    if(currentQuantity<=0){
+      this.onDelete(e);
+      return;
+    }else{
+      list[index].quantity = list[index].quantity-1;
+      this.setData({
+        shoppingCartList:list
+      })
+    }
+    
+  },
 
   /**
    * 生命周期函数--监听页面显示

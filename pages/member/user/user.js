@@ -159,7 +159,7 @@ Page({
     })
   },
   toOrder(){
-    wx.redirectTo({
+    wx.navigateTo({
       url:"./myOrder"
     })
   },
