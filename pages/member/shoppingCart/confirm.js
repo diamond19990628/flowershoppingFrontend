@@ -21,7 +21,7 @@ Page({
     deliveryDate:null,
     deliveryTime:null,
     isSubmitting:false,
-    requestNo:null
+    requestNo:""
   },
   toggleType(){
     this.setData({
@@ -104,6 +104,7 @@ Page({
         "Cookie": "JSESSIONID=" + wx.getStorageSync("JSESSIONID")
       },
       success:(res)=>{
+        console.log(res.data.data);
         switch(res.statusCode){
           case 200:
             this.setData({
