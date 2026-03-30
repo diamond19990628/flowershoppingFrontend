@@ -1,0 +1,54 @@
+<view class="page">
+  <view class="top-bar">
+    <view class="slogan">在最美的时光遇见你 <text class="flower">🌷</text></view>
+    <view class="brand">汀山花语</view>
+  </view>
+
+  <view class="header">
+    <view class="back-btn">
+      <view class="arrow-left"></view>
+    </view>
+    <text class="title">我的订单</text>
+  </view>
+
+  <view class="search-container">
+    <view class="search-box">
+      <icon type="search" size="14" color="#B2B2B2"></icon>
+      <text class="search-placeholder">查找</text>
+    </view>
+  </view>
+
+  <view class="tabs">
+    <view class="tab active">未支付
+      <view class="line"></view>
+    </view>
+    <view class="tab">未发货</view>
+    <view class="tab">
+      配送中
+      
+    </view>
+    
+    <view class="tab">已完成</view>
+    
+  </view>
+
+  <view class="order-list">
+    <view class="order-card">
+      <view class="card-header">
+        <text class="date">2026年3月20日</text>
+      </view>
+      
+      <view class="card-body">
+        <view class="product-img"></view>
+        <view class="product-info">
+          <view class="name">商品名</view>
+          <view class="price">¥</view>
+        </view>
+      </view>
+
+      <view class="card-footer">
+        <button class="btn-confirm">确认收货</button>
+      </view>
+    </view>
+  </view>
+</view>

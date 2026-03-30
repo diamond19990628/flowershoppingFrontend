@@ -1,0 +1,180 @@
+page {
+  background-color: #fff;
+  font-family: "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* 顶部装饰线 */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 20rpx 30rpx;
+  border-bottom: 1rpx dashed #A38E58;
+  margin-bottom: 10rpx;
+}
+
+.slogan {
+  font-size: 24rpx;
+  color: #A38E58;
+}
+
+.brand {
+  font-size: 34rpx;
+  color: #5C4A33;
+  font-weight: 500;
+}
+
+/* 标题栏 */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100rpx;
+  position: relative;
+}
+
+.back-btn {
+  position: absolute;
+  left: 40rpx;
+}
+
+.arrow-left {
+  width: 20rpx;
+  height: 20rpx;
+  border-left: 4rpx solid #5C4A33;
+  border-bottom: 4rpx solid #5C4A33;
+  transform: rotate(45deg);
+}
+
+.title {
+  font-size: 34rpx;
+  color: #5C4A33;
+  font-weight: 600;
+}
+
+/* 搜索框 */
+.search-container {
+  padding: 20rpx 40rpx;
+}
+
+.search-box {
+  background-color: #F3F4F6;
+  height: 72rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 30rpx;
+}
+
+.search-placeholder {
+  color: #B2B2B2;
+  font-size: 26rpx;
+  margin-left: 10rpx;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  padding: 0 40rpx;
+  margin-top: 20rpx;
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  font-size: 28rpx;
+  color: #334155;
+  padding-bottom: 20rpx;
+  position: relative;
+}
+
+.tab.active {
+  font-weight: bold;
+}
+
+.tab.active .line {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140rpx; /* 较短的粗线下划线 */
+  height: 6rpx;
+  background-color: #A38E58;
+  border-radius: 3rpx;
+}
+
+/* 订单卡片 */
+.order-list {
+  padding: 40rpx;
+}
+
+.order-card {
+  border: 2rpx solid #E2DCC8; /* 浅棕色极细边框 */
+  border-radius: 36rpx;
+  background: #fff;
+  box-shadow: 0 10rpx 30rpx rgba(0, 0, 0, 0.08); /* 底部阴影 */
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 24rpx 0;
+  text-align: center;
+  border-bottom: 1rpx solid #F1F1F1; /* 卡片内部分割线 */
+}
+
+.date {
+  font-size: 24rpx;
+  color: #94A3B8;
+}
+
+.card-body {
+  display: flex;
+  padding: 40rpx;
+}
+
+.product-img {
+  width: 160rpx;
+  height: 160rpx;
+  background-color: #C4C4C4;
+  border-radius: 4rpx;
+}
+
+.product-info {
+  margin-left: 30rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-size: 32rpx;
+  color: #5C4A33;
+  margin-bottom: 10rpx;
+}
+
+.price {
+  font-size: 32rpx;
+  color: #A38E58;
+  font-weight: bold;
+}
+
+.card-footer {
+  padding: 0 40rpx 40rpx 40rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-confirm {
+  background-color: #A38E58;
+  color: #fff;
+  width: 280rpx !important;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 20rpx;
+  font-size: 28rpx;
+  padding: 0;
+  font-weight: normal;
+}
+
+.btn-confirm::after {
+  border: none;
+}
