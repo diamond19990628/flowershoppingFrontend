@@ -132,8 +132,9 @@ Page({
   navToConfirm(){
     const shopppingCartList = this.data.shoppingCartList;
     if(shopppingCartList.length>0){
+      wx.setStorageSync("confirmShoppingCartList", shopppingCartList);
       wx.navigateTo({
-        url:"../shoppingCart/confirm?shoppingCartList="+JSON.stringify(this.data.shoppingCartList)
+        url:"../shoppingCart/confirm"
       })
     }else if(shopppingCartList.length<=0){
       this.setData({

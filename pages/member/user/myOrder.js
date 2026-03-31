@@ -9,21 +9,29 @@ Page({
     config:require("../../../config"),
     isErrorVisible:false,
     errorMessage:"",
-    status_id:0
+    status_id:0,
+    isLogined:false,
+    currentMenu:1,
+    btn_name_list:["立即支付","催发货","确认收货","申请售后"],
+    targetStatus:0,
+    showQR:false
   },
-
   /**
-   * 生命周期函数--监听页面加载
+   * 加载数据
    */
-  onLoad(options) {
+  loadingOrderInfo(){
     const app = getApp();
-    const userInfo = app.globalData.userInfo;
-    if(userInfo==null){
+    const isLogined = app.globalData.isLogined;
+    this.setData({
+      isLogined:isLogined
+    })
+    if(!isLogined){
       this.setData({
         isErrorVisible:true,
-        errorMessage:"登录已失效，请重新登录"
+        errorMessage:"登录已失效，请重新登录",
       })
     }
+    const userInfo = app.globalData.userInfo;
     const user_id = userInfo.user_id;
     wx.request({
       url:this.data.config.BASE_URL+"/member/orders/"+user_id,
@@ -53,7 +61,92 @@ Page({
       }
     })
   },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad(options) {
+    this.loadingOrderInfo();
+  },
+  /**
+   * 返回上个页面
+   */
+  onback(){
+    wx.redirectTo({
+      url:"./user"
+    })
+  },
+  /**
+   * 改变当前选择
+   */
+  changeCurrentTab(e){
+    const currentTab = e.currentTarget.dataset.index;
+    let status_id = 0;
+    if(currentTab==1){
+      status_id = 0;
+    }else if(currentTab==2){
+      status_id = 1;
+    }else if(currentTab==3){
+      status_id = 2;
+    }else if(currentTab==4){
+      status_id = 3;
+    }
+    this.setData({
+      currentMenu:currentTab,
+      status_id:status_id
+    })
+    this.loadingOrderInfo();
+  },
+  /**
+   * 改变订单状态
+   */
+  changeOrderStatus(e){
+    const currentMenu = e.currentTarget.dataset.btn_index;
+    const order_no = e.currentTarget.dataset.order_no;
+    if(currentMenu==1 || currentMenu == 3){
+      this.setData({
+        showQR:true
+      })
+    }
+    if(currentMenu==2){
+      this.setData({
+        targetStatus:3
+      })
+      wx.request({
+        url:this.data.config.BASE_URL+"/member/orders/"+order_no,
+        method:"PATCH",
+        data:{
+          status_id:this.data.targetStatus
+        },
+        header: {
+          "Content-Type": "application/json",
+          "token": wx.getStorageSync("token"),
+          "Cookie": "JSESSIONID=" + wx.getStorageSync("JSESSIONID")
+        },
+        success:(res)=>{
+          switch(res.statusCode){
+            case 200:
+              this.loadingOrderInfo();
+            break;
+            case 401:
+              this.setData({
+                isErrorVisible:true,
+                errorMessage:"登录已失效，请重新登录"
+              })
+            break;
+          }
+        }
+      })
+    }
+  },
 
+  /**
+   * 关闭二维码
+   */
+  closeDialog(){
+    this.setData({
+      showQR:false
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

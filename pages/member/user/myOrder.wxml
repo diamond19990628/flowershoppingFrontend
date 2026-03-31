@@ -5,7 +5,7 @@
   </view>
 
   <view class="header">
-    <view class="back-btn">
+    <view class="back-btn" bind:tap="onback">
       <view class="arrow-left"></view>
     </view>
     <text class="title">我的订单</text>
@@ -19,36 +19,79 @@
   </view>
 
   <view class="tabs">
-    <view class="tab active">未支付
-      <view class="line"></view>
+    <view class="tab {{currentMenu==1 ? 'active' : ''}}" data-index="1" bind:tap="changeCurrentTab">
+      未支付
+      <view class="{{currentMenu==1 ? 'line' : ''}}"></view>
     </view>
-    <view class="tab">未发货</view>
-    <view class="tab">
-      配送中
-      
+    <view class="tab {{currentMenu==2 ? 'active' : ''}}" data-index="2" bind:tap="changeCurrentTab">未发货
+      <view class="{{currentMenu==2 ? 'line' : ''}}"></view>
     </view>
-    
-    <view class="tab">已完成</view>
-    
+    <view class="tab {{currentMenu==3 ? 'active' : ''}}" data-index="3" bind:tap="changeCurrentTab">配送中
+      <view class="{{currentMenu==3 ? 'line' : ''}}"></view>
+    </view>
+    <view class="tab {{currentMenu==4 ? 'active' : ''}}"  data-index="4" bind:tap="changeCurrentTab">已完成
+      <view class="{{currentMenu==4 ? 'line' : ''}}"></view>
+    </view>
   </view>
 
   <view class="order-list">
-    <view class="order-card">
-      <view class="card-header">
-        <text class="date">2026年3月20日</text>
-      </view>
+    <view class="order-card" wx:for="{{orderList}}" wx:key="{{index}}">
       
-      <view class="card-body">
-        <view class="product-img"></view>
-        <view class="product-info">
-          <view class="name">商品名</view>
-          <view class="price">¥</view>
+      <view class="card-header-top">
+        <text class="order-no">单号：{{item.order_no}}</text>
+        <text class="order-status">{{item.status.statusName}}</text>
+      </view>
+
+      <view class="product-section">
+        <view class="product-main">
+          <image class="product-img" src="{{item.order_items[0].attachedFilePath}}" mode="aspectFill"></image>
+          <view class="product-info">
+            <view class="info-top" wx:for="{{item.order_items}}" wx:for-item="orderItem">
+              <text class="name">{{orderItem.product.productName}}</text>
+              <view class="price-unit">
+                <text class="price-red">¥{{orderItem.product.amount}}</text>
+                <text class="quantity">x{{orderItem.quantity}}</text>
+              </view>
+            </view>
+            <view class="info-split-line"></view>
+            <view class="info-bottom">
+              <text class="total-label">合计：</text>
+              <text class="total-price">¥{{item.total_amount}}</text>
+            </view>
+          </view>
         </view>
       </view>
 
-      <view class="card-footer">
-        <button class="btn-confirm">确认收货</button>
+      <view class="address-section">
+        <view class="user-info">
+          <text class="user-name">{{item.user.nickName}}</text>
+          <text class="user-phone">{{item.user.tel}}</text>
+        </view>
+        <view class="address-detail">{{item.deliveryAddress.delivery_address != null?item.deliveryAddress.delivery_address:item.deliverytype.delivery_type_name}}</view>
+        <view class="delivery-time">{{item.deliverytype.delivery_type_name}}时间：{{item.delivery_date}}</view>
       </view>
+
+      <view class="card-footer">
+        <button class="btn-confirm" data-btn_index="{{currentMenu-1}}" bind:tap="changeOrderStatus" data-order_no="{{item.order_no}}">{{btn_name_list[currentMenu-1]}}</button>
+      </view>
+      
+    </view>
+  </view>
+</view>
+
+<view class="dialog-mask" wx:if="{{showQR}}">
+  <view class="dialog-container">
+    <view class="dialog-close" bindtap="closeDialog">×</view>
+    
+    <view class="dialog-content">
+      <view class="dialog-title">联系客服</view>
+      <view class="dialog-subtitle">长按识别二维码或保存图片</view>
+      
+      <view class="qr-code-wrapper">
+        <image class="qr-img" src="../../img/wechat.png" mode="aspectFit"></image>
+      </view>
+      
+      <view class="dialog-footer">微信号：TingShanHuaYu</view>
     </view>
   </view>
 </view>

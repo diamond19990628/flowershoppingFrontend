@@ -31,7 +31,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    const shoppingCartList = JSON.parse(decodeURIComponent(options.shoppingCartList));
+    const shoppingCartList = wx.getStorageSync("confirmShoppingCartList") || [];
     if(shoppingCartList.length === 0){
       this.setData({
         isErrorVisible:true,
