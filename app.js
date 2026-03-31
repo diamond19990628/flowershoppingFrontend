@@ -12,8 +12,4 @@ App({
       global: true, // 设置为全局生效,
     });
   },
-  
-  globalData: {
-    userInfo: null
-  }
 })

@@ -45,7 +45,7 @@
               </view>
               <view class="config-row">
                 <text class="config-label">祝福语</text>
-                <view class="config-textarea-static">{{item.comment || '无'}}</view>
+                <view class="config-textarea-static">{{item.comment || ''}}</view>
               </view>
               <view class="config-anonymous">
                 <view class="anonymous-group">

@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "errorDialog":"/pages/manager/error/errorDialog"
+  }
 }

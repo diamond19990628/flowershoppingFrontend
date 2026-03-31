@@ -5,14 +5,53 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    orderList:[],
+    config:require("../../../config"),
+    isErrorVisible:false,
+    errorMessage:"",
+    status_id:0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    const app = getApp();
+    const userInfo = app.globalData.userInfo;
+    if(userInfo==null){
+      this.setData({
+        isErrorVisible:true,
+        errorMessage:"登录已失效，请重新登录"
+      })
+    }
+    const user_id = userInfo.user_id;
+    wx.request({
+      url:this.data.config.BASE_URL+"/member/orders/"+user_id,
+      method:"GET",
+      data:{
+        status_id:this.data.status_id
+      },
+      header: {
+        "Content-Type": "application/json",
+        "token": wx.getStorageSync("token"),
+        "Cookie": "JSESSIONID=" + wx.getStorageSync("JSESSIONID")
+      },
+      success:(res)=>{
+        switch(res.statusCode){
+          case 200:
+            this.setData({
+              orderList:res.data.data
+            })
+          break;
+          case 401:
+            this.setData({
+              isErrorVisible:true,
+              errorMessage:"登录已失效，请重新登录"
+            })
+          break;
+        }
+      }
+    })
   },
 
   /**

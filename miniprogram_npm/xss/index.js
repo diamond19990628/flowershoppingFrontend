@@ -4,7 +4,7 @@ var __DEFINE__ = function(modId, func, req) { var m = { exports: {}, _tempexport
 var __REQUIRE__ = function(modId, source) { if(!__MODS__[modId]) return require(source); if(!__MODS__[modId].status) { var m = __MODS__[modId].m; m._exports = m._tempexports; var desp = Object.getOwnPropertyDescriptor(m, "exports"); if (desp && desp.configurable) Object.defineProperty(m, "exports", { set: function (val) { if(typeof val === "object" && val !== m._exports) { m._exports.__proto__ = val.__proto__; Object.keys(val).forEach(function (k) { m._exports[k] = val[k]; }); } m._tempexports = val }, get: function () { return m._tempexports; } }); __MODS__[modId].status = 1; __MODS__[modId].func(__MODS__[modId].req, m, m.exports); } return __MODS__[modId].m.exports; };
 var __REQUIRE_WILDCARD__ = function(obj) { if(obj && obj.__esModule) { return obj; } else { var newObj = {}; if(obj != null) { for(var k in obj) { if (Object.prototype.hasOwnProperty.call(obj, k)) newObj[k] = obj[k]; } } newObj.default = obj; return newObj; } };
 var __REQUIRE_DEFAULT__ = function(obj) { return obj && obj.__esModule ? obj.default : obj; };
-__DEFINE__(1774096895343, function(require, module, exports) {
+__DEFINE__(1774898290171, function(require, module, exports) {
 /**
  * xss
  *
@@ -57,8 +57,8 @@ if (isWorkerEnv()) {
   self.filterXSS = module.exports;
 }
 
-}, function(modId) {var map = {"./default":1774096895344,"./parser":1774096895346,"./xss":1774096895347}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1774096895344, function(require, module, exports) {
+}, function(modId) {var map = {"./default":1774898290172,"./parser":1774898290174,"./xss":1774898290175}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1774898290172, function(require, module, exports) {
 /**
  * default settings
  *
@@ -521,8 +521,8 @@ exports.attributeWrapSign = '"';
 exports.cssFilter = defaultCSSFilter;
 exports.getDefaultCSSWhiteList = getDefaultCSSWhiteList;
 
-}, function(modId) { var map = {"./util":1774096895345}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1774096895345, function(require, module, exports) {
+}, function(modId) { var map = {"./util":1774898290173}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1774898290173, function(require, module, exports) {
 module.exports = {
   indexOf: function (arr, item) {
     var i, j;
@@ -559,7 +559,7 @@ module.exports = {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1774096895346, function(require, module, exports) {
+__DEFINE__(1774898290174, function(require, module, exports) {
 /**
  * Simple HTML Parser
  *
@@ -818,8 +818,8 @@ function stripQuoteWrap(text) {
 exports.parseTag = parseTag;
 exports.parseAttr = parseAttr;
 
-}, function(modId) { var map = {"./util":1774096895345}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1774096895347, function(require, module, exports) {
+}, function(modId) { var map = {"./util":1774898290173}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1774898290175, function(require, module, exports) {
 /**
  * filter xss
  *
@@ -1053,8 +1053,8 @@ FilterXSS.prototype.process = function (html) {
 
 module.exports = FilterXSS;
 
-}, function(modId) { var map = {"./default":1774096895344,"./parser":1774096895346,"./util":1774096895345}; return __REQUIRE__(map[modId], modId); })
-return __REQUIRE__(1774096895343);
+}, function(modId) { var map = {"./default":1774898290172,"./parser":1774898290174,"./util":1774898290173}; return __REQUIRE__(map[modId], modId); })
+return __REQUIRE__(1774898290171);
 })()
 //miniprogram-npm-outsideDeps=["cssfilter"]
 //# sourceMappingURL=index.js.map
