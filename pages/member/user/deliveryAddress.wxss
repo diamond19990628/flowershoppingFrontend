@@ -1,0 +1,128 @@
+page {
+  background-color: #fff;
+  font-family: "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* 顶部装饰与标题 (保持与订单页一致) */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 20rpx 30rpx;
+  border-bottom: 1rpx dashed #A38E58;
+  margin-bottom: 10rpx;
+}
+.slogan { font-size: 24rpx; color: #A38E58; }
+.brand { font-size: 34rpx; color: #5C4A33; font-weight: 500; }
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100rpx;
+  position: relative;
+}
+.back-btn { position: absolute; left: 40rpx; }
+.arrow-left {
+  width: 20rpx; height: 20rpx;
+  border-left: 4rpx solid #5C4A33;
+  border-bottom: 4rpx solid #5C4A33;
+  transform: rotate(45deg);
+}
+.title { font-size: 34rpx; color: #5C4A33; font-weight: 600; }
+
+/* 内容区域 */
+.content-area {
+  padding: 40rpx;
+}
+
+/* 微信导入按钮：还原图中灰色大方块 */
+.import-btn-box {
+  background-color: #F3F4F6;
+  height: 240rpx;
+  border-radius: 24rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40rpx;
+  color: #5C4A33;
+  font-size: 32rpx;
+}
+
+/* 已设定地址卡片：延续订单卡片风格 */
+.address-card {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 2rpx solid #E2DCC8; /* 浅棕色边框 */
+  border-radius: 30rpx;
+  padding: 30rpx;
+  box-shadow: 0 8rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.card-info {
+  flex: 1;
+}
+
+.user-line {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+
+.user-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-right: 20rpx;
+}
+
+.user-phone {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.default-tag {
+  font-size: 20rpx;
+  color: #A38E58;
+  background: #FDF9F0;
+  padding: 2rpx 12rpx;
+  border-radius: 6rpx;
+  margin-left: 20rpx;
+  border: 1rpx solid #A38E58;
+}
+
+.address-detail {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* 修改按钮 */
+.card-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 30rpx;
+  margin-left: 30rpx;
+  border-left: 1rpx solid #EEE;
+  color: #A38E58;
+  font-size: 24rpx;
+}
+
+.edit-icon {
+  width: 36rpx;
+  height: 36rpx;
+  margin-bottom: 8rpx;
+}
+
+/* 底部添加按钮 */
+.add-address-btn {
+  margin-top: 60rpx;
+  background-color: #A38E58;
+  color: #fff;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  font-weight: normal;
+  width: 80% !important;
+}

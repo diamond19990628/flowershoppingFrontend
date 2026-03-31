@@ -19,7 +19,8 @@
     "pages/member/shoppingCart/shoppingCart",
     "pages/member/shoppingCart/confirm",
     "pages/member/shoppingCart/success",
-    "pages/member/user/myOrder"
+    "pages/member/user/myOrder",
+    "pages/member/user/deliveryAddress"
   ],
   "window": {
     "navigationBarTextStyle": "black",

@@ -1,0 +1,39 @@
+<view class="page">
+  <view class="top-bar">
+    <view class="slogan">在最美的时光遇见你 <text class="flower">🌷</text></view>
+    <view class="brand">汀山花语</view>
+  </view>
+
+  <view class="header">
+    <view class="back-btn">
+      <view class="arrow-left"></view>
+    </view>
+    <text class="title">收货地址</text>
+  </view>
+
+  <view class="content-area">
+    <view class="import-btn-box" bindtap="importFromWechat">
+      <text>微信一键导入</text>
+    </view>
+
+    <view class="address-card">
+      <view class="card-info">
+        <view class="user-line">
+          <text class="user-name">姚宇鹏</text>
+          <text class="user-phone">18914763043</text>
+          <text class="default-tag">默认</text>
+        </view>
+        <view class="address-detail">
+          江苏省南京市秦淮区中山南路300号xx大厦1201室
+        </view>
+      </view>
+      
+      <view class="card-action" bindtap="editAddress">
+        <image class="edit-icon" src="/images/edit.png" mode="aspectFit"></image>
+        <text>修改</text>
+      </view>
+    </view>
+
+    <button class="add-address-btn">手动添加新地址</button>
+  </view>
+</view>
