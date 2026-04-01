@@ -1,5 +1,5 @@
 const config = {
-  BASE_URL: "http://192.168.3.75:8080"
+  BASE_URL: "http://127.0.0.1:8080"
 };
 
 module.exports = config;

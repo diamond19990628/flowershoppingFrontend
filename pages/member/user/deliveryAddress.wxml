@@ -16,24 +16,79 @@
       <text>微信一键导入</text>
     </view>
 
-    <view class="address-card">
+    <view class="address-card" wx:for="{{deliveryAddressList}}" wx:key="{{index}}">
       <view class="card-info">
         <view class="user-line">
-          <text class="user-name">姚宇鹏</text>
-          <text class="user-phone">18914763043</text>
-          <text class="default-tag">默认</text>
+          <text class="user-name">{{item.receive_name}}</text>
+          <text class="user-phone">{{item.receive_tel}}</text>
         </view>
         <view class="address-detail">
-          江苏省南京市秦淮区中山南路300号xx大厦1201室
+          {{item.delivery_address}}
         </view>
       </view>
       
-      <view class="card-action" bindtap="editAddress">
-        <image class="edit-icon" src="/images/edit.png" mode="aspectFit"></image>
-        <text>修改</text>
+      <view class="card-action">
+  <view class="action-item" bindtap="editAddress" data-index="{{index}}" data-deliveryAddress_id="{{item.delivery_address_id}}">
+    <image class="edit-icon" src="/images/edit.png" mode="aspectFit"></image>
+    <text>修改</text>
+  </view>
+  
+  <view class="action-item delete-item" bindtap="onDeleteAddress" data-index="{{index}}" data-deliveryAddress_id="{{item.delivery_address_id}}">
+    <image class="edit-icon" src="/images/delete.png" mode="aspectFit"></image>
+    <text>删除</text>
+  </view>
+</view>
+      
+    </view>
+
+    <button class="add-address-btn" bind:tap="onAddAddressInfo" data-type="create">手动添加新地址</button>
+  </view>
+</view>
+
+<view class="ts-dialog-mask {{showAddressDialog ? '' : 'hiddendialog'}}">
+  <view class="ts-dialog-container">
+    <view class="ts-dialog-header">
+      <view class="ts-dialog-title">修改收货地址</view>
+      <view class="ts-dialog-subtitle">请确认您的联系方式以便准确送达</view>
+    </view>
+
+    <view class="ts-dialog-form">
+      <view class="ts-form-item">
+        <text class="ts-label">姓名<text class="ts-required">*</text></text>
+        <input class="ts-input" value="{{editForm.receive_name}}" placeholder="请输入收件人姓名" placeholder-class="ts-placeholder" bindinput="onEditInput" data-field="receive_name" />
+      </view>
+
+      <view class="ts-form-item">
+        <text class="ts-label">电话<text class="ts-required">*</text></text>
+        <input class="ts-input" type="number" value="{{editForm.receive_tel}}" placeholder="请输入联系电话" placeholder-class="ts-placeholder" bindinput="onEditInput" data-field="receive_tel" />
+      </view>
+
+      <view class="ts-form-item ts-area-item">
+        <text class="ts-label">地址<text class="ts-required">*</text></text>
+        <textarea class="ts-textarea" value="{{editForm.delivery_address}}" placeholder="详细街道、楼牌号等" placeholder-class="ts-placeholder" bindinput="onEditInput" data-field="delivery_address" fixed="true"></textarea>
       </view>
     </view>
 
-    <button class="add-address-btn">手动添加新地址</button>
+    <view class="ts-dialog-footer">
+      <button class="ts-confirm-btn" bindtap="saveAddress">{{currentType=='create'?'确定创建':'保存更改'}}</button>
+      <view class="ts-cancel-btn" bindtap="closeAddressDialog">取消</view>
+    </view>
   </view>
 </view>
+<view class="ts-dialog-mask {{showDeleteDialog ? '' : 'hiddendialog'}}">
+  <view class="ts-dialog-container delete-dialog">
+    <view class="ts-dialog-header">
+      <view class="delete-icon-wrapper">
+        <text class="warning-mark">!</text>
+      </view>
+      <view class="ts-dialog-title" style="text-align: center; margin-top: 20rpx;">确认删除地址？</view>
+      <view class="ts-dialog-subtitle" style="text-align: center;">删除后将无法恢复，请谨慎操作</view>
+    </view>
+
+    <view class="ts-dialog-footer">
+      <button class="ts-confirm-btn delete-confirm" bindtap="executeDelete">确认删除</button>
+      <view class="ts-cancel-btn" bindtap="closeDeleteDialog">我再想想</view>
+    </view>
+  </view>
+</view>
+<errorDialog isErrorVisible="{{isErrorVisible}}" errorMessage="{{errorMessage}}"/>

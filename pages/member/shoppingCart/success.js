@@ -13,7 +13,7 @@ Page({
    */
   onLoad(options) {
     setTimeout(()=>{
-      wx.navigateTo({
+      wx.redirectTo({
         url: '/pages/index/index'
       })
     },3000)
