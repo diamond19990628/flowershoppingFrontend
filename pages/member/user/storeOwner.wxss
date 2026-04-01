@@ -92,10 +92,12 @@
   border: 2rpx dashed #dcdcdc;
   border-radius: 16rpx;
 }
-
+.image-box image{
+  width: 100%;
+  height: 100%;
+}
 /* 底部提示 */
 .bottom-hint {
-  margin-top: auto; /* 将提示文字推向底部 */
   text-align: center;
   font-size: 26rpx;
   color: #aaaaaa;
