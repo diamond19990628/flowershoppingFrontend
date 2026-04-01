@@ -1,0 +1,26 @@
+<view class="full-screen-container">
+  <view class="nav-bar">
+    <view class="back-icon">〈</view>
+    <view class="nav-title">联系商家</view>
+  </view>
+
+  <view class="main-content">
+    <view class="section-header">如何找到我们</view>
+
+    <view class="contact-card">
+      <view class="type-label">电话联系</view>
+      <view class="number-text">15195983663</view>
+    </view>
+
+    <view class="contact-card qr-section">
+      <view class="type-label">微信联系</view>
+      <view class="qr-placeholder">
+        <view class="image-box"></view>
+      </view>
+    </view>
+
+    <view class="bottom-hint">
+      售后及养护问题可添加微信
+    </view>
+  </view>
+</view>

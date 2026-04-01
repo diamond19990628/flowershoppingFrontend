@@ -1,0 +1,103 @@
+/* 全屏容器 */
+.full-screen-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  box-sizing: border-box;
+}
+
+/* 顶部导航栏 */
+.nav-bar {
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-bottom: 1rpx solid #eeeeee;
+}
+
+.back-icon {
+  position: absolute;
+  left: 30rpx;
+  font-size: 40rpx;
+  color: #8b7647;
+}
+
+.nav-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #8b7647;
+}
+
+/* 主内容区 */
+.main-content {
+  flex: 1; /* 占据剩余全部空间 */
+  padding: 60rpx 50rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-header {
+  font-size: 32rpx;
+  color: #8b7647;
+  font-weight: bold;
+  margin-bottom: 50rpx;
+}
+
+/* 卡片样式 */
+.contact-card {
+  background-color: #f7f8fa;
+  border-radius: 24rpx;
+  padding: 40rpx;
+  margin-bottom: 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.type-label {
+  font-size: 28rpx;
+  color: #999999;
+  margin-bottom: 20rpx;
+}
+
+.number-text {
+  width: 100%;
+  text-align: center;
+  font-size: 40rpx;
+  color: #8b7647;
+  letter-spacing: 2rpx;
+  font-weight: 500;
+}
+
+/* 二维码区域 */
+.qr-section {
+  align-items: flex-start;
+}
+
+.qr-placeholder {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20rpx 0;
+}
+
+.image-box {
+  width: 320rpx;
+  height: 320rpx;
+  background-color: #ffffff;
+  border: 2rpx dashed #dcdcdc;
+  border-radius: 16rpx;
+}
+
+/* 底部提示 */
+.bottom-hint {
+  margin-top: auto; /* 将提示文字推向底部 */
+  text-align: center;
+  font-size: 26rpx;
+  color: #aaaaaa;
+  padding-bottom: 60rpx;
+}
