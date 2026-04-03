@@ -14,7 +14,7 @@
   <view class="search-container">
     <view class="search-box">
       <icon type="search" size="14" color="#B2B2B2"></icon>
-      <text class="search-placeholder">查找</text>
+      <input class="search-placeholder" bindconfirm="searchOrderWithOrderNo" bindinput="onInput">查找</input>
     </view>
   </view>
 
@@ -88,7 +88,7 @@
       <view class="dialog-subtitle">长按识别二维码或保存图片</view>
       
       <view class="qr-code-wrapper">
-        <image class="qr-img" src="../../img/wechat.png" mode="aspectFit"></image>
+        <image class="qr-img" src="../../img/wechat.png" mode="aspectFit" show-menu-by-longpress="{{true}}" ></image>
       </view>
       
       <view class="dialog-footer">微信号：TingShanHuaYu</view>

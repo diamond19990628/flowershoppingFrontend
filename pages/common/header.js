@@ -53,6 +53,11 @@ Component({
         showNotice:false
       })
     },
+    onJoinUs(){
+      wx.redirectTo({
+        url:"../member/user/user"
+      })
+    },
     loadingInformation(){
       wx.request({
         url:this.data.config.BASE_URL+"/member/informations",

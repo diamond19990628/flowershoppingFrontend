@@ -14,6 +14,11 @@ Page({
   onLoad(options) {
 
   },
+  onBack(){
+    wx.redirectTo({
+      url:"./user"
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -30,7 +30,6 @@
       </view>
 
       <view class="card-footer">
-        <view class="footer-btn edit">编辑内容</view>
         <view class="footer-btn delete" data-information_id="{{item.informationId}}" bind:tap="deleteConfirmInformation">删除</view>
       </view>
     </view>

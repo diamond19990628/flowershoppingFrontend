@@ -40,7 +40,7 @@
     <view class="ts-info-item ts-flex-start">
       <text class="ts-label">微信联系门店：</text>
       <view class="ts-qrcode-box">
-        <image class="ts-qrcode" src="../../img/wechat.png" mode="aspectFit"></image>
+        <image class="ts-qrcode" src="../../img/wechat.png" mode="aspectFit" show-menu-by-longpress="{{true}}"></image>
       </view>
     </view>
   </view>

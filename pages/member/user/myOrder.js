@@ -1,4 +1,5 @@
 // pages/member/user/myOrder.js
+const xss = require('xss')
 Page({
 
   /**
@@ -14,7 +15,8 @@ Page({
     currentMenu:1,
     btn_name_list:["立即支付","催发货","确认收货","申请售后"],
     targetStatus:0,
-    showQR:false
+    showQR:false,
+    searchString:""
   },
   /**
    * 加载数据
@@ -37,7 +39,8 @@ Page({
       url:this.data.config.BASE_URL+"/member/orders/"+user_id,
       method:"GET",
       data:{
-        status_id:this.data.status_id
+        status_id:this.data.status_id,
+        order_no:this.data.searchString
       },
       header: {
         "Content-Type": "application/json",
@@ -48,7 +51,7 @@ Page({
         switch(res.statusCode){
           case 200:
             this.setData({
-              orderList:res.data.data
+              orderList:res.data.data,
             })
           break;
           case 401:
@@ -152,6 +155,21 @@ Page({
    */
   onReady() {
 
+  },
+  /**
+   * 获取输入内容
+   */
+  onInput(e){
+    const searchString = e.detail.value;
+    this.setData({
+      searchString:xss(searchString)
+    })
+  },
+  /**
+   * 通过订单信息查询
+   */
+  searchOrderWithOrderNo(){
+    this.loadingOrderInfo();
   },
 
   /**
