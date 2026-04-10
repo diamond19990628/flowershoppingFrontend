@@ -1,5 +1,5 @@
 const config = {
-  BASE_URL: "http://127.0.0.1:8080"
+  BASE_URL: "https://api.tshyshopping.cn:8443"
 };
 
 module.exports = config;

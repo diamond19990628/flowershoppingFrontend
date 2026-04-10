@@ -138,3 +138,12 @@
     </view>
   </view>
 </view>
+<errorDialog isErrorVisible="{{isErrorVisible}}" errorMessage="{{errorMessage}}"/>
+<view class="full-screen-mask" wx:if="{{show_load_dialog}}">
+  <view class="loading-container">
+    
+    <view class="upload-loader"></view>
+    
+    <view class="loading-text">{{title || '上传中...'}}</view>
+  </view>
+</view>

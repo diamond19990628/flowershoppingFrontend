@@ -19,7 +19,11 @@ Page({
     categoryIndex:null,
     categoryId: null,        // 当前选中的 category_id
     button_event:"",
-    config:require("../../../config")
+    config:require("../../../config"),
+    requestNo:"",
+    isErrorVisible:false,
+    errorMessage:"",
+    show_load_dialog:false
   },
   loadProductList(index){
     let status = 0;
@@ -119,6 +123,33 @@ Page({
   },
   // 打开弹窗
   onAddGoods(e) {
+    wx.request({
+      url:this.data.config.BASE_URL+"/member/orders/requestNo",
+      method:"POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "token": wx.getStorageSync("token"),
+        "Cookie": "JSESSIONID=" + wx.getStorageSync("JSESSIONID")
+      },
+      success:(res)=>{
+        switch(res.statusCode){
+          case 200:
+            this.setData({
+              requestNo:res.data.data
+            })
+          break;
+          case 401:
+            this.setData({
+              errorMessage:"登录已失效，请重新登录",
+              isErrorVisible:true
+            })
+            const app = getApp();
+            app.globalData.userInfo = null;
+            app.globalData.isLogined = false;
+          break;
+        }
+      }
+    });
     const event_type = e.currentTarget.dataset.event_type;
     this.setData({ showAddDialog: true });
     // 新增商品
@@ -241,6 +272,9 @@ Page({
    * 
    */
   onCreate(e){
+    this.setData({
+      show_load_dialog:true
+    })
     const button_event = e.currentTarget.dataset.button_event;
     const productName = this.data.productName;
     const amount = this.data.amount;
@@ -310,7 +344,8 @@ Page({
           product_name: productName,
           amount: amount,
           stock: stock,
-          category: category_id
+          category: category_id,
+          requestNo:this.data.requestNo
         },
         header: {
           "Content-Type": "multipart/form-data",
@@ -330,7 +365,10 @@ Page({
                 imagePath: ""
               })
               this.loadProductList(this.data.currentTab);
-              this.setData({ showAddDialog: false });
+              this.setData({ 
+                showAddDialog: false,
+                show_load_dialog:false
+              });
             break;
           }
         }
@@ -345,7 +383,8 @@ Page({
             product_name: productName,
             amount: amount,
             stock: stock,
-            category: category_id
+            category: category_id,
+            requestNo:this.data.requestNo
           },
           header: {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -364,7 +403,10 @@ Page({
                   imagePath: ""
                 })
                 this.loadProductList(this.data.currentTab);
-                this.setData({ showAddDialog: false });
+                this.setData({ 
+                  showAddDialog: false,
+                  show_load_dialog:false
+                });
               break;
             }
           }
@@ -379,7 +421,8 @@ Page({
             product_name: productName,
             amount: amount,
             stock: stock,
-            category: category_id
+            category: category_id,
+            requestNo:this.data.requestNo
           },
           header: {
             "Content-Type": "multipart/form-data",
@@ -399,7 +442,10 @@ Page({
                   imagePath: ""
                 })
                 this.loadProductList(this.data.currentTab);
-                this.setData({ showAddDialog: false });
+                this.setData({ 
+                  showAddDialog: false,
+                  show_load_dialog:false
+                });
               break;
             }
           }
