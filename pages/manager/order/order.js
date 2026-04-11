@@ -10,7 +10,9 @@ Page({
     status_id:1,
     currentTab:0,
     order_id:0,
-    config:require("../../../config")
+    config:require("../../../config"),
+    isErrorVisible:false,
+    errorMessage:""
   },
   switchTab(e){
     const index = e.currentTarget.dataset.index;
@@ -57,6 +59,18 @@ Page({
               orderList:res.data.data
             })
           break;
+          case 401:
+            this.setData({
+              errorMessage:"登录已失效，请重新登录",
+              isErrorVisible:true
+            })
+            const app = getApp();
+            app.globalData.userInfo = null;
+            app.globalData.isLogined = false;
+            wx.redirectTo({
+              url:"/pages/member/user/user"
+            })
+          break;
         }
       }
     })
@@ -80,6 +94,18 @@ Page({
         switch(res.statusCode){
           case 200:
             this.loadOrderList();
+          break;
+          case 401:
+            this.setData({
+              errorMessage:"登录已失效，请重新登录",
+              isErrorVisible:true
+            })
+            const app = getApp();
+            app.globalData.userInfo = null;
+            app.globalData.isLogined = false;
+            wx.redirectTo({
+              url:"/pages/member/user/user"
+            })
           break;
         }
       }

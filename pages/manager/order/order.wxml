@@ -72,3 +72,4 @@
     </view>
   </scroll-view>
 </view>
+<errorDialog isErrorVisible="{{isErrorVisible}}" errorMessage="{{errorMessage}}"/>
