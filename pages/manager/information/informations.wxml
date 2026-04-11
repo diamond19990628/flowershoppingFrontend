@@ -36,44 +36,60 @@
   </view>
 </view>
 
-<view class="dialog-mask {{showDialog ? 'show' : ''}}" bindtap="closeDialog"></view>
+<view wx:if="{{showDialog}}">
+  <view class="dialog-mask show" bindtap="closeDialog"></view>
 
-<view class="dialog-container {{showDialog ? 'show' : ''}}">
-  <view class="dialog-header">
-    <text class="dialog-title">发布新公告</text>
-    <view class="close-icon" bindtap="closeDialog">×</view>
-  </view>
-
-  <scroll-view scroll-y="true" class="dialog-body">
-    <view class="input-group">
-      <text class="label">公告标题</text>
-      <input class="input-element" placeholder="请输入标题（20字以内）" placeholder-class="p-class" data-field="information_title" bindinput="onInput"/>
+  <view class="dialog-container show">
+    <view class="dialog-header">
+      <text class="dialog-title">发布新公告</text>
+      <view class="close-icon" bindtap="closeDialog">×</view>
     </view>
 
-    <view class="input-group">
-      <text class="label">公告内容</text>
-      <textarea class="textarea-element" placeholder="请输入详细公告内容..." maxlength="500" bindinput="onInput" data-field="information_content"></textarea>
-    </view>
-
-    <view class="date-group">
-      <view class="date-item">
-        <text class="label">开始日期</text>
-        <picker mode="date" value="{{startDate}}" bindchange="bindStartDateChange">
-          <view class="picker-field">{{startDate || '请选择'}}</view>
-        </picker>
+    <scroll-view scroll-y="true" class="dialog-body">
+      <view class="input-group">
+        <text class="label">公告标题</text>
+        <input
+          class="input-element"
+          placeholder="请输入标题（20字以内）"
+          placeholder-class="p-class"
+          data-field="information_title"
+          value="{{information_title}}"
+          bindinput="onInput"
+        />
       </view>
-      <view class="date-item">
-        <text class="label">结束日期</text>
-        <picker mode="date" value="{{endDate}}" bindchange="bindEndDateChange">
-          <view class="picker-field">{{endDate || '请选择'}}</view>
-        </picker>
-      </view>
-    </view>
-  </scroll-view>
 
-  <view class="dialog-footer">
-    <view class="btn-cancel" bindtap="closeDialog">取消</view>
-    <view class="btn-confirm" bindtap="submitNotice">立即发布</view>
+      <view class="input-group">
+        <text class="label">公告内容</text>
+        <textarea
+          class="textarea-element"
+          placeholder="请输入详细公告内容..."
+          maxlength="500"
+          data-field="information_content"
+          value="{{information_content}}"
+          bindinput="onInput"
+        ></textarea>
+      </view>
+
+      <view class="date-group">
+        <view class="date-item">
+          <text class="label">开始日期</text>
+          <picker mode="date" value="{{startDate}}" bindchange="bindStartDateChange">
+            <view class="picker-field">{{startDate || '请选择'}}</view>
+          </picker>
+        </view>
+        <view class="date-item">
+          <text class="label">结束日期</text>
+          <picker mode="date" value="{{endDate}}" bindchange="bindEndDateChange">
+            <view class="picker-field">{{endDate || '请选择'}}</view>
+          </picker>
+        </view>
+      </view>
+    </scroll-view>
+
+    <view class="dialog-footer">
+      <view class="btn-cancel" bindtap="closeDialog">取消</view>
+      <view class="btn-confirm" bindtap="submitNotice">立即发布</view>
+    </view>
   </view>
 </view>
 <errorDialog isErrorVisible="{{isErrorVisible}}" errorMessage="{{errorMessage}}"/>

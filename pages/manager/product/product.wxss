@@ -124,16 +124,23 @@
 /* 遮罩层 */
 .dialog-mask {
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: rgba(0, 0, 0, 0.6);
-  display: flex;
   align-items: flex-end;
   z-index: 1000;
-  visibility: hidden;
-  opacity: 0;
-  transition: all 0.3s;
+
+  /* 关键：默认完全不渲染，防止真机首帧闪内容 */
+  display: none;
 }
-.dialog-mask.show { visibility: visible; opacity: 1; }
+
+/* 打开时再显示 */
+.dialog-mask.show {
+  display: flex;
+  animation: dialogMaskFadeIn 0.25s ease;
+}
 
 /* 弹窗主体 */
 .dialog-container {
@@ -141,10 +148,33 @@
   background: #fff;
   border-radius: 40rpx 40rpx 0 0;
   padding: 40rpx 0;
+
+  /* 默认状态 */
   transform: translateY(100%);
-  transition: all 0.3s ease;
 }
-.dialog-mask.show .dialog-container { transform: translateY(0); }
+
+/* 打开时播放上滑动画 */
+.dialog-mask.show .dialog-container {
+  animation: dialogSlideUp 0.3s ease forwards;
+}
+
+@keyframes dialogMaskFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dialogSlideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
 
 .dialog-header {
   padding: 0 40rpx 40rpx;
