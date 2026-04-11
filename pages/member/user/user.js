@@ -146,11 +146,17 @@ Page({
    */
   onShow() {
     const app = getApp()
-
+    let nickName = null;
+    let isAdmin = null;
+    const userInfo = app.globalData.userInfo;
+    if(userInfo != null){
+      nickName = userInfo.nickName;
+      isAdmin = userInfo.isAdmin;
+    }
     this.setData({
       isLogined: app.globalData.isLogined,
-      nickName:app.globalData.userInfo.nickName,
-      isAdmin:app.globalData.userInfo.isAdmin
+      nickName:nickName,
+      isAdmin:isAdmin
     })
   },
   toAdmin(){
