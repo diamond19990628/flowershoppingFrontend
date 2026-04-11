@@ -2,9 +2,10 @@
 page {
   background-color: #fbfbfb;
   color: #333;
+  padding-top: 0;
 }
 .home-container {
-  padding: 20rpx 30rpx 180rpx;
+  margin: 0 30rpx 180rpx;
 }
 /* 4. Goods Grid */
 .goods-grid {

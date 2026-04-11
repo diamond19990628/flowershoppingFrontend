@@ -33,6 +33,18 @@ Page({
               informationList:res.data.data
             })
           break;
+          case 401:
+            this.setData({
+              errorMessage:"登录已失效，请重新登录",
+              isErrorVisible:true
+            })
+            const app = getApp();
+            app.globalData.userInfo = null;
+            app.globalData.isLogined = false;
+            wx.redirectTo({
+              url:"/pages/member/user/user"
+            })
+          break;
         }
       }
     })
@@ -172,6 +184,18 @@ Page({
                 isErrorVisible:true
               })
             break;
+            case 401:
+              this.setData({
+                errorMessage:"登录已失效，请重新登录",
+                isErrorVisible:true
+              })
+              const app = getApp();
+              app.globalData.userInfo = null;
+              app.globalData.isLogined = false;
+              wx.redirectTo({
+                url:"/pages/member/user/user"
+              })
+            break;
           }
         }
       })
@@ -221,6 +245,18 @@ Page({
             this.setData({
               errorMessage:res.data.msg,
               isErrorVisible:true
+            })
+          break;
+          case 401:
+            this.setData({
+              errorMessage:"登录已失效，请重新登录",
+              isErrorVisible:true
+            })
+            const app = getApp();
+            app.globalData.userInfo = null;
+            app.globalData.isLogined = false;
+            wx.redirectTo({
+              url:"/pages/member/user/user"
             })
           break;
         }

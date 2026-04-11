@@ -44,6 +44,18 @@ Page({
               categoryList:newList
             })
           break;
+          case 401:
+            this.setData({
+              errorMessage:"登录已失效，请重新登录",
+              isErrorVisible:true
+            })
+            const app = getApp();
+            app.globalData.userInfo = null;
+            app.globalData.isLogined = false;
+            wx.redirectTo({
+              url:"/pages/member/user/user"
+            })
+          break;
         }
       }
     })
@@ -117,6 +129,18 @@ Page({
                 parent_category_id:0
               })
             break;
+            case 401:
+            this.setData({
+              errorMessage:"登录已失效，请重新登录",
+              isErrorVisible:true
+            })
+            const app = getApp();
+            app.globalData.userInfo = null;
+            app.globalData.isLogined = false;
+            wx.redirectTo({
+              url:"/pages/member/user/user"
+            })
+          break;
           }
         }
       })
@@ -148,6 +172,18 @@ Page({
                 errorMessage:res.data.msg
               })
             break;
+            case 401:
+            this.setData({
+              errorMessage:"登录已失效，请重新登录",
+              isErrorVisible:true
+            })
+            const app = getApp();
+            app.globalData.userInfo = null;
+            app.globalData.isLogined = false;
+            wx.redirectTo({
+              url:"/pages/member/user/user"
+            })
+          break;
           }
         }
       })
@@ -216,6 +252,18 @@ Page({
                 isErrorVisible:true
               })
             }
+          break;
+          case 401:
+            this.setData({
+              errorMessage:"登录已失效，请重新登录",
+              isErrorVisible:true
+            })
+            const app = getApp();
+            app.globalData.userInfo = null;
+            app.globalData.isLogined = false;
+            wx.redirectTo({
+              url:"/pages/member/user/user"
+            })
           break;
         }
       }

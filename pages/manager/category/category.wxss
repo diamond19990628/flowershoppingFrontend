@@ -79,28 +79,31 @@ page { background-color: #f4f6f8; font-family: "PingFang SC", sans-serif; }
 /* 弹窗外层容器 */
 .category-dialog-mask {
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 2000;
-  display: flex;
+
+  /* 关键：默认直接不渲染，避免真机首帧闪文字 */
+  display: none;
+
   align-items: center;
   justify-content: center;
-  /* 初始状态隐藏 */
-  visibility: hidden;
-  opacity: 0;
-  transition: all 0.2s ease-in-out;
 }
 
-/* 显示状态的类名 */
+/* 显示时再渲染，并播放动画 */
 .category-dialog-mask.modal-visible {
-  visibility: visible;
-  opacity: 1;
+  display: flex;
+  animation: categoryMaskFadeIn 0.2s ease-in-out;
 }
 
 .modal-backdrop {
   position: absolute;
-  width: 100%; height: 100%;
+  width: 100%;
+  height: 100%;
   background: rgba(0, 0, 0, 0.4);
-  z-index: -1;
+  z-index: 0;
 }
 
 .category-dialog-content {
@@ -108,15 +111,35 @@ page { background-color: #f4f6f8; font-family: "PingFang SC", sans-serif; }
   background: #fff;
   border-radius: 32rpx;
   overflow: hidden;
+  position: relative;
+  z-index: 1;
+
   transform: scale(0.9);
-  transition: all 0.2s ease-in-out;
 }
 
-/* 当显示时，缩放回正常大小 */
+/* 显示时播放弹窗缩放动画 */
 .modal-visible .category-dialog-content {
-  transform: scale(1);
+  animation: categoryDialogPopIn 0.2s ease-in-out forwards;
+}
+@keyframes categoryMaskFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
+@keyframes categoryDialogPopIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 .dialog-header { padding: 45rpx 40rpx 15rpx; text-align: center; }
 .dialog-title { font-size: 32rpx; font-weight: bold; color: #333; }
 

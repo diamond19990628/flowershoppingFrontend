@@ -1,13 +1,12 @@
 
 .header_body {
   position: fixed;
-  /* 关键：利用环境变量适配刘海屏和状态栏 */
   top: 0;
-  padding-top: env(safe-area-inset-top); 
-  background: #fcfaf7; /* 确保背景色一直涂到最顶端 */
   left: 25rpx;
   right: 25rpx;
-  z-index: 999;
+  padding-top: 0;
+  background: #fcfaf7;
+  z-index: 10;
 }
 .header_body_placeholder{
   height: 620rpx;
