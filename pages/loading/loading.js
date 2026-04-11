@@ -48,7 +48,7 @@ Page({
       wx.navigateTo({
         url: '/pages/index/index'
       })
-    },5000)
+    },2000)
   },
 
   /**
