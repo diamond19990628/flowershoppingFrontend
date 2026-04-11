@@ -51,8 +51,3 @@
   align-items: center;
   justify-content: center;
 }
-.menu-class image {
-  width: 100%;             /* 此时的 100% 就是 50rpx */
-  height: 100%;
-  display: block;          /* 消除图片底部空隙 */
-}
