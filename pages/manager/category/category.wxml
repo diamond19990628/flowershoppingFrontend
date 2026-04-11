@@ -38,7 +38,7 @@
             <text class="child-action-btn delete-text" 
                   bindtap="handleDelete" 
                   data-id="{{child.categoryId}}" 
-                  data-name="{{child.categoryName}}">删除</text>
+                  data-categoryParentName="{{child.categoryName}}">删除</text>
           </view>
         </view>
         
@@ -49,7 +49,6 @@
 
       <view class="card-footer">
         <button class="mini-btn btn-warn" size="mini" bindtap="handleDelete" data-categoryParentName="{{parent.category_name}}" data-id="{{parent.category_id}}">删除该大类</button>
-        <button class="mini-btn btn-secondary" size="mini">上移排序</button>
       </view>
     </view>
     
