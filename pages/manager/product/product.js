@@ -67,7 +67,16 @@ Page({
             })
             break;
           case 401:
-            console.log("error");
+            this.setData({
+              errorMessage:"登录已失效，请重新登录",
+              isErrorVisible:true
+            })
+            const app = getApp();
+            app.globalData.userInfo = null;
+            app.globalData.isLogined = false;
+            wx.redirectTo({
+              url:"/pages/member/user/user"
+            })
             break;
           case 500:
             console.log("system-error");
@@ -113,7 +122,16 @@ Page({
             })
             break;
           case 401:
-            console.log("error");
+            this.setData({
+              errorMessage:"登录已失效，请重新登录",
+              isErrorVisible:true
+            })
+            const app = getApp();
+            app.globalData.userInfo = null;
+            app.globalData.isLogined = false;
+            wx.redirectTo({
+              url:"/pages/member/user/user"
+            })
             break;
           case 500:
             console.log("system-error");
@@ -146,6 +164,9 @@ Page({
             const app = getApp();
             app.globalData.userInfo = null;
             app.globalData.isLogined = false;
+            wx.redirectTo({
+              url:"/pages/member/user/user"
+            })
           break;
         }
       }
@@ -163,13 +184,30 @@ Page({
           "Cookie": "JSESSIONID=" + wx.getStorageSync("JSESSIONID")
         },
         success:(res)=>{
-          const list = res.data.data || [];
-          const names = list.map(item=>item.category_name);
-          this.setData({
-            categoryNameList: names,
-            categoryList: list,
-            button_event:"create"
-          })
+          switch(res.statusCode){
+            case 200:
+              const list = res.data.data || [];
+              const names = list.map(item=>item.category_name);
+              this.setData({
+                categoryNameList: names,
+                categoryList: list,
+                button_event:"create"
+              })
+            break;
+            case 401:
+              this.setData({
+                errorMessage:"登录已失效，请重新登录",
+                isErrorVisible:true
+              })
+              const app = getApp();
+              app.globalData.userInfo = null;
+              app.globalData.isLogined = false;
+              wx.redirectTo({
+                url:"/pages/member/user/user"
+              })
+            break;
+          }
+          
         }
       })
     }else{
@@ -202,18 +240,35 @@ Page({
               "Cookie": "JSESSIONID=" + wx.getStorageSync("JSESSIONID")
             },
             success:(res)=>{
-              const index = this.data.categoryList.findIndex(
-                item => item.category_id === res.data.data.category.categoryId
-              );
-              this.setData({
-                productName:res.data.data.productName,
-                categoryIndex:index,
-                categoryId:res.data.data.category.categoryId,
-                amount:res.data.data.amount,
-                stock:res.data.data.stock,
-                imagePath:res.data.data.attachedFile.attachedFilePath,
-                button_event:"update"
-              })
+              switch(res.statusCode){
+                case 200:
+                  const index = this.data.categoryList.findIndex(
+                    item => item.category_id === res.data.data.category.categoryId
+                  );
+                  this.setData({
+                    productName:res.data.data.productName,
+                    categoryIndex:index,
+                    categoryId:res.data.data.category.categoryId,
+                    amount:res.data.data.amount,
+                    stock:res.data.data.stock,
+                    imagePath:res.data.data.attachedFile.attachedFilePath,
+                    button_event:"update"
+                  })
+                break;
+                case 401:
+                  this.setData({
+                    errorMessage:"登录已失效，请重新登录",
+                    isErrorVisible:true
+                  })
+                  const app = getApp();
+                  app.globalData.userInfo = null;
+                  app.globalData.isLogined = false;
+                  wx.redirectTo({
+                    url:"/pages/member/user/user"
+                  })
+                break;
+              }
+              
             }
           })
         }
@@ -370,6 +425,18 @@ Page({
                 show_load_dialog:false
               });
             break;
+            case 401:
+              this.setData({
+                errorMessage:"登录已失效，请重新登录",
+                isErrorVisible:true
+              })
+              const app = getApp();
+              app.globalData.userInfo = null;
+              app.globalData.isLogined = false;
+              wx.redirectTo({
+                url:"/pages/member/user/user"
+              })
+            break;
           }
         }
       })
@@ -407,6 +474,18 @@ Page({
                   showAddDialog: false,
                   show_load_dialog:false
                 });
+              break;
+              case 401:
+                this.setData({
+                  errorMessage:"登录已失效，请重新登录",
+                  isErrorVisible:true
+                })
+                const app = getApp();
+                app.globalData.userInfo = null;
+                app.globalData.isLogined = false;
+                wx.redirectTo({
+                  url:"/pages/member/user/user"
+                })
               break;
             }
           }
@@ -446,6 +525,18 @@ Page({
                   showAddDialog: false,
                   show_load_dialog:false
                 });
+              break;
+              case 401:
+                this.setData({
+                  errorMessage:"登录已失效，请重新登录",
+                  isErrorVisible:true
+                })
+                const app = getApp();
+                app.globalData.userInfo = null;
+                app.globalData.isLogined = false;
+                wx.redirectTo({
+                  url:"/pages/member/user/user"
+                })
               break;
             }
           }
@@ -488,6 +579,15 @@ Page({
             this.loadProductList(this.data.currentTab);
             this.setData({ showAddDialog: false });
           break;
+          case 401:
+              this.setData({
+                errorMessage:"登录已失效，请重新登录",
+                isErrorVisible:true
+              })
+              const app = getApp();
+              app.globalData.userInfo = null;
+              app.globalData.isLogined = false;
+            break;
         }
       }
     })
