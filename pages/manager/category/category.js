@@ -175,7 +175,7 @@ Page({
   },
   handleDelete(e){
     const category_id = e.currentTarget.dataset.id;
-    const category_name = e.currentTarget.dataset.categoryparentname;
+    const category_name = e.currentTarget.dataset.name;
     const event = e.currentTarget.dataset.event;
     this.setData({
       deleteCategory:category_id,
