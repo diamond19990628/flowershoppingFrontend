@@ -15,7 +15,8 @@ Page({
     isErrorVisible:false,
     errorMessage:"",
     isLogined:app.globalData.isLogined,
-    isAdmin:0
+    isAdmin:0,
+    isLoading:false
   },
 
   /**
@@ -44,7 +45,6 @@ Page({
                 phoneNumber:phoneNumber
               })
               let isNewUser = res.data.data.isNewUser;
-              console.log(isNewUser);
               if(isNewUser=="true"){
                 this.setData({
                   showdialog:true
@@ -81,6 +81,9 @@ Page({
     this.login();
   },
   login(){
+      this.setData({
+        isLoading:true
+      })
       // 展示本地存储能力
       const logs = wx.getStorageSync('logs') || []
       logs.unshift(Date.now())
@@ -123,12 +126,16 @@ Page({
                     nickName:res.data.data.nickName,
                     showdialog:false,
                     isLogined: true,
-                    isAdmin:res.data.data.isAdmin
+                    isAdmin:res.data.data.isAdmin,
+                    isLoading:false
                   })
               }
             },
             fail(error){
               console.log(error);
+              this.setData({
+                isLoading:false
+              })
             }
           })
         }
@@ -145,18 +152,50 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    const app = getApp()
-    let nickName = null;
-    let isAdmin = null;
-    const userInfo = app.globalData.userInfo;
-    if(userInfo != null){
-      nickName = userInfo.nickName;
-      isAdmin = userInfo.isAdmin;
-    }
-    this.setData({
-      isLogined: app.globalData.isLogined,
-      nickName:nickName,
-      isAdmin:isAdmin
+    wx.request({
+      url:this.data.config.BASE_URL+"/login/verify",
+      method:"POST",
+      header: {
+        "Content-Type": "application/json",
+        "token": wx.getStorageSync("token"),
+        "Cookie": "JSESSIONID=" + wx.getStorageSync("JSESSIONID")
+      },
+      success:(res)=>{
+        
+        switch(res.statusCode){
+          case 200:
+            const app = getApp();
+            app.globalData.userInfo = res.data.data;
+            app.globalData.isLogined = true;
+            this.setData({
+              isLogined:true,
+              userInfo:res.data.data,
+              isAdmin:res.data.data.isAdmin,
+              nickName:res.data.data.nickName
+            })
+          break;
+          case 401:
+            const app1 = getApp();
+            if(app1.globalData.isLogined){
+              this.setData({
+                isErrorVisible:true,
+                errorMessage:"登录已失效，请重新登录",
+                isLogined:false,
+                userInfo:null,
+                nickName:null
+              })
+            }else{
+              this.setData({
+                isLogined:false,
+                userInfo:null,
+                nickName:null
+              })
+            }
+            app1.globalData.userInfo = null;
+            app1.globalData.isLogined = false;
+          break;
+        }
+      }
     })
   },
   toAdmin(){

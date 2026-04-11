@@ -63,3 +63,15 @@
   </view>
 </view>
 <errorDialog isErrorVisible="{{isErrorVisible}}" errorMessage="{{errorMessage}}"/>
+<view class="ts-loading-mask {{isLoading ? '' : 'hiddendialog'}}">
+  <view class="ts-loading-container">
+    <view class="ts-loading-spinner"></view>
+    
+    <view class="ts-loading-text">
+      <text class="ts-loading-title">正在验证身份</text>
+      <text class="ts-loading-subtitle">请稍候，开启您的精彩之旅</text>
+    </view>
+    
+    <view class="ts-loading-line"></view>
+  </view>
+</view>
