@@ -28,7 +28,7 @@
       </view>
       
       <view class="card-action">
-  <view class="action-item" bindtap="editAddress" data-index="{{index}}" data-deliveryAddress_id="{{item.delivery_address_id}}">
+  <view class="action-item" bindtap="editAddress" data-index="{{index}}" data-deliveryAddress_id="{{item.delivery_address_id}}" data-type="update">
     <image class="edit-icon" src="/images/edit.png" mode="aspectFit"></image>
     <text>修改</text>
   </view>
@@ -48,7 +48,7 @@
 <view class="ts-dialog-mask {{showAddressDialog ? '' : 'hiddendialog'}}">
   <view class="ts-dialog-container">
     <view class="ts-dialog-header">
-      <view class="ts-dialog-title">修改收货地址</view>
+      <view class="ts-dialog-title">{{dialogTitle}}</view>
       <view class="ts-dialog-subtitle">请确认您的联系方式以便准确送达</view>
     </view>
 

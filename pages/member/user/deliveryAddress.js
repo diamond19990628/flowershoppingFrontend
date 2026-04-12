@@ -13,9 +13,10 @@ Page({
     deliveryAddressList:[],
     showAddressDialog:false,
     currentType:"",
-    editForm:null,
+    editForm:{},
     showDeleteDialog:false,
-    currentDeliveryAddressId:0
+    currentDeliveryAddressId:0,
+    dialogTitle:""
   },
   /**
    * 微信一键导入
@@ -58,6 +59,12 @@ Page({
               isErrorVisible:true,
               errorMessage:"登录已失效，请重新登录"
             })
+            const app1 = getApp();
+            app1.globalData.userInfo = null;
+            app1.globalData.isLogined = false;
+            wx.redirectTo({
+              url:"/pages/member/user/user"
+            })
           break;
         }
       }
@@ -89,36 +96,94 @@ Page({
     this.loadingDeliveryInfo();
   },
   /**
-   * 添加地址
+   * 添加地址/修改地址
    */
   createDeliveryAddress(delivery_address,receive_name,receive_tel){
-    wx.request({
-      url:this.data.config.BASE_URL+"/member/deliveryAddress/"+this.data.user_id,
-      method:"POST",
-      data:{
-        delivery_address:delivery_address,
-        receive_name:receive_name,
-        receive_tel:receive_tel
-      },
-      header: {
-        "Content-Type": "application/json",
-        "token": wx.getStorageSync("token"),
-        "Cookie": "JSESSIONID=" + wx.getStorageSync("JSESSIONID")
-      },
-      success:(res)=>{
-        switch(res.statusCode){
-          case 200:
-            this.loadingDeliveryInfo();
-          break;
-          case 401:
-            this.setData({
-              isErrorVisible:true,
-              errorMessage:"登录已失效，请重新登录"
-            })
-          break;
+    const currentType = this.data.currentType;
+    if(currentType == "create"){
+      wx.request({
+        url:this.data.config.BASE_URL+"/member/deliveryAddress/"+this.data.user_id,
+        method:"POST",
+        data:{
+          delivery_address:delivery_address,
+          receive_name:receive_name,
+          receive_tel:receive_tel
+        },
+        header: {
+          "Content-Type": "application/json",
+          "token": wx.getStorageSync("token"),
+          "Cookie": "JSESSIONID=" + wx.getStorageSync("JSESSIONID")
+        },
+        success:(res)=>{
+          switch(res.statusCode){
+            case 200:
+              this.loadingDeliveryInfo();
+            break;
+            case 401:
+              this.setData({
+                isErrorVisible:true,
+                errorMessage:"登录已失效，请重新登录"
+              })
+              const app1 = getApp();
+              app1.globalData.userInfo = null;
+              app1.globalData.isLogined = false;
+              wx.redirectTo({
+                url:"/pages/member/user/user"
+              })
+            break;
+            case 404:
+              this.setData({
+                isErrorVisible:true,
+                errorMessage:"该地址已经不存在"
+              })
+            break;
+          }
         }
+      })
+    }else{
+      const delivery_address_id = this.data.currentDeliveryAddressId;
+      if(delivery_address_id == null || delivery_address_id == 0){
+        this.setData({
+          isErrorVisible:true,
+          errorMessage:"地址ID不能为空"
+        })
+        return;
       }
-    })
+      wx.request({
+        url:this.data.config.BASE_URL+"/member/deliveryAddress/"+delivery_address_id,
+        method:"PUT",
+        data:{
+          delivery_address:delivery_address,
+          receive_name:receive_name,
+          receive_tel:receive_tel
+        },
+        header: {
+          "Content-Type": "application/json",
+          "token": wx.getStorageSync("token"),
+          "Cookie": "JSESSIONID=" + wx.getStorageSync("JSESSIONID")
+        },
+        success:(res)=>{
+          switch(res.statusCode){
+            case 200:
+              this.loadingDeliveryInfo();
+            break;
+            case 401:
+              this.setData({
+                isErrorVisible:true,
+                errorMessage:"登录已失效，请重新登录"
+              })
+            break;
+            case 404:
+              this.setData({
+                isErrorVisible:true,
+                errorMessage:"登录已失效，请重新登录"
+              })
+            break;
+          }
+        }
+      })
+    }
+    
   },
   /**
    * 打开手动添加新地址
@@ -126,8 +191,10 @@ Page({
   onAddAddressInfo(e){
     const currentType = e.currentTarget.dataset.type;
     this.setData({
+      editForm:{},
       currentType:currentType,
-      showAddressDialog:true
+      showAddressDialog:true,
+      dialogTitle:"添加新地址"
     })
   },
 
@@ -147,7 +214,7 @@ Page({
     const field = e.currentTarget.dataset.field;
     const value = e.detail.value;
     this.setData({
-      [field]: value
+      [`editForm.${field}`]: value
     });
   },
 
@@ -155,11 +222,11 @@ Page({
    * 确定创建
    */
   saveAddress(){
-    const delivery_address = this.data.delivery_address;
-    const receive_tel = this.data.receive_tel;
-    const receive_name = this.data.receive_name;
+    const delivery_address = this.data.editForm.delivery_address;
+    const receive_tel = this.data.editForm.receive_tel;
+    console.log(receive_tel);
+    const receive_name = this.data.editForm.receive_name;
     const phoneReg = /^1[3-9]\d{9}$/;
-    console.log(receive_name);
     if(receive_name=="" || !receive_name){
       this.setData({
         isErrorVisible:true,
@@ -188,13 +255,27 @@ Page({
       });
       return;
     }
-    if(this.data.currentType=="create"){
-      this.createDeliveryAddress(delivery_address,receive_name,receive_tel);
-    }
+    this.createDeliveryAddress(delivery_address,receive_name,receive_tel);
     this.setData({
       showAddressDialog:false
     })
     
+  },
+  /**
+   * 修改地址
+   */
+  editAddress(e){
+    const currentType = e.currentTarget.dataset.type;
+    const currentDeliveryAddressId = e.currentTarget.dataset.deliveryaddress_id;
+    const addressList = this.data.deliveryAddressList;
+    const targetAddress = addressList.find(item => item.delivery_address_id == currentDeliveryAddressId);
+    this.setData({
+      currentDeliveryAddressId:currentDeliveryAddressId,
+      currentType:currentType,
+      showAddressDialog:true,
+      dialogTitle:"修改地址",
+      editForm:targetAddress
+    })
   },
   /**
    * 点击删除
@@ -238,6 +319,12 @@ Page({
             this.setData({
               isErrorVisible:true,
               errorMessage:"登录已失效，请重新登录"
+            })
+            const app1 = getApp();
+            app1.globalData.userInfo = null;
+            app1.globalData.isLogined = false;
+            wx.redirectTo({
+              url:"/pages/member/user/user"
             })
           break;
         }
