@@ -296,16 +296,18 @@
 
 /* 登录后插画向上移动，给菜单留空间 */
 .ts-illustration.is-logined-img {
-  margin-top: 150rpx;
-  opacity: 0.6; /* 登录后插画变淡，突出功能键 */
+  display: none;
 }
 
 /* 登录后卡片样式调整：高度变矮，内容横向排列 */
 .ts-logged-card {
-  top: 180rpx !important;
+  top: 160rpx !important;
   padding: 30rpx 40rpx !important;
   display: flex;
   align-items: center;
+}
+.ts-logged-image{
+  display: none;
 }
 
 .ts-logged-user {
