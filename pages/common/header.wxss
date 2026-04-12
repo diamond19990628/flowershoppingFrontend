@@ -89,22 +89,17 @@
 }
 .banner-image-space {
   position: absolute;
-  /* 1. 强制底部对齐 */
-  bottom: 0; 
-  /* 2. 强制右边冲出 (负值越大，冲出越多) */
-  right: -10rpx; 
-  
-  /* 3. 设定一个宽度，让图片按比例缩放 */
-  width: 212rpx; 
-  height: 360rpx;
+  bottom: 0;
+  right: -10rpx;
+  width: 212rpx;
   display: flex;
-  align-items: flex-end; /* 确保内容向下对齐 */
+  align-items: flex-end;
 }
 
 .banner-image-space image {
   width: 100%;
-  height: 100%;
-  display: block; 
+  height: auto;
+  display: block;
 }
 
 /* 3. Categories */

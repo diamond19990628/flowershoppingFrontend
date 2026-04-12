@@ -3,7 +3,8 @@ const config = require("./config")
 App({
   globalData:{
     isLogined:false,
-    userInfo:null
+    userInfo:null,
+    loading:false
   },
   onLaunch() {
     wx.loadFontFace({

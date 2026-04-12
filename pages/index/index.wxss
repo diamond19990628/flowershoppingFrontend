@@ -57,3 +57,84 @@ page {
   align-items: center;
   justify-content: center;
 }
+.loading-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100vh; 
+  overflow: hidden;
+  padding-top: 160rpx; 
+  box-sizing: border-box;
+  position: fixed;
+}
+
+/* 文字区块 */
+.text-section {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.welcome-cn {
+  font-size: 32rpx;
+  color: #8c764b;
+  letter-spacing: 4rpx;
+  margin-bottom: 40rpx;
+}
+
+.brand-title {
+  font-size: 80rpx; /* 约 40px */
+  font-weight: 500;
+  color: #5d5131;
+  margin-bottom: 60rpx;
+  letter-spacing: 6rpx;
+}
+
+/* 英文区域 */
+.en-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.welcome-en {
+  margin-left: -200rpx;
+  font-size: 44rpx;
+  color: #8c764b;
+  font-style: italic; /* 模拟手写感 */
+  font-family: "Yellowtail"; /* 建议使用衬线字体 */
+}
+
+.brand-en {
+  font-size: 44rpx;
+  color: #5d5131;
+  font-style: italic;
+  font-family: "Yellowtail", serif;
+  margin-left: 100rpx; /* 模拟错落感 */
+}
+
+.image-placeholder {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.image-placeholder image {
+  width: 100%;
+  display: block;
+}

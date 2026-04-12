@@ -15,7 +15,7 @@
       <view class="join-btn" bind:tap="onJoinUs">加入我们</view>
     </view>
     <view class="banner-image-space">
-      <image src="../img/IMG_8775.png" mode="aspectFill" ></image>
+      <image src="../img/homePeople.png" mode="widthFix"></image>
     </view>
   </view>
   

@@ -1,19 +1,52 @@
 // pages/common/footer.js
+const lottie = require('lottie-miniprogram')
+const animationData = require('./loadingData')
+const app = getApp()
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     productList:[],
     config:require('../../config'),
-    current_parent_id:0
+    current_parent_id:0,
+    is_loading:false
   },
   onCategoryChange(e){
     this.setData({
       current_parent_id:e.detail.category_id
     });
     this.loadingProduct();
+  },
+  onReady() {
+    const query = wx.createSelectorQuery().in(this)
+
+    query.select('#lottieCanvas').node().exec((res) => {
+      const canvas = res[0] && res[0].node
+      if (!canvas) {
+        console.error('canvas 获取失败')
+        return
+      }
+
+      const ctx = canvas.getContext('2d')
+      if (!ctx) {
+        console.error('2d context 获取失败')
+        return
+      }
+
+      lottie.setup(canvas)
+
+      this.anim = lottie.loadAnimation({
+        renderer: 'canvas',
+        loop: true,
+        autoplay: true,
+        animationData,
+        rendererSettings: {
+          context: ctx,
+          clearCanvas: true
+        }
+      })
+    })
   },
   loadingProduct(){
     wx.request({
@@ -41,7 +74,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    const loading = app.globalData.loading;
+    if(!loading){
+      this.setData({
+        is_loading:true
+      })
+    }
+    
     this.loadingProduct();
+    setTimeout(()=>{
+      this.setData({
+        is_loading:false
+      })
+    },1000);
+    app.globalData.loading = true;
+    
   },
   /**
    * 画面移动
@@ -55,9 +102,6 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {
-
-  },
 
   /**
    * 生命周期函数--监听页面显示

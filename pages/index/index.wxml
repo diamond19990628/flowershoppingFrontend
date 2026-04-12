@@ -18,3 +18,27 @@
 
   <common-footer index="1" url="/pages/index/index"/>
 </view>
+<view class="loading-mask" wx:if="{{is_loading}}">
+  <view class="container">
+  <view class="text-section">
+    <text class="welcome-cn">欢迎进入</text>
+    <view class="brand-title">汀山花语</view>
+    
+    <view class="en-group">
+      <text class="welcome-en">Welcome to</text>
+      <text class="brand-en">T—Sian Flower</text>
+      <canvas
+        id="lottieCanvas"
+        type="2d"
+        class="lottie-canvas"
+      ></canvas>
+    </view>
+  </view>
+
+  
+  
+  <view class="image-placeholder">
+  <image src="../img/loadingPhoto.png" mode="widthFix" style="width: 100%; display: block;"></image>
+  </view>
+</view>
+</view>
