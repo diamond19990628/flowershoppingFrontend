@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/loading/loading",
     "pages/index/index",
     "pages/logs/logs",
     "pages/manager/index/index",
