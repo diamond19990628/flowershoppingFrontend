@@ -101,3 +101,14 @@
 </view>
 
 <errorDialog isErrorVisible="{{isErrorVisible}}" errorMessage="{{errorMessage}}"/>
+<view class="pay-loading-mask" wx:if="{{payLoadingVisible}}">
+  <view class="pay-loading-dialog">
+    <view class="spinner-wrapper">
+      <view class="spinner-ring"></view>
+      <view class="spinner-core">¥</view>
+    </view>
+
+    <view class="pay-loading-title">支付处理中</view>
+    <view class="pay-loading-desc">正在确认支付结果，请不要关闭页面</view>
+  </view>
+</view>

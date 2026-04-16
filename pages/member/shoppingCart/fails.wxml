@@ -1,0 +1,31 @@
+<view class="container">
+
+<view class="card">
+
+  <!-- 图标 -->
+  <view class="icon">×</view>
+
+  <!-- 标题 -->
+  <view class="title">支付失败</view>
+
+  <!-- 描述 -->
+  <view class="desc">
+    订单未完成支付
+  </view>
+
+  <view class="desc sub">
+    请在{{remainTime}}内完成支付
+  </view>
+
+  <!-- 按钮 -->
+  <view class="btn primary" bindtap="goOrder">
+    去订单页支付
+  </view>
+
+  <view class="btn ghost" bindtap="goHome">
+    返回首页
+  </view>
+
+</view>
+
+</view>

@@ -16,7 +16,9 @@ Page({
     btn_name_list:["立即支付","催发货","确认收货","申请售后"],
     targetStatus:0,
     showQR:false,
-    searchString:""
+    searchString:"",
+    requestNo:"",
+    payLoadingVisible:false
   },
   /**
    * 加载数据
@@ -103,8 +105,62 @@ Page({
    * 改变订单状态
    */
   changeOrderStatus(e){
+    this.setData({
+      payLoadingVisible:true
+    })
     const currentMenu = e.currentTarget.dataset.btn_index;
     const order_no = e.currentTarget.dataset.order_no;
+    const total_amount = e.currentTarget.dataset.total_amount;
+    if(currentMenu == 0){
+      // 调用支付接口
+      wx.request({
+        url:this.data.config.BASE_URL+"/member/orders/wechat-pay",
+        method:"POST",
+        data:{
+          order_no:order_no,
+          total_amount:total_amount
+        },
+        header: {
+          "Content-Type": "application/json",
+          "token": wx.getStorageSync("token"),
+          "Cookie": "JSESSIONID=" + wx.getStorageSync("JSESSIONID")
+        },
+        success:(res)=>{
+          switch(res.statusCode){
+            case 200:
+              wx.requestPayment({
+                timeStamp: res.data.data.timeStamp,
+                nonceStr:res.data.data.nonceStr,
+                package:res.data.data.package,
+                signType:res.data.data.signType,
+                paySign:res.data.data.paySign,
+                success:(res)=>{
+                  this.setData({
+                    payLoadingVisible:false
+                  })
+                  this.loadingOrderInfo();
+                },
+                fail:(res)=>{
+                  this.setData({
+                    payLoadingVisible:false
+                  })
+                  this.loadingOrderInfo();
+                }
+              })
+            break;
+            case 401:
+              this.setData({
+                isErrorVisible:true,
+                errorMessage:"登录已失效，请重新登录"
+              })
+              wx.redirectTo({
+                url:"/pages/member/user/user"
+              })
+            break;
+          }
+        }
+      })
+    }
     if(currentMenu==1 || currentMenu == 3){
       this.setData({
         showQR:true

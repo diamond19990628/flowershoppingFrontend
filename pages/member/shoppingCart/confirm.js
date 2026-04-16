@@ -20,7 +20,8 @@ Page({
     deliveryDate:null,
     deliveryTime:null,
     isSubmitting:false,
-    requestNo:""
+    requestNo:"",
+    payLoadingVisible:false
   },
   toggleType(){
     this.setData({
@@ -230,6 +231,9 @@ Page({
       })
       return;
     }
+    this.setData({
+      payLoadingVisible:true
+    })
     wx.request({
       url:this.data.config.BASE_URL+"/member/orders",
       method:"POST",
@@ -270,8 +274,37 @@ Page({
               success:(res)=>{
                 switch(res.statusCode){
                   case 200:
+                    wx.requestPayment({
+                      timeStamp: res.data.data.timeStamp,
+                      nonceStr:res.data.data.nonceStr,
+                      package:res.data.data.package,
+                      signType:res.data.data.signType,
+                      paySign:res.data.data.paySign,
+                      success:(res)=>{
+                        this.setData({
+                          payLoadingVisible:false
+                        })
+                        wx.redirectTo({
+                          url:"./success"
+                        })
+                      },
+                      fail:(res)=>{
+                        this.setData({
+                          payLoadingVisible:false
+                        })
+                        wx.redirectTo({
+                          url:"./fails"
+                        })
+                      }
+                    })
+                  break;
+                  case 401:
+                    this.setData({
+                      isErrorVisible:true,
+                      errorMessage:"登录已失效，请重新登录"
+                    })
                     wx.redirectTo({
-                      url:"./success"
+                      url:"/pages/member/user/user"
                     })
                   break;
                 }

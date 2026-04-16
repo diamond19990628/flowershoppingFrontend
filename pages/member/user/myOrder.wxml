@@ -72,7 +72,7 @@
       </view>
 
       <view class="card-footer">
-        <button class="btn-confirm" data-btn_index="{{currentMenu-1}}" bind:tap="changeOrderStatus" data-order_no="{{item.order_no}}">{{btn_name_list[currentMenu-1]}}</button>
+        <button class="btn-confirm" data-btn_index="{{currentMenu-1}}" bind:tap="changeOrderStatus" data-order_no="{{item.order_no}}" data-total_amount="{{item.total_amount}}">{{btn_name_list[currentMenu-1]}}</button>
       </view>
       
     </view>
@@ -93,5 +93,17 @@
       
       <view class="dialog-footer">微信号：TingShanHuaYu</view>
     </view>
+  </view>
+</view>
+
+<view class="pay-loading-mask" wx:if="{{payLoadingVisible}}">
+  <view class="pay-loading-dialog">
+    <view class="spinner-wrapper">
+      <view class="spinner-ring"></view>
+      <view class="spinner-core">¥</view>
+    </view>
+
+    <view class="pay-loading-title">支付处理中</view>
+    <view class="pay-loading-desc">正在确认支付结果，请不要关闭页面</view>
   </view>
 </view>

@@ -20,7 +20,8 @@
     "pages/member/shoppingCart/success",
     "pages/member/user/myOrder",
     "pages/member/user/deliveryAddress",
-    "pages/member/user/storeOwner"
+    "pages/member/user/storeOwner",
+    "pages/member/shoppingCart/fails"
   ],
   "window": {
     "navigationBarTextStyle": "black",
