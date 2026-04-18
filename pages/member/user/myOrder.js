@@ -105,13 +105,13 @@ Page({
    * 改变订单状态
    */
   changeOrderStatus(e){
-    this.setData({
-      payLoadingVisible:true
-    })
     const currentMenu = e.currentTarget.dataset.btn_index;
     const order_no = e.currentTarget.dataset.order_no;
     const total_amount = e.currentTarget.dataset.total_amount;
     if(currentMenu == 0){
+      this.setData({
+        payLoadingVisible:true
+      })
       // 调用支付接口
       wx.request({
         url:this.data.config.BASE_URL+"/member/orders/wechat-pay",
@@ -191,6 +191,16 @@ Page({
                 isErrorVisible:true,
                 errorMessage:"登录已失效，请重新登录"
               })
+              wx.redirectTo({
+                url:"./user"
+              })
+            break;
+            case 400:
+              this.setData({
+                isErrorVisible:true,
+                errorMessage:"该订单已经失效，请重新下单"
+              })
+              this.loadingOrderInfo();
             break;
           }
         }
