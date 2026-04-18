@@ -15,19 +15,35 @@
         <text class="phone">{{orderItems.user.tel}}</text>
       </view>
       <view class="address-detail">{{orderItems.deliveryAddress.delivery_address}}</view>
+      <view>{{orderItems.deliverytype.delivery_type_name}}</view>
     </view>
-    <button class="copy-btn" size="mini" plain bindtap="copyAddress">复制地址</button>
+    <button class="copy-btn" size="mini" plain bindtap="copyText" data-text="{{orderItems.deliveryAddress.delivery_address}}">复制地址</button>
   </view>
 
   <view class="section-card">
     <view class="section-title">商品清单</view>
+
     <view class="goods-item" wx:for="{{orderItems.order_items}}" wx:key="index" wx:for-item="orderItem">
       <image class="goods-img" src="{{orderItem.attachedFilePath}}" mode="aspectFill"></image>
+
       <view class="goods-info">
         <text class="goods-name">{{orderItem.product.productName}}</text>
+
         <view class="goods-price-row">
           <text class="price">¥{{orderItem.product.amount}}</text>
           <text class="count">x{{orderItem.quantity}}</text>
+        </view>
+
+        <view class="goods-extra">
+          <view class="goods-extra-item">
+            <text class="goods-extra-label">卡片</text>
+            <text class="goods-extra-value">{{orderItem.card.card_name}}</text>
+          </view>
+
+          <view class="goods-extra-item">
+            <text class="goods-extra-label">备注</text>
+            <text class="goods-extra-value">{{orderItem.comment || '无'}}</text>
+          </view>
         </view>
       </view>
     </view>
@@ -38,10 +54,6 @@
         <text>¥{{orderItems.total_amount}}</text>
       </view>
       <view class="fee-item">
-        <text>运费</text>
-        <text>+ ¥0.00</text>
-      </view>
-      <view class="fee-total">
         <text>实付款</text>
         <text class="total-val">¥{{orderItems.total_amount}}</text>
       </view>
@@ -51,15 +63,15 @@
   <view class="section-card order-info">
     <view class="info-item">
       <text class="label">订单编号</text>
-      <view class="val">{{orderItems.order_no}} <text class="copy-link">复制</text></view>
+      <view class="val">{{orderItems.order_no}} <text class="copy-link" data-text="{{orderItems.order_no}}" bind:tap="copyText">复制</text></view>
     </view>
     <view class="info-item">
       <text class="label">下单时间</text>
       <text class="val">{{orderItems.create_time}}</text>
     </view>
     <view class="info-item">
-      <text class="label">支付方式</text>
-      <text class="val">微信支付</text>
+      <text class="label">{{orderItems.deliverytype.delivery_type_name}}时间</text>
+      <text class="val">{{orderItems.delivery_date}}</text>
     </view>
   </view>
 

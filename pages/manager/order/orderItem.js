@@ -14,10 +14,33 @@ Page({
   onLoad(options) {
     const items = JSON.parse(decodeURIComponent(options.Items));
     this.setData({
-      orderItems:items
+      orderItems:{
+        ...items,
+        delivery_date:this.formatDateTime(items.delivery_date),
+        create_time:this.formatDateTime(items.create_time)
+      }
     })
   },
+  formatDateTime(dateStr) {
+    if (!dateStr) return ''
+    return dateStr.replace('T', ' ').slice(0, 16)
+  },
 
+  /**
+   * 复制功能
+   */
+  copyText(e){
+    const text = e.currentTarget.dataset.text;
+    wx.setClipboardData({
+      data:text,
+      success:()=>{
+        wx.showToast({
+          title: '复制成功',
+          icon: 'success'
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

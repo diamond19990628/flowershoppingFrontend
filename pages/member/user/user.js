@@ -204,17 +204,17 @@ Page({
     })
   },
   toOrder(){
-    wx.navigateTo({
+    wx.redirectTo({
       url:"./myOrder"
     })
   },
   toAddress(){
-    wx.navigateTo({
+    wx.redirectTo({
       url:"./deliveryAddress"
     })
   },
   toContact(){
-    wx.navigateTo({
+    wx.redirectTo({
       url:"./storeOwner"
     })
   },
