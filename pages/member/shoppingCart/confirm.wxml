@@ -112,3 +112,23 @@
     <view class="pay-loading-desc">正在确认支付结果，请不要关闭页面</view>
   </view>
 </view>
+<view class="fee-dialog-mask {{isFeeDialogVisible ? 'show' : ''}}">
+  <view class="fee-dialog-backdrop" bindtap="onCancelFeeDialog"></view>
+
+  <view class="fee-dialog-card">
+    <view class="fee-dialog-title">提示</view>
+
+    <view class="fee-dialog-text">
+      {{feeDialogText}}
+    </view>
+
+    <view class="fee-dialog-footer">
+      <view class="fee-dialog-btn fee-dialog-btn-cancel" bindtap="onCancelFeeDialog">
+        取消
+      </view>
+      <view class="fee-dialog-btn fee-dialog-btn-confirm" bindtap="onConfirmFeeDialog">
+        确定
+      </view>
+    </view>
+  </view>
+</view>

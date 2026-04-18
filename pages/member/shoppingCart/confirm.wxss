@@ -305,3 +305,107 @@ button {
     transform: rotate(360deg);
   }
 }
+/* ===== 运费 Dialog（完全隔离版） ===== */
+.fee-dialog-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.fee-dialog-mask.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 背景遮罩 */
+.fee-dialog-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* 卡片 */
+.fee-dialog-card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.96);
+
+  width: 560rpx;
+  padding: 36rpx 32rpx 28rpx;
+  border-radius: 24rpx;
+
+  /* 和你主色 #7A6E39 统一 */
+  background: linear-gradient(180deg, #fffaf3 0%, #f3eadc 100%);
+
+  box-shadow: 0 20rpx 50rpx rgba(0, 0, 0, 0.18);
+  border: 1rpx solid rgba(122, 110, 57, 0.15);
+
+  transition: transform 0.2s ease;
+}
+
+.fee-dialog-mask.show .fee-dialog-card {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* 标题 */
+.fee-dialog-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #7A6E39;
+  text-align: center;
+  margin-bottom: 18rpx;
+}
+
+/* 内容 */
+.fee-dialog-text {
+  font-size: 28rpx;
+  color: #5f4f22;
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 30rpx;
+}
+
+/* 按钮区 */
+.fee-dialog-footer {
+  display: flex;
+  gap: 20rpx;
+}
+
+/* 按钮（避免污染你原来的 button 样式） */
+.fee-dialog-btn {
+  flex: 1;
+  height: 72rpx;
+  border-radius: 999rpx;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 26rpx;
+  font-weight: 600;
+
+  transition: all 0.15s ease;
+}
+
+/* 取消按钮 */
+.fee-dialog-btn-cancel {
+  background: #F4F5F9; /* 用你现有 ghost 风格 */
+  color: #7A6E39;
+}
+
+/* 确定按钮 */
+.fee-dialog-btn-confirm {
+  background-color: #7A6E39; /* 完全复用你主色 */
+  color: #ffffff;
+}
+
+/* 点击反馈 */
+.fee-dialog-btn:active {
+  transform: scale(0.96);
+  opacity: 0.85;
+}

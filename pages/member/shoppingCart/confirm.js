@@ -21,7 +21,17 @@ Page({
     deliveryTime:null,
     isSubmitting:false,
     requestNo:"",
-    payLoadingVisible:false
+    payLoadingVisible:false,
+    isFeeDialogVisible:false,
+    feeDialogText:"",
+
+    // 传输专用
+    param_product_info_array:null,
+    param_user_id:0,
+    param_total_amount:0,
+    param_deliveryType:0,
+    param_delivery_address_id:0,
+    param_delivery_date:""
   },
   toggleType(){
     this.setData({
@@ -232,6 +242,113 @@ Page({
       return;
     }
     this.setData({
+      param_product_info_array:product_info_array,
+      param_user_id:user_id,
+      param_delivery_address_id:delivery_address_id,
+      param_total_amount:total_amount,
+      param_deliveryType:deliveryType,
+      param_delivery_date:delivery_date
+    })
+    // 通过高德地图获取配送地址的距离
+    if(deliveryType==2){
+      wx.request({
+        url:this.data.config.BASE_URL+"/member/shippingfee",
+        method:"GET",
+        data:{
+          delivery_address_id:delivery_address_id
+        },
+        header: {
+          "Content-Type": "application/json",
+          "token": wx.getStorageSync("token"),
+          "Cookie": "JSESSIONID=" + wx.getStorageSync("JSESSIONID")
+        },
+        success:(res)=>{
+          switch(res.statusCode){
+            case 200:
+              const distance = res.data.data.distance;
+              console.log(distance);
+              if(distance > 20000){
+                this.setData({
+                  isErrorVisible:true,
+                  errorMessage:"该地区不在本店配送范围内，请重新输入"
+                })
+                return;
+              }else{
+                if(total_amount>=200 && distance < 3000){
+                  this.setData({
+                    feeDialogText:"由于您的订单金额超过200元，所以本次为您免除运费，请问是否下单?",
+                    isFeeDialogVisible:true
+                  })
+                }else{
+                  this.setData({
+                    feeDialogText:"由于您的本次订单未达到本店免单要求，所以需要您支付相应运费，运费情况请联系店主，请问是否还需要下单吗？",
+                    isFeeDialogVisible:true
+                  })
+                }
+              }
+            break;
+            case 401:
+              this.setData({
+                isErrorVisible:true,
+                errorMessage:"登录已失效，请重新登录"
+              })
+              wx.redirectTo({
+                url:"/pages/member/user/user"
+              })
+            break;
+            case 400:
+              this.setData({
+                isErrorVisible:true,
+                errorMessage:"该地址无法解析，请重新输入"
+              })
+            break;
+          }
+        },
+        complete:()=>{
+          this.setData({
+            isSubmitting:false
+          })
+        }
+      })
+    }else{
+      this.createNewOrder(
+        product_info_array,
+        user_id,
+        total_amount,
+        deliveryType,
+        delivery_address_id,
+        delivery_date
+      );
+    }
+    
+  },
+/**
+ * 确定创建订单
+ */
+onConfirmFeeDialog(){
+  this.setData({
+    isFeeDialogVisible:false
+  })
+  this.createNewOrder(
+    this.data.param_product_info_array,
+    this.data.param_user_id,
+    this.data.param_total_amount,
+    this.data.param_deliveryType,
+    this.data.param_delivery_address_id,
+    this.data.param_delivery_date
+  );
+},
+/**
+ * 
+ * @param {*} product_info_array 
+ * @param {*} user_id 
+ * @param {*} total_amount 
+ * @param {*} deliveryType 
+ * @param {*} delivery_address_id 
+ * @param {*} delivery_date 
+ */
+  createNewOrder(product_info_array,user_id,total_amount,deliveryType,delivery_address_id,delivery_date){
+    this.setData({
       payLoadingVisible:true
     })
     wx.request({
@@ -252,9 +369,6 @@ Page({
         "Cookie": "JSESSIONID=" + wx.getStorageSync("JSESSIONID")
       },
       success:(res)=>{
-        this.setData({
-          isSubmitting:false
-        })
         switch(res.statusCode){
           case 200:
             const order_no = res.data.data.order_no;
@@ -319,10 +433,19 @@ Page({
             })
           break;
         }
+      },
+      complete:()=>{
+        this.setData({
+          isSubmitting:false
+        })
       }
     })
   },
-
+  onCancelFeeDialog(){
+    this.setData({
+      isFeeDialogVisible:false
+    })
+  },
   /**
    * 返回
    */
