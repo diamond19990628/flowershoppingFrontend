@@ -5,7 +5,7 @@
         <icon type="search" size="16" color="#999"></icon>
         <input 
           class="search-input"
-          placeholder="搜索商品名称/货号" 
+          placeholder="搜索商品名称" 
           data-field="productNameSearch" 
           bindinput="onInput"
         />
