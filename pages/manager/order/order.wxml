@@ -1,14 +1,17 @@
 <view class="admin-container">
   <view class="fixed-top">
     <view class="search-section">
+    <view class="search-bar">
       <view class="search-input-inner">
         <icon type="search" size="14" color="#999" />
-        <input placeholder="搜索订单号/姓名/手机号" placeholder-class="ph-color" />
+        <input placeholder="搜索订单号/姓名/手机号" placeholder-class="ph-color" bindinput="onInput"/>
       </view>
+      <button class="search-btn" bind:tap="searchWithText">搜索</button>
     </view>
+  </view>
     
     <view class="admin-tabs">
-      <view class="tab-item {{currentTab==0 ? 'active' : ''}}" data-index="0" bind:tap="switchTab">待付款</view>
+      <view class="tab-item {{currentTab==0 ? 'active' : ''}}" data-index="0" bind:tap="switchTab">全部</view>
       <view class="tab-item {{currentTab==1 ? 'active' : ''}}" data-index="1" bind:tap="switchTab">待发货</view>
       <view class="tab-item {{currentTab==2 ? 'active' : ''}}" data-index="2" bind:tap="switchTab">待收货</view>
       <view class="tab-item {{currentTab==3 ? 'active' : ''}}" data-index="3" bind:tap="switchTab">已完成</view>

@@ -1,14 +1,21 @@
 <view class="admin-container">
   <view class="search-section">
-    <view class="search-bar">
-      <icon type="search" size="16" bindtap="onSearch"></icon>
-      <input placeholder="搜索商品名称/货号" data-field="productNameSearch" bindinput="onInput"/>
-    </view>
-    <view class="add-btn" data-event_type="create" bindtap="onAddGoods">
-      <text class="add-icon">+</text>
-      <text>新增</text>
-    </view>
+  <view class="search-bar">
+    <icon type="search" size="16" color="#999"></icon>
+    <input 
+      class="search-input"
+      placeholder="搜索商品名称/货号" 
+      data-field="productNameSearch" 
+      bindinput="onInput"
+    />
+    <view class="search-btn" bindtap="onSearch">搜索</view>
   </view>
+
+  <view class="add-btn" data-event_type="create" bindtap="onAddGoods">
+    <text class="add-icon">+</text>
+    <text>新增</text>
+  </view>
+</view>
 
   <view class="tabs">
   <view 

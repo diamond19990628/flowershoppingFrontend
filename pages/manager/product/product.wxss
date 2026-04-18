@@ -297,3 +297,36 @@
     transform: rotate(360deg);
   }
 }
+
+.search-bar {
+  flex: 1;
+  height: 80rpx;
+  background: #fff;
+  border-radius: 40rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 12rpx 0 30rpx;
+  margin-right: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.03);
+}
+
+.search-input {
+  flex: 1;
+  margin-left: 15rpx;
+  font-size: 26rpx;
+  min-width: 0;
+}
+
+.search-btn {
+  flex-shrink: 0;
+  height: 56rpx;
+  line-height: 56rpx;
+  padding: 0 22rpx;
+  border-radius: 28rpx;
+  background: #f2fbf6;
+  color: #07c160;
+  font-size: 24rpx;
+  font-weight: 500;
+  border: 1rpx solid #d9f2e3;
+  text-align: center;
+}

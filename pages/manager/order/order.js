@@ -123,7 +123,21 @@ Page({
   onLoad(options) {
     this.loadOrderList();
   },
-
+  /**
+   * 搜索
+   */
+  searchWithText(){
+    this.loadOrderList();
+  },
+  /**
+   * 获取输入
+   */
+  onInput(e){
+    const inputData = e.detail.value;
+    this.setData({
+      searchString:inputData
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
