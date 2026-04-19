@@ -421,6 +421,15 @@ onConfirmFeeDialog(){
                       url:"/pages/member/user/user"
                     })
                   break;
+                  case 422:
+                    this.setData({
+                      isErrorVisible:true,
+                      errorMessage:"该产品已经售空，请重新选择其他商品"
+                    })
+                    wx.redirectTo({
+                      url:"/pages/index/index"
+                    })
+                  break;
                 }
               }
             })
