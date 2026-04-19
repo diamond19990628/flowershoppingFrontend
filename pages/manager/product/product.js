@@ -421,8 +421,7 @@ Page({
               })
               this.loadProductList(this.data.currentTab);
               this.setData({ 
-                showAddDialog: false,
-                show_load_dialog:false
+                showAddDialog: false
               });
             break;
             case 401:
@@ -438,6 +437,11 @@ Page({
               })
             break;
           }
+        },
+        complete:()=>{
+          this.setData({
+            show_load_dialog:false
+          })
         }
       })
     }else{
@@ -488,6 +492,11 @@ Page({
                 })
               break;
             }
+          },
+          complete:()=>{
+            this.setData({
+              show_load_dialog:false
+            })
           }
         })
       }else{
@@ -539,6 +548,11 @@ Page({
                 })
               break;
             }
+          },
+          complete:()=>{
+            this.setData({
+              show_load_dialog:false
+            })
           }
         })
       }

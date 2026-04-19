@@ -235,6 +235,8 @@
   border-radius: 16rpx;
   padding: 0 30rpx;
   font-size: 28rpx;
+  display: flex;
+  align-items: center;   /* 垂直居中 */
 }
 .picker-input { line-height: 90rpx; color: #999; }
 
