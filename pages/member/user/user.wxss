@@ -440,3 +440,146 @@
 .hiddendialog {
   display: none !important;
 }
+.ts-reg-mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.38);
+  z-index: 9999;
+  display: flex;
+  align-items: flex-end;
+}
+
+.ts-reg-sheet {
+  width: 100%;
+  background: #fffdf8;
+  border-radius: 36rpx 36rpx 0 0;
+  padding: 22rpx 34rpx 0;
+  box-sizing: border-box;
+  box-shadow: 0 -16rpx 40rpx rgba(67, 55, 22, 0.18);
+  animation: tsRegSlideUp 0.22s ease-out;
+}
+
+@keyframes tsRegSlideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.ts-reg-handle {
+  width: 78rpx;
+  height: 8rpx;
+  border-radius: 999rpx;
+  background: #d8cfaa;
+  margin: 0 auto 26rpx;
+}
+
+.ts-reg-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 36rpx;
+}
+
+.ts-reg-title {
+  font-size: 38rpx;
+  font-weight: 700;
+  color: #6f622f;
+}
+
+.ts-reg-subtitle {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: #9b9167;
+}
+
+.ts-reg-close {
+  width: 56rpx;
+  height: 56rpx;
+  line-height: 50rpx;
+  text-align: center;
+  border-radius: 50%;
+  background: #f1ead7;
+  color: #7a6e39;
+  font-size: 42rpx;
+}
+
+.ts-reg-form {
+  margin-bottom: 34rpx;
+}
+
+.ts-reg-field {
+  margin-bottom: 28rpx;
+}
+
+.ts-reg-label {
+  margin-bottom: 14rpx;
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #7a6e39;
+}
+
+.ts-reg-input,
+.ts-reg-phone-btn {
+  width: 100%;
+  height: 92rpx;
+  border-radius: 22rpx;
+  background: #f7f3e8;
+  border: 2rpx solid #e5dcc0;
+  box-sizing: border-box;
+  color: #4a4224;
+  font-size: 30rpx;
+}
+
+.ts-reg-input {
+  padding: 0 26rpx;
+}
+
+.ts-reg-placeholder {
+  color: #b6ad8a;
+}
+
+.ts-reg-phone-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #7a6e39;
+  font-weight: 600;
+  padding: 0;
+}
+
+.ts-reg-phone-btn::after,
+.ts-reg-submit::after {
+  border: none;
+}
+
+.ts-reg-tip {
+  margin-top: 12rpx;
+  font-size: 22rpx;
+  color: #aaa080;
+}
+
+.ts-reg-submit {
+  width: 100%;
+  height: 96rpx;
+  line-height: 96rpx;
+  border-radius: 999rpx;
+  background: #7a6e39;
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: 700;
+  box-shadow: 0 10rpx 24rpx rgba(122, 110, 57, 0.28);
+}
+
+.ts-reg-submit[disabled] {
+  opacity: 0.65;
+}
+
+.ts-reg-safe-bottom {
+  height: calc(env(safe-area-inset-bottom) + 26rpx);
+}

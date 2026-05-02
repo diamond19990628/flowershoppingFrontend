@@ -16,7 +16,8 @@ Page({
     errorMessage:"",
     isLogined:app.globalData.isLogined,
     isAdmin:0,
-    isLoading:false
+    isLoading:false,
+    tsRegisterVisible:false
   },
 
   /**
@@ -24,6 +25,12 @@ Page({
    */
   onLoad(options) {
 
+  },
+  /**
+   * 执行登录
+   */
+  onLogin(){
+    this.login();
   },
   /**
    * 获取手机号
@@ -44,18 +51,6 @@ Page({
               this.setData({
                 phoneNumber:phoneNumber
               })
-              let isNewUser = res.data.data.isNewUser;
-              if(isNewUser=="true"){
-                this.setData({
-                  showdialog:true
-                })
-              }else{
-                this.setData({
-                  nickName:res.data.data.nickName,
-                  showdialog:false
-                });
-                this.login();
-              }
             break;
           }
         }
@@ -69,16 +64,49 @@ Page({
       nickName:xss(nickName)
     })
   },
-  onNewUserLogin(){
+  onSubmitRegister(){
     const nickName = this.data.nickName;
-    if(nickName == ""){
+    const phoneNumber = this.data.phoneNumber;
+    if(nickName == "" || nickName == null){
       this.setData({
         isErrorVisible:true,
         errorMessage:"昵称不能为空"
       })
       return;
     }
-    this.login();
+    if(phoneNumber == "" || phoneNumber == null){
+      this.setData({
+        isErrorVisible:true,
+        errorMessage:"手机号不能为空"
+      })
+      return;
+    }
+    wx.login({
+      success:res => {
+        const code = res.code;
+        wx.request({
+          url:this.data.config.BASE_URL+"/register",
+          method:"POST",
+          data:{
+            code:code,
+            nickName:nickName,
+            phoneNumber:phoneNumber
+          },
+          success:(res)=>{
+            switch(res.statusCode){
+              case 200:
+                this.login();
+              break;
+            }
+          },
+          complete:(res)=>{
+            this.setData({
+              tsRegisterVisible:false
+            })
+          },
+        })
+      }
+    })
   },
   login(){
       this.setData({
@@ -129,6 +157,10 @@ Page({
                     isAdmin:res.data.data.isAdmin,
                     isLoading:false
                   })
+              }else if(res.statusCode==400){
+                this.setData({
+                  tsRegisterVisible:true
+                })
               }
             },
             fail(error){
@@ -136,10 +168,24 @@ Page({
               this.setData({
                 isLoading:false
               })
-            }
+            },
+            complete:(res)=>{
+              this.setData({
+                isLoading:false
+              })
+            },
           })
         }
       })
+  },
+  /**
+   * 
+   */
+  onCloseRegisterDialog(){
+    this.setData({
+      tsRegisterVisible:false,
+      phoneNumber:""
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -12,7 +12,8 @@ Page({
     order_id:0,
     config:require("../../../config"),
     isErrorVisible:false,
-    errorMessage:""
+    errorMessage:"",
+    refund_btn:"发起退款"
   },
   switchTab(e){
     const index = e.currentTarget.dataset.index;
@@ -115,6 +116,38 @@ Page({
     const orderItems = e.currentTarget.dataset.items;
     wx.navigateTo({
       url:'/pages/manager/order/orderItem?Items='+encodeURIComponent(JSON.stringify(orderItems))
+    })
+  },
+  /**
+   * 发起退款
+   */
+  onRefund(e){
+    const order_no = e.currentTarget.dataset.order_no;
+    const refund_amount = e.currentTarget.dataset.amount;
+    wx.request({
+      url:this.data.config.BASE_URL+"/pay/refund",
+      method:"POST",
+      data:{
+        order_no:order_no,
+        refund_amount:refund_amount
+      },
+      header: {
+        "Content-Type": "application/json",
+        "token": wx.getStorageSync("token"),
+        "Cookie": "JSESSIONID=" + wx.getStorageSync("JSESSIONID")
+      },
+      success:(res)=>{
+        switch(res.statusCode){
+          case 200:
+            this.setData({
+              refund_btn:"退款中"
+            })
+          break;
+        }
+      },
+      complete:(res)=>{
+        this.loadOrderList();
+      }
     })
   },
   /**

@@ -12,7 +12,7 @@
     <view class="ts-login-card {{isLogined ? 'ts-logged-card' : ''}}">
       <block wx:if="{{!isLogined}}">
         <view class="ts-welcome-msg">欢迎您的加入！</view>
-        <button class="ts-login-btn" open-type="getPhoneNumber" bindgetphonenumber="onGetPhoneNumber">登陆/注册</button>
+        <button class="ts-login-btn" bind:tap="onLogin">登陆/注册</button>
       </block>
 
       <block wx:else>
@@ -73,5 +73,54 @@
     </view>
     
     <view class="ts-loading-line"></view>
+  </view>
+</view>
+<view wx:if="{{tsRegisterVisible}}" class="ts-reg-mask" bindtap="onCloseRegisterDialog">
+  <view class="ts-reg-sheet" catchtap="noop">
+
+    <view class="ts-reg-handle"></view>
+
+    <view class="ts-reg-header">
+      <view>
+        <view class="ts-reg-title">完善注册信息</view>
+        <view class="ts-reg-subtitle">用于订单联系与配送确认</view>
+      </view>
+      <view class="ts-reg-close" bindtap="onCloseRegisterDialog">×</view>
+    </view>
+
+    <view class="ts-reg-form">
+      <view class="ts-reg-field">
+        <view class="ts-reg-label">姓名</view>
+        <input data-field="nickName" bindinput="onInput" type="nickname" class="ts-input" placeholder="请输入昵称" placeholder-class="ts-placeholder" />
+      </view>
+
+      <view class="ts-reg-field">
+        <view class="ts-reg-label">手机号</view>
+
+        <button
+          class="ts-reg-phone-btn"
+          open-type="getPhoneNumber"
+          bindgetphonenumber="onGetPhoneNumber"
+        >
+          <text wx:if="{{!phoneNumber}}">微信授权获取手机号</text>
+          <text wx:else>{{phoneNumber}}</text>
+        </button>
+
+        <view class="ts-reg-tip">
+          需用户主动点击授权，手机号将用于订单通知
+        </view>
+      </view>
+    </view>
+
+    <button
+      class="ts-reg-submit"
+      loading="{{registerSubmitting}}"
+      disabled="{{registerSubmitting}}"
+      bindtap="onSubmitRegister"
+    >
+      完成注册
+    </button>
+
+    <view class="ts-reg-safe-bottom"></view>
   </view>
 </view>
