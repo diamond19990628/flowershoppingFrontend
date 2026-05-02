@@ -23,7 +23,9 @@ Page({
     requestNo:"",
     isErrorVisible:false,
     errorMessage:"",
-    show_load_dialog:false
+    show_load_dialog:false,
+    showDeleteDialog:false,
+    delete_target_productId:0
   },
   loadProductList(index){
     let status = 0;
@@ -607,10 +609,38 @@ Page({
     })
   },
   /**
-   * 永久删除商品
+   * 打开删除的dialog
    */
   onDelete(e){
     const product_id = e.currentTarget.dataset.product_id;
+    this.setData({
+      showDeleteDialog:true,
+      delete_target_productId:product_id
+    })
+  },
+  /**
+   * 确定删除
+   */
+  onConfirmDelete(){
+    this.doDelete();
+    this.setData({
+      showDeleteDialog:false
+    })
+  },
+  /**
+   * 取消删除
+   */
+  onCancelDelete(){
+    this.setData({
+      showDeleteDialog:false,
+      delete_target_productId:0
+    })
+  },
+  /**
+   * 永久删除商品
+   */
+  doDelete(){
+    const product_id = this.data.delete_target_productId;
     wx.request({
       url:this.data.config.BASE_URL+"/product/"+product_id,
       method:"DELETE",
@@ -624,12 +654,28 @@ Page({
           case 204:
             this.loadProductList();
           break;
-          case 400:
+          case 404:
+            const msg = res.data.msg;
             this.setData({
               isErrorVisible:true,
-              errorMessage:"该产品已经删除",
+              errorMessage:msg,
             })
           break;
+          case 401:
+            this.setData({
+              errorMessage:"登录已失效，请重新登录",
+              isErrorVisible:true
+            })
+            const app = getApp();
+            app.globalData.userInfo = null;
+            app.globalData.isLogined = false;
+          break;
+          case 400:
+            const msg = res.data.msg;
+            this.setData({
+              isErrorVisible:true,
+              errorMessage:msg,
+            })
         }
       }
     })

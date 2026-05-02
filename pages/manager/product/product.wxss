@@ -361,3 +361,59 @@
   text-align: center;
   box-sizing: border-box;
 }
+/* 遮罩 */
+.ts-del-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* 弹窗 */
+.ts-del-dialog {
+  width: 70%;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 40rpx 30rpx 20rpx;
+  box-sizing: border-box;
+}
+
+/* 文案 */
+.ts-del-text {
+  text-align: center;
+  font-size: 30rpx;
+  color: #333;
+  margin-bottom: 30rpx;
+}
+
+/* 按钮区域 */
+.ts-del-actions {
+  display: flex;
+  border-top: 1rpx solid #eee;
+}
+
+/* 按钮通用 */
+.ts-del-btn {
+  flex: 1;
+  text-align: center;
+  padding: 24rpx 0;
+  font-size: 30rpx;
+}
+
+/* 取消 */
+.ts-del-btn.cancel {
+  color: #999;
+  border-right: 1rpx solid #eee;
+}
+
+/* 删除（危险操作） */
+.ts-del-btn.confirm {
+  color: #ff4d4f;
+  font-weight: 500;
+}

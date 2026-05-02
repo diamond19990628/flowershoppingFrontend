@@ -153,3 +153,22 @@
     <view class="loading-text">{{title || '上传中...'}}</view>
   </view>
 </view>
+
+<view wx:if="{{showDeleteDialog}}" class="ts-del-mask">
+  <view class="ts-del-dialog">
+
+    <view class="ts-del-text">
+      确定删除该商品吗？
+    </view>
+
+    <view class="ts-del-actions">
+      <view class="ts-del-btn cancel" bindtap="onCancelDelete">
+        取消
+      </view>
+      <view class="ts-del-btn confirm" bindtap="onConfirmDelete">
+        删除
+      </view>
+    </view>
+
+  </view>
+</view>
