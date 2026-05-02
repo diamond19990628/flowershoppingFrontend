@@ -147,6 +147,7 @@
   line-height: 2.2;
 }
 .op-btn.warning { color: #fa8c16; }
+.op-btn.delete {color: #f5222d;}
 
 /* 遮罩层 */
 .dialog-mask {

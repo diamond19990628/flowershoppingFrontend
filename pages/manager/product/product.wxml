@@ -76,6 +76,7 @@
       <view class="goods-ops">
         <button class="op-btn mini" data-event_type="update" bind:tap="onAddGoods" data-product_id="{{item.productId}}">编辑</button>
         <button class="op-btn mini warning" bind:tap="unlistProduct" data-product_id="{{item.productId}}" data-status="{{item.status}}">{{item.status == 1 ? '下架' : '重新上架'}}</button>
+        <button class="op-btn mini delete" bind:tap="onDelete" data-product_id="{{item.productId}}">删除商品</button>
       </view>
     </view>
   </scroll-view>

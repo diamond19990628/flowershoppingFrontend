@@ -607,6 +607,34 @@ Page({
     })
   },
   /**
+   * 永久删除商品
+   */
+  onDelete(e){
+    const product_id = e.currentTarget.dataset.product_id;
+    wx.request({
+      url:this.data.config.BASE_URL+"/product/"+product_id,
+      method:"DELETE",
+      header: {
+        "Content-Type": "application/json",
+        "token": wx.getStorageSync("token"),
+        "Cookie": "JSESSIONID=" + wx.getStorageSync("JSESSIONID")
+      },
+      success:(res)=>{
+        switch(res.statusCode){
+          case 204:
+            this.loadProductList();
+          break;
+          case 400:
+            this.setData({
+              isErrorVisible:true,
+              errorMessage:"该产品已经删除",
+            })
+          break;
+        }
+      }
+    })
+  },
+  /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
