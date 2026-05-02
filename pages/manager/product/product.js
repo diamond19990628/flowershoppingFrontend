@@ -655,10 +655,9 @@ Page({
             this.loadProductList();
           break;
           case 404:
-            const msg = res.data.msg;
             this.setData({
               isErrorVisible:true,
-              errorMessage:msg,
+              errorMessage:res.data.msg,
             })
           break;
           case 401:
@@ -671,10 +670,9 @@ Page({
             app.globalData.isLogined = false;
           break;
           case 400:
-            const msg = res.data.msg;
             this.setData({
               isErrorVisible:true,
-              errorMessage:msg,
+              errorMessage:res.data.msg,
             })
         }
       }
