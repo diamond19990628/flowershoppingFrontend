@@ -73,6 +73,7 @@
 
       <view class="card-footer">
         <button class="btn-confirm" data-btn_index="{{currentMenu-1}}" bind:tap="changeOrderStatus" data-order_no="{{item.order_no}}" data-total_amount="{{item.total_amount}}">{{btn_name_list[currentMenu-1]}}</button>
+        <button class="btn-confirm" wx:if="{{currentMenu-1==0}}" bind:tap="cancelOrder" data-order_no="{{item.order_no}}">取消订单</button>
       </view>
       
     </view>
@@ -105,5 +106,20 @@
 
     <view class="pay-loading-title">支付处理中</view>
     <view class="pay-loading-desc">正在确认支付结果，请不要关闭页面</view>
+  </view>
+</view>
+
+<view class="dialog-mask" wx:if="{{showCancelDialog}}">
+  <view class="dialog-box">
+    
+    <view class="dialog-content">
+      确认取消该订单吗？
+    </view>
+
+    <view class="dialog-actions">
+      <view class="dialog-btn cancel" bindtap="onCancelDialogClose">取消</view>
+      <view class="dialog-btn confirm" bindtap="onConfirmCancel">确认</view>
+    </view>
+
   </view>
 </view>

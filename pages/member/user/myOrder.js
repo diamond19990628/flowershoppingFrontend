@@ -18,7 +18,9 @@ Page({
     showQR:false,
     searchString:"",
     requestNo:"",
-    payLoadingVisible:false
+    payLoadingVisible:false,
+    cancel_target_orderNo:0,
+    showCancelDialog:false
   },
   /**
    * 加载数据
@@ -214,6 +216,61 @@ Page({
   closeDialog(){
     this.setData({
       showQR:false
+    })
+  },
+  /**
+   * 手动取消订单
+   */
+  cancelOrder(e){
+    const order_no = e.currentTarget.dataset.order_no;
+    this.setData({
+      cancel_target_orderNo:order_no,
+      showCancelDialog:true
+    })
+  },
+  /**
+   * 关闭取消订单的dialog
+   */
+  onCancelDialogClose(){
+    this.setData({
+      showCancelDialog:false
+    })
+  },
+  /**
+   * 执行删除订单
+   */
+  onConfirmCancel(){
+    console.log();
+    wx.request({
+      url:this.data.config.BASE_URL+"/member/orders/"+this.data.cancel_target_orderNo,
+      method:"DELETE",
+      header: {
+        "Content-Type": "application/json",
+        "token": wx.getStorageSync("token"),
+        "Cookie": "JSESSIONID=" + wx.getStorageSync("JSESSIONID")
+      },
+      success:(res)=>{
+        switch(res.statusCode){
+          case 204:
+            this.loadingOrderInfo();
+          break;
+          case 401:
+            this.setData({
+              isErrorVisible:true,
+              errorMessage:"登录已失效，请重新登录"
+            })
+            wx.redirectTo({
+              url:"./user"
+            })
+          break;
+        }
+      },
+      complete:(res)=>{
+        this.setData({
+          cancel_target_orderNo:0,
+          showCancelDialog:false
+        })
+      }
     })
   },
   /**
