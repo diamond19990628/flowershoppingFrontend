@@ -28,6 +28,9 @@ Page({
         const deliveryAddress = res.cityName+res.countyName+res.detailInfo;
         const userName = res.userName;
         const telNumber = res.telNumber;
+        this.setData({
+          currentType:"create"
+        })
         this.createDeliveryAddress(deliveryAddress,userName,telNumber);
       },
       fail(err) {

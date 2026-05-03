@@ -4,8 +4,8 @@
     <view class="brand">汀山花语</view>
   </view>
 
-  <view class="header">
-    <view class="back-btn" bind:tap="onBack">
+  <view class="header" bind:tap="onBack">
+    <view class="back-btn">
       <view class="arrow-left"></view>
     </view>
     <text class="title">收货地址</text>
