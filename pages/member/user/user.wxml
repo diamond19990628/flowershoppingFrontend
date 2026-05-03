@@ -6,8 +6,8 @@
   <view class="ts-header-line"></view>
 
   <view class="ts-main-content">
-    <image class="ts-illustration {{isLogined ? 'is-logined-img' : ''}}" src="../../img/welcome.png" mode="widthFix"></image>
-    <view class="ts-flower-image"><image src="../../img/flower_water.png"/></view>
+    <image class="ts-illustration {{isLogined ? 'is-logined-img' : ''}}" src="{{config.BASE_URL}}/upload/img/welcome.png" mode="widthFix"></image>
+    <view class="ts-flower-image"><image src="{{config.BASE_URL}}/upload/img/flower_water.png"/></view>
     
     <view class="ts-login-card {{isLogined ? 'ts-logged-card' : ''}}">
       <block wx:if="{{!isLogined}}">
@@ -18,7 +18,7 @@
       <block wx:else>
         <view class="ts-logged-user">
           <view class="ts-user-avatar">
-            <image src="{{userInfo.avatarUrl || '../../img/default_avatar.png'}}" mode="aspectFill"></image>
+            <image src="{{userInfo.avatarUrl || (config.BASE_URL+'/upload/img/default_avatar.png')}}" mode="aspectFill"></image>
           </view>
           <text class="ts-user-name">{{nickName}}</text>
         </view>

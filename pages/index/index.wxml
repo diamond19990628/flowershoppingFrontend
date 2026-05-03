@@ -38,7 +38,7 @@
   
   
   <view class="image-placeholder">
-  <image src="../img/loadingPhoto.png" mode="widthFix" style="width: 100%; display: block;"></image>
+  <image src="{{config.BASE_URL}}/upload/img/loadingPhoto.png" mode="widthFix" style="width: 100%; display: block;"></image>
   </view>
 </view>
 </view>

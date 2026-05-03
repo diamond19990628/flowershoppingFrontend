@@ -1,6 +1,6 @@
 <view class="success-page">
   <view class="illustration-top">
-    <image src="../../img/MaskGroupBottom.png" mode="widthFix" class="promo-img" />
+    <image src="{{config.BASE_URL}}/upload/img/MaskGroupBottom.png" mode="widthFix" class="promo-img" />
   </view>
 
   <view class="text-section">
@@ -9,6 +9,6 @@
   </view>
 
   <view class="illustration-bottom">
-    <image src="../../img/MaskGroupTop.png" mode="widthFix" class="promo-img" />
+    <image src="{{config.BASE_URL}}/upload/img/MaskGroupTop.png" mode="widthFix" class="promo-img" />
   </view>
 </view>

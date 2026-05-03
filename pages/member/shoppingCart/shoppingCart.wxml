@@ -63,7 +63,7 @@
           </view>
 
           <view class="item-delete-btn" catchtap="onDelete" data-product_id="{{item.product.productId}}">
-            <image src="../../img/delete.png"/>
+            <image src="{{config.BASE_URL}}/upload/img/delete.png"/>
             <view class="item-delete-font">删除</view>
           </view>
         </movable-view>

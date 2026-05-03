@@ -9,15 +9,15 @@
   class="ts-swiper-section"
 >
   <swiper-item>
-    <image src="../../img/Rectangle1.png" mode="aspectFill"></image>
+    <image src="{{config.BASE_URL}}/upload/img/Rectangle1.png" mode="aspectFill"></image>
     <view class="ts-swiper-section-font">走至麦当劳旁进入拐角</view>
   </swiper-item>
   <swiper-item>
-    <image src="../../img/Rectangle2.png" mode="aspectFill"></image>
+    <image src="{{config.BASE_URL}}/upload/img/Rectangle2.png" mode="aspectFill"></image>
     <view class="ts-swiper-section-font">从拐角进电梯上至二楼</view>
   </swiper-item>
   <swiper-item>
-    <image src="../../img/Rectangle3.png" mode="aspectFill"></image>
+    <image src="{{config.BASE_URL}}/upload/img/Rectangle3.png" mode="aspectFill"></image>
     <view class="ts-swiper-section-font">出电梯右转一直走</view>
   </swiper-item>
 </swiper>
@@ -40,7 +40,7 @@
     <view class="ts-info-item ts-flex-start">
       <text class="ts-label">微信联系门店：</text>
       <view class="ts-qrcode-box">
-        <image class="ts-qrcode" src="../../img/wechat.png" mode="aspectFit" show-menu-by-longpress="{{true}}"></image>
+        <image class="ts-qrcode" src="{{config.BASE_URL}}/upload/img/wechat.png" mode="aspectFit" show-menu-by-longpress="{{true}}"></image>
       </view>
     </view>
   </view>

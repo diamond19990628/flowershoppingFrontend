@@ -88,7 +88,7 @@
       <view class="dialog-subtitle">长按识别二维码或保存图片</view>
       
       <view class="qr-code-wrapper">
-        <image class="qr-img" src="../../img/wechat.png" mode="aspectFit" show-menu-by-longpress="{{true}}" ></image>
+        <image class="qr-img" src="{{config.BASE_URL}}/upload/img/wechat.png" mode="aspectFit" show-menu-by-longpress="{{true}}" ></image>
       </view>
       
       <view class="dialog-footer">微信号：TingShanHuaYu</view>
