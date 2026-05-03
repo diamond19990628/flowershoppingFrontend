@@ -35,7 +35,7 @@
     </view>
     <view class="ts-info-item">
       <text class="ts-label">拨打门店电话：</text>
-      <text class="ts-value">15195983633</text>
+      <text class="ts-value" bind:tap="onCallPhone">15195983633</text>
     </view>
     <view class="ts-info-item ts-flex-start">
       <text class="ts-label">微信联系门店：</text>

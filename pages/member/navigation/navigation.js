@@ -19,7 +19,14 @@ Page({
       scale: 18
     })
   },
-
+  /**
+   * 直接打电话联系客服
+   */
+  onCallPhone(){
+    wx.makePhoneCall({
+      phoneNumber: '15195983633',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
