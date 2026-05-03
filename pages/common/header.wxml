@@ -1,10 +1,10 @@
 <view class="header_body">
   <view class="header">
     <view class="logo-text">
-      <image src="../img/logo.png"/>
+      <image src="{{config.BASE_URL}}/upload/img/logo.png"/>
     </view> 
     <view class="notice-btn" bind:tap="openNotice">
-      <image src="../img/notice.png"/>
+      <image src="{{config.BASE_URL}}/upload/img/notice.png"/>
     </view>
   </view>
 
@@ -15,7 +15,7 @@
       <view class="join-btn" bind:tap="onJoinUs">加入我们</view>
     </view>
     <view class="banner-image-space">
-      <image src="../img/homePeople.png" mode="widthFix"></image>
+      <image src="{{config.BASE_URL}}/upload/img/homePeople.png" mode="widthFix"></image>
     </view>
   </view>
   
