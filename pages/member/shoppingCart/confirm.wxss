@@ -76,18 +76,12 @@ picker.list-row {
 }
 
 /* picker 内部的容器，模拟 flex 布局 */
-.picker-inner-container {
+.picker-inner-container,.picker-content {
   width: 100%;
   height: 106rpx;
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-.picker-content{
-  height: 106rpx;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
 }
 
 .picker-value-wrap {
