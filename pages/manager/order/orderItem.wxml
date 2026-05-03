@@ -83,7 +83,6 @@
   <view style="height: 160rpx;"></view>
 
   <view class="bottom-bar">
-    <button class="bar-btn secondary" bindtap="editMemo">修改备注</button>
     <button class="bar-btn primary" wx:if="{{order.status.statusId === 1}}">去发货</button>
     <button class="bar-btn warn" wx:if="{{order.status.statusId === 2}}">拒绝退款</button>
   </view>

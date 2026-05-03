@@ -167,3 +167,7 @@
   text-align: right;
   word-break: break-all;
 }
+
+.order-info text{
+  font-size: 30rpx;
+}
