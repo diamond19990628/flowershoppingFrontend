@@ -469,3 +469,71 @@
   background: #7a6e39;
   color: #fff;
 }
+
+.confirm-receive-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.38);
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirm-receive-dialog {
+  width: 560rpx;
+  background: #fff;
+  border-radius: 28rpx;
+  padding: 42rpx 34rpx 34rpx;
+  box-shadow: 0 16rpx 40rpx rgba(122, 110, 57, 0.18);
+}
+
+.confirm-receive-title {
+  text-align: center;
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #5f5634;
+  margin-bottom: 26rpx;
+}
+
+.confirm-receive-content {
+  text-align: center;
+  font-size: 30rpx;
+  color: #333;
+  line-height: 44rpx;
+  margin-bottom: 42rpx;
+}
+
+.confirm-receive-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 24rpx;
+}
+
+.confirm-receive-btn {
+  flex: 1;
+  height: 72rpx;
+  border-radius: 999rpx;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.confirm-receive-btn.cancel {
+  background: #f4f2ec;
+  color: #7a6e39;
+}
+
+.confirm-receive-btn.confirm {
+  background: #b09a57;
+  color: #fff;
+  box-shadow: 0 8rpx 18rpx rgba(176, 154, 87, 0.28);
+}

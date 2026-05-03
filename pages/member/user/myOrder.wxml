@@ -123,3 +123,22 @@
 
   </view>
 </view>
+
+<view class="confirm-receive-mask" wx:if="{{showReceiveDialog}}">
+  <view class="confirm-receive-dialog">
+    <view class="confirm-receive-title">确认收货</view>
+
+    <view class="confirm-receive-content">
+      确认已收到该订单吗？
+    </view>
+
+    <view class="confirm-receive-actions">
+      <view class="confirm-receive-btn cancel" bindtap="onCloseReceiveDialog">
+        取消
+      </view>
+      <view class="confirm-receive-btn confirm" bindtap="onConfirmReceive">
+        确认收货
+      </view>
+    </view>
+  </view>
+</view>

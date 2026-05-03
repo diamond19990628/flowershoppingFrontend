@@ -70,7 +70,6 @@
       <view class="card-actions">
         <button class="action-btn btn-secondary" bind:tap="navToOrderItem" data-items="{{item}}">订单详情</button>
         <button class="action-btn btn-primary" wx:if="{{item.status.statusId === 1}}" data-status_id="2" data-order_id="{{item.order_id}}" bind:tap="shippedFunction">立即发货</button>
-        <button class="action-btn btn-warn" wx:if="{{item.status.statusId === 2}}" data-status_id="3" bind:tap="shippedFunction">处理售后</button>
         <button class="action-btn btn-warn" wx:if="{{item.status.statusId === 1}}" bind:tap="onRefund" data-order_no="{{item.order_no}}" data-amount="{{item.total_amount}}" disabled="{{item.is_refunding == 1}}">{{ item.is_refunding == 1 ? "退款中" : "发起退款" }}</button>
       </view>
     </view>

@@ -20,7 +20,9 @@ Page({
     requestNo:"",
     payLoadingVisible:false,
     cancel_target_orderNo:0,
-    showCancelDialog:false
+    showCancelDialog:false,
+    showReceiveDialog:false,
+    receive_target_orderNo:0
   },
   /**
    * 加载数据
@@ -170,46 +172,68 @@ Page({
     }
     if(currentMenu==2){
       this.setData({
-        targetStatus:3
-      })
-      wx.request({
-        url:this.data.config.BASE_URL+"/member/orders/"+order_no,
-        method:"PATCH",
-        data:{
-          status_id:this.data.targetStatus
-        },
-        header: {
-          "Content-Type": "application/json",
-          "token": wx.getStorageSync("token"),
-          "Cookie": "JSESSIONID=" + wx.getStorageSync("JSESSIONID")
-        },
-        success:(res)=>{
-          switch(res.statusCode){
-            case 200:
-              this.loadingOrderInfo();
-            break;
-            case 401:
-              this.setData({
-                isErrorVisible:true,
-                errorMessage:"登录已失效，请重新登录"
-              })
-              wx.redirectTo({
-                url:"./user"
-              })
-            break;
-            case 400:
-              this.setData({
-                isErrorVisible:true,
-                errorMessage:"该订单已经失效，请重新下单"
-              })
-              this.loadingOrderInfo();
-            break;
-          }
-        }
+        targetStatus:3,
+        receive_target_orderNo:order_no,
+        showReceiveDialog:true
       })
     }
   },
+  /**
+   * 取消订单
+   */
+  onCloseReceiveDialog(){
+    this.setData({
+      showReceiveDialog:false,
+      receive_target_orderNo:0
+    })
+  },
 
+  /**
+   * 确认收货
+   */
+  onConfirmReceive(){
+    wx.request({
+      url:this.data.config.BASE_URL+"/member/orders/"+this.data.receive_target_orderNo,
+      method:"PATCH",
+      data:{
+        status_id:this.data.targetStatus
+      },
+      header: {
+        "Content-Type": "application/json",
+        "token": wx.getStorageSync("token"),
+        "Cookie": "JSESSIONID=" + wx.getStorageSync("JSESSIONID")
+      },
+      success:(res)=>{
+        switch(res.statusCode){
+          case 200:
+            this.loadingOrderInfo();
+          break;
+          case 401:
+            this.setData({
+              isErrorVisible:true,
+              errorMessage:"登录已失效，请重新登录"
+            })
+            wx.redirectTo({
+              url:"./user"
+            })
+          break;
+          case 400:
+            this.setData({
+              isErrorVisible:true,
+              errorMessage:"该订单已经失效，请重新下单"
+            })
+            this.loadingOrderInfo();
+          break;
+        }
+      },
+      complete:(res)=>{
+        this.setData({
+          receive_target_orderNo:0,
+          showReceiveDialog:false
+        })
+      }
+    })
+  },
   /**
    * 关闭二维码
    */
