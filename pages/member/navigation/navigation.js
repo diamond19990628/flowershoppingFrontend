@@ -12,8 +12,8 @@ Page({
    */
   openLocation(){
     wx.openLocation({
-      latitude: 31.92,   // 目标纬度
-      longitude: 118.83, // 目标经度
+      latitude: 31.909404,   // 目标纬度
+      longitude: 118.826466, // 目标经度
       name: '汀山花语',
       address: '南京市江宁区秣陵街道诚信大道669号金隅六维IN有街市2楼(麦当劳楼上)',
       scale: 18

@@ -1,10 +1,10 @@
 <view class="header_body">
   <view class="header">
     <view class="logo-text">
-      <image src="{{config.BASE_URL}}/upload/img/logo.png"/>
+      <image src="{{config.BASE_URL_IMG}}/upload/img/logo.png"/>
     </view> 
     <view class="notice-btn" bind:tap="openNotice">
-      <image src="{{config.BASE_URL}}/upload/img/notice.png"/>
+      <image src="{{config.BASE_URL_IMG}}/upload/img/notice.png"/>
     </view>
   </view>
 

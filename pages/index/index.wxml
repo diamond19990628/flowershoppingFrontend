@@ -9,7 +9,7 @@
       </view> <view class="goods-info">
         <view class="goods-name">商品名称:{{item.productName}}</view>
         <view class="goods-price-row">
-          <text class="price-symbol">￥:{{item.amount}}</text>
+          <text class="price-symbol">￥{{item.amount}}</text>
           <view class="arrow-icon">→</view>
         </view>
       </view>
@@ -38,7 +38,7 @@
   
   
   <view class="image-placeholder">
-  <image src="{{config.BASE_URL}}/upload/img/loadingPhoto.png" mode="widthFix" style="width: 100%; display: block;"></image>
+  <image src="{{config.BASE_URL_IMG}}/upload/img/loadingPhoto.png" mode="widthFix" style="width: 100%; display: block;"></image>
   </view>
 </view>
 </view>

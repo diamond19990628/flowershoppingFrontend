@@ -319,7 +319,6 @@
 .ts-user-avatar {
   width: 100rpx;
   height: 100rpx;
-  background: #ccc;
   border-radius: 50%;
   overflow: hidden;
   margin-right: 30rpx;

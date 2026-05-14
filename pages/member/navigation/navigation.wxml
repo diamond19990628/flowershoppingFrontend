@@ -9,15 +9,15 @@
   class="ts-swiper-section"
 >
   <swiper-item>
-    <image src="{{config.BASE_URL}}/upload/img/Rectangle1.png" mode="aspectFill"></image>
+    <image src="{{config.BASE_URL_IMG}}/upload/img/Rectangle1.png" mode="aspectFill"></image>
     <view class="ts-swiper-section-font">走至麦当劳旁进入拐角</view>
   </swiper-item>
   <swiper-item>
-    <image src="{{config.BASE_URL}}/upload/img/Rectangle2.png" mode="aspectFill"></image>
+    <image src="{{config.BASE_URL_IMG}}/upload/img/Rectangle2.png" mode="aspectFill"></image>
     <view class="ts-swiper-section-font">从拐角进电梯上至二楼</view>
   </swiper-item>
   <swiper-item>
-    <image src="{{config.BASE_URL}}/upload/img/Rectangle3.png" mode="aspectFill"></image>
+    <image src="{{config.BASE_URL_IMG}}/upload/img/Rectangle3.png" mode="aspectFill"></image>
     <view class="ts-swiper-section-font">出电梯右转一直走</view>
   </swiper-item>
 </swiper>
