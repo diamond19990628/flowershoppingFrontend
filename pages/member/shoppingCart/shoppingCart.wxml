@@ -19,7 +19,7 @@
           <view class="item-content-box">
             <view class="item-main">
               <view class="item-left">
-                <view class="item-image"><image src="{{item.attachedFilePath}}" mode="aspectFill"/></view>
+                <view class="item-image"><image src="{{item.attachedFilePath}}" mode="aspectFill" lazy-load="true"/></view>
               </view>
               <view class="item-center">
                 <view class="item-name">{{item.product.productName}}</view>
@@ -63,7 +63,7 @@
           </view>
 
           <view class="item-delete-btn" catchtap="onDelete" data-product_id="{{item.product.productId}}">
-            <image src="{{config.BASE_URL_IMG}}/upload/img/delete.png"/>
+            <image src="{{config.BASE_URL_IMG}}/upload/img/delete.png" lazy-load="true"/>
             <view class="item-delete-font">删除</view>
           </view>
         </movable-view>

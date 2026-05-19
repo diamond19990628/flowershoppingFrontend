@@ -72,7 +72,7 @@
         <view class="divider"></view>
         <view class="product-body">
           <view class="img-box">
-            <image src="{{item.attachedFilePath}}" mode="aspectFill"/>
+            <image src="{{item.attachedFilePath}}" mode="aspectFill" lazy-load="true"/>
           </view>
           <view class="info-box">
             <view class="name">{{item.product.productName}}</view>

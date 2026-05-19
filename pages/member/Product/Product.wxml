@@ -15,7 +15,7 @@
     <block wx:for="{{productList}}" wx:key="index">
       <view class="ts-goods-card" data-items="{{item}}" bind:tap="navToItem">
         <view class="ts-goods-img-box">
-          <image src="{{item.attachedFile.attachedFilePath}}"/>
+          <image src="{{item.attachedFile.attachedFilePath}}" lazy-load="true"/>
         </view>
         <view class="ts-goods-info">
           <view class="ts-goods-name">商品名:{{item.productName}}</view>
