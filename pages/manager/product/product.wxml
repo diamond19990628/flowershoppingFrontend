@@ -85,7 +85,7 @@
 <view class="dialog-mask {{showAddDialog ? 'show' : ''}}" bindtap="closeDialog">
   <view class="dialog-container" catchtap="stop">
     <view class="dialog-header">
-      <text class="dialog-title">新增商品</text>
+      <text class="dialog-title">{{button_event=="create" ? "新增商品":"更新商品"}}</text>
       <view class="close-icon" bindtap="closeDialog">✕</view>
     </view>
 

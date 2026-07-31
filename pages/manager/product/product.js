@@ -309,10 +309,23 @@ Page({
     
       success:(res)=>{
         const tempFilePath = res.tempFiles[0].tempFilePath
-    
-        this.setData({
-          imagePath:tempFilePath
-        })
+        const isPng = tempFilePath.includes('.png');
+        if(isPng){
+          this.setData({
+            imagePath:tempFilePath
+          })
+        }else{
+          wx.compressImage({
+            src: tempFilePath,
+            quality: 80,
+            success:(res)=> {
+              this.setData({
+                imagePath:res.tempFilePath
+              })
+            }
+          })
+        }
+        
       }
     })
   },
@@ -447,7 +460,7 @@ Page({
         }
       })
     }else{
-      if(imagePath.includes(this.data.config.BASE_URL_IMG)){
+      if(imagePath.includes(this.data.config.BASE_URL)){
         // 没有更改图片
         wx.request({
           url:this.data.config.BASE_URL+"/product/"+this.data.product_id,
@@ -465,6 +478,7 @@ Page({
             "Cookie": "JSESSIONID=" + wx.getStorageSync("JSESSIONID")
           },
           success:(res)=>{
+            console.log(res);
             switch(res.statusCode){
               case 200:
                 this.setData({

@@ -24,7 +24,6 @@ Page({
   importFromWechat(){
     wx.chooseAddress({
       success:(res) =>{
-        console.log(res);
         const deliveryAddress = res.cityName+res.countyName+res.detailInfo;
         const userName = res.userName;
         const telNumber = res.telNumber;
