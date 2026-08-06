@@ -12,6 +12,7 @@ page {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  padding-bottom: 230rpx;
 }
 .goods-item {
   width: 335rpx;
