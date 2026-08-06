@@ -102,7 +102,7 @@
           open-type="getPhoneNumber"
           bindgetphonenumber="onGetPhoneNumber"
         >
-          <text wx:if="{{!phoneNumber}}">微信授权获取手机号</text>
+          <text wx:if="{{!phoneNumber}}">手机号快捷登录</text>
           <text wx:else>{{phoneNumber}}</text>
         </button>
 
