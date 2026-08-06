@@ -8,7 +8,9 @@
   </view>
 <!-- dialog -->
   <scroll-view scroll-y class="order-scroll-view">
-    <view class="category-card" wx:for="{{categoryList}}" wx:key="id" wx:for-item="parent">
+    <view class="category-card" wx:for="{{categoryList}}" wx:key="id" wx:for-item="parent" bind:touchmove="touchMove"
+    style="left:{{left}}px;top:{{top}}px;"
+    >
       
       <view class="parent-header" bindtap="toggleExpand" data-id="{{parent.category_id}}">
         <view class="parent-info">

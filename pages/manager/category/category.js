@@ -275,6 +275,15 @@ Page({
     })
   },
   /**
+   * 进行移动
+   */
+  touchMove(e){
+    console.log(e);
+    const x = e.touches[0].clientX;
+    const y = e.touches[0].clientY;
+    
+  },
+  /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {

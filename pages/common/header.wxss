@@ -111,8 +111,8 @@
   display: inline-block;
   font-size: 28rpx;
   color: #999;
-  padding: 16rpx 44rpx;
-  margin-right: 10rpx;
+  padding: 16rpx 38rpx;
+  margin-right: 8rpx;
   border-radius: 999rpx; /* ⭐关键：一直保持圆形 */
   transition: background-color 0.3s ease, color 0.3s ease;
 }

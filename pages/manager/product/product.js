@@ -460,7 +460,7 @@ Page({
         }
       })
     }else{
-      if(imagePath.includes(this.data.config.BASE_URL)){
+      if(imagePath.includes(this.data.config.BASE_URL_IMG)){
         // 没有更改图片
         wx.request({
           url:this.data.config.BASE_URL+"/product/"+this.data.product_id,
