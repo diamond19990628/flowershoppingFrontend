@@ -39,7 +39,9 @@ height: 1000rpx;
 }
 
 .parent-info { display: flex; align-items: center; flex: 1; }
-.expand-icon { font-size: 30rpx; color: #ccc; margin-right: 20rpx; width: 30rpx; }
+.expand-icon { font-size: 60rpx; color: #ccc; margin-right: 20rpx; width: 30rpx; line-height: 1;
+  display: block;
+  transform: translateY(-4rpx);}
 .cate-icon { width: 60rpx; height: 60rpx; border-radius: 8rpx; background: #f0f0f0; margin-right: 20rpx; }
 .parent-name { font-size: 32rpx; font-weight: bold; color: #333; }
 .child-count { font-size: 22rpx; color: #999; margin-left: 16rpx; background: #f0f0f0; padding: 2rpx 12rpx; border-radius: 20rpx; }

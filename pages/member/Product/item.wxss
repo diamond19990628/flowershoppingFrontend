@@ -47,9 +47,11 @@ page {
 }
 
 .back-icon {
-  font-size: 50rpx;
+  font-size: 80rpx;
   color: #666;
-  margin-right: 4rpx; /* 微调箭头位置 */
+  line-height: 1;
+  display: block;
+  transform: translateY(-4rpx);
 }
 
 /* 返回按钮点击反馈 */
