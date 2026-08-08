@@ -20,7 +20,7 @@
       <view class="parent-header" bindtap="toggleExpand" data-id="{{parent.category_id}}"
       >
         <view class="parent-info">
-          <text class="expand-icon">{{parent.expanded ? '▼' : '▶'}}</text>
+          <text class="expand-icon">{{parent.expanded ? '⌄' : '›'}}</text>
           <text class="parent-name">{{parent.category_name}}</text>
           <text class="child-count">{{parent.parent_category.length}}个子类</text>
         </view>

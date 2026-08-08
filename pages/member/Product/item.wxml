@@ -4,7 +4,7 @@
     <image class="pdp-main-image" src="{{items.attachedFile.attachedFilePath}}" mode="aspectFill" />
     
     <view class="back-btn" hover-class="back-btn-hover" bindtap="onBack">
-      <text class="back-icon">◀</text>
+      <text class="back-icon">‹</text>
     </view>
   </view>
 
