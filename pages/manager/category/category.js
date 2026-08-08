@@ -6,6 +6,7 @@ Page({
    */
   data: {
     categoryList: [],
+    isDragging:false,
     currentCategoryId:0,
     dragIndex:0,
     startX:0,
@@ -293,13 +294,18 @@ Page({
       dragIndex:index,
       startX:x,
       startY:y,
-      currentCategoryId:category_id
+      currentCategoryId:category_id,
+      isDragging:true
     })
   },
   /**
    * 进行移动
    */
   touchMove(e){
+    console.log(this.data.isDragging);
+    if(!this.data.isDragging){
+      return;
+    }
     const x = e.touches[0].clientX;
     const y = e.touches[0].clientY;
     const count = this.data.categoryList.length;
@@ -337,6 +343,9 @@ Page({
    * 移动结束
    */
   touchEnd(e){
+    if(!this.data.isDragging){
+      return;
+    }
     const old_index = e.currentTarget.dataset.index;
     const new_index = this.data.dragIndex;
     wx.request({
@@ -375,6 +384,11 @@ Page({
             break;
         }
       },
+      complete:()=>{
+        this.setData({
+          isDragging:false
+        })
+      }
     })
   },
   /**
