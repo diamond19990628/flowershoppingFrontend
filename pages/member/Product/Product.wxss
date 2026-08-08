@@ -80,7 +80,7 @@
 .ts-goods-grid {
   display: flex;
   flex-wrap: wrap;
-  padding: 10rpx 25rpx;
+  padding: 10rpx 25rpx 122rpx 25rpx;
   justify-content: space-between;
   margin-top: 260rpx;
 }
