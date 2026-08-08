@@ -302,7 +302,6 @@ Page({
    * 进行移动
    */
   touchMove(e){
-    console.log(this.data.isDragging);
     if(!this.data.isDragging){
       return;
     }
