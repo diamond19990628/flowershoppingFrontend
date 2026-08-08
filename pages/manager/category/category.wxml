@@ -8,11 +8,17 @@
   </view>
 <!-- dialog -->
   <scroll-view scroll-y class="order-scroll-view">
-    <view class="category-card" wx:for="{{categoryList}}" wx:key="id" wx:for-item="parent" bind:touchmove="touchMove"
-    style="left:{{left}}px;top:{{top}}px;"
+    <view class="category-card" wx:for="{{categoryList}}" wx:key="id" wx:for-item="parent" 
+    data-index="{{index}}"
+    data-category_id="{{parent.category_id}}"
+    bind:touchstart="touchStart"
+      bind:touchmove="touchMove"
+      bind:touchend="touchEnd"
+      style="{{dragIndex===index?'transform: translate(' + moveX + 'rpx,' + moveY + 'px); z-index:999; position:relative;':''}}"
     >
       
-      <view class="parent-header" bindtap="toggleExpand" data-id="{{parent.category_id}}">
+      <view class="parent-header" bindtap="toggleExpand" data-id="{{parent.category_id}}"
+      >
         <view class="parent-info">
           <text class="expand-icon">{{parent.expanded ? '▼' : '▶'}}</text>
           <text class="parent-name">{{parent.category_name}}</text>

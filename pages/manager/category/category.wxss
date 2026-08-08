@@ -23,7 +23,10 @@ page { background-color: #f4f6f8; font-family: "PingFang SC", sans-serif; }
 }
 
 /* 分类卡片 */
-.order-scroll-view { margin-top: 180rpx; padding: 20rpx; box-sizing: border-box; }
+.order-scroll-view { margin-top: 180rpx; padding: 20rpx; box-sizing: border-box;
+width: 99%;
+height: 1000rpx;
+}
 
 .category-card {
   background: #fff; border-radius: 20rpx; margin-bottom: 24rpx;

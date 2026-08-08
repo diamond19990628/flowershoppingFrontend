@@ -6,6 +6,10 @@ Page({
    */
   data: {
     categoryList: [],
+    currentCategoryId:0,
+    dragIndex:0,
+    startX:0,
+    startY:0,
     isDialogVisible: false,
     event:'',
     create_status:'',
@@ -18,6 +22,7 @@ Page({
     updateCategory:0,
     deleteTargetName:'',
     title:'',
+    newIndex:0,
     config:require("../../../config")
   },
   loadCategories(){
@@ -275,13 +280,114 @@ Page({
     })
   },
   /**
+   * 
+   * @param {*} e 
+   */
+  touchStart(e){
+    const index = e.currentTarget.dataset.index;
+    const touch = e.touches[0];
+    const x = touch.clientX;
+    const y = touch.clientY;
+    const category_id = e.currentTarget.dataset.category_id;
+    this.setData({
+      dragIndex:index,
+      startX:x,
+      startY:y,
+      currentCategoryId:category_id
+    })
+  },
+  /**
    * 进行移动
    */
   touchMove(e){
-    console.log(e);
     const x = e.touches[0].clientX;
     const y = e.touches[0].clientY;
+    const count = this.data.categoryList.length;
+    this.setData({
+      moveX:x-this.data.startX,
+      moveY:y-this.data.startY
+    });
+    if(this.data.moveY > 120 && this.data.dragIndex < count-1){
+      //获取该模块移动了往下或者往上移动了几个
+      this.setData({
+        dragIndex:this.data.dragIndex+1,
+        startX:x,
+        startY:y,
+        
+        moveX:0,
+        moveY:0
+      });
+      this.changeCategoryListIndex(this.data.dragIndex,this.data.dragIndex-1);
+    }
+    else if(this.data.moveY < -120 && this.data.dragIndex > 0){
+      //获取该模块移动了往下或者往上移动了几个
+      this.setData({
+        dragIndex:this.data.dragIndex-1,
+        startX:x,
+        startY:y,
+        
+        moveX:0,
+        moveY:0
+      });
+      this.changeCategoryListIndex(this.data.dragIndex,this.data.dragIndex+1);
+    }
+  },
+
+  /**
+   * 移动结束
+   */
+  touchEnd(e){
+    const old_index = e.currentTarget.dataset.index;
+    const new_index = this.data.dragIndex;
+    wx.request({
+      url:this.data.config.BASE_URL+"/categories/"+this.data.currentCategoryId,
+      method:"PUT",
+      data:{
+        old_index:old_index,
+        new_index:new_index
+      },
+      header: {
+        "Content-Type": "application/json",
+        "token": wx.getStorageSync("token"),
+        "Cookie": "JSESSIONID=" + wx.getStorageSync("JSESSIONID")
+      },
+      success:(res)=>{
+        switch(res.statusCode){
+          case 200:
+            this.setData({
+              categoryList:res.data.data,
+              dragIndex: -1,
+              moveX: 0,
+              moveY: 0,
+              startX: 0,
+              startY: 0
+            });
+            break;
+            case 404:
+              const errorMsg = res.data.msg;
+              if(errorMsg != ''){
+                this.setData({
+                  errorMessage:errorMsg,
+                  isDeleteVisible:false,
+                  isErrorVisible:true
+                })
+              }
+            break;
+        }
+      },
+    })
+  },
+  /**
+   * 改变数组
+   */
+  changeCategoryListIndex(oldIndex,newIndex){
+    const list = [...this.data.categoryList];
     
+    const [item] = list.splice(oldIndex,1);
+    list.splice(newIndex,0,item);
+    this.setData({
+      categoryList:list
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
