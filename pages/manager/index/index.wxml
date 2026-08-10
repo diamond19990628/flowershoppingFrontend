@@ -33,7 +33,7 @@
     </view>
 
     <view class="menu-item" hover-class="btn-hover" bindtap="navToCategory">
-    <view class="icon-box bg-orange" >⚠️</view>
+    <view class="icon-box bg-orange" >🗂️</view>
       <text class="menu-name">分类管理</text>
       <text class="menu-desc">商品分类创建</text>
     </view>
@@ -48,6 +48,12 @@
       <view class="icon-box bg-red">🔔</view>
       <text class="menu-name">通知中心</text>
       <text class="menu-desc">发布公告、私信</text>
+    </view>
+
+    <view class="menu-item" hover-class="btn-hover" bindtap="navToDiscount">
+      <view class="icon-box bg-red">🎟️</view>
+      <text class="menu-name">折扣系统</text>
+      <text class="menu-desc">系统折扣、个人折扣设置</text>
     </view>
   </view>
 

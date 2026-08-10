@@ -1,0 +1,288 @@
+<view class="container">
+
+<!-- 固定顶部区域 -->
+<view class="discount-header">
+
+  <!-- 顶部 Tab -->
+  <view class="tab-header">
+    <view class="tab-item active">
+      <text class="tab-text">系统折扣</text>
+      <view class="active-line"></view>
+    </view>
+
+    <view class="tab-item">
+      <text class="tab-text">个人折扣</text>
+    </view>
+  </view>
+
+  <!-- 顶部操作区：添加折扣按钮 -->
+  <view class="action-bar">
+    <button class="add-btn" hover-class="add-btn-hover" bind:tap="openCreateDialog">
+      <text class="icon">+</text>
+      <text>添加系统折扣</text>
+    </button>
+  </view>
+
+</view>
+
+
+<!-- 折扣列表 -->
+<view class="discount-list">
+  <view 
+  class="discount-card" 
+  wx:for="{{discountList}}" 
+  wx:key="discount_id"
+>
+
+  <!-- 卡片主体 -->
+  <view class="card-main">
+
+    <!-- 左侧折扣图标 -->
+    <view class="discount-icon">
+      <text class="discount-icon-text">券</text>
+    </view>
+
+    <!-- 折扣信息 -->
+    <view class="card-info">
+
+      <view class="title-row">
+        <text class="title">
+          {{item.discount_title}}
+        </text>
+
+        <!-- 状态 -->
+        <text class="status-tag">
+          {{item.status==1?'生效中':'失效'}}
+        </text>
+      </view>
+
+      <!-- 折扣类型 -->
+      <view class="type-row">
+
+        <text 
+          class="discount-type"
+          wx:if="{{item.discountType.discount_type_id == 1}}"
+        >
+          全场折扣
+        </text>
+
+        <text 
+          class="discount-type"
+          wx:elif="{{item.discountType.discount_type_id == 2}}"
+        >
+          满减折扣
+        </text>
+
+        <text 
+          class="discount-type"
+          wx:elif="{{item.discountType.discount_type_id == 3}}"
+        >
+          预约折扣
+        </text>
+
+      </view>
+
+    </view>
+
+  </view>
+
+
+  <!-- 分割线 -->
+  <view class="card-divider"></view>
+
+
+  <!-- 卡片底部 -->
+  <view class="card-footer">
+
+<!-- 有效期 -->
+<view class="valid-date">
+  <view class="date-content">
+    <text class="date-label">有效期</text>
+
+    <text class="date-text">
+      {{item.start_date}} 至 {{item.end_date}}
+    </text>
+  </view>
+</view>
+
+<!-- 操作区域 -->
+<view class="footer-actions">
+  <view
+    class="off-btn"
+    hover-class="off-btn-hover"
+    data-id="{{item.discount_id}}"
+    bindtap="offDiscount"
+  >
+    {{item.status==1?"下架折扣":"重新上架"}}
+  </view>
+  <!-- 删除 -->
+  <view
+    class="delete-btn"
+    hover-class="delete-btn-hover"
+    data-id="{{item.discount_id}}"
+    bindtap="deleteDiscount"
+  >
+    删除折扣
+  </view>
+</view>
+
+</view>
+
+</view>
+
+
+
+</view>
+
+</view>
+
+<!-- 遮罩层,上架折扣 -->
+<view class="dialog-mask {{isOpening?'show':''}}" bindtap="closeDialog">
+  <view class="dialog-container" catchtap="stop">
+    <view class="dialog-header">
+      <text class="dialog-title">新增折扣</text>
+      <view class="close-icon" bindtap="closeDialog">✕</view>
+    </view>
+
+    <scroll-view scroll-y class="dialog-content">
+
+      <view class="form-item">
+        <text class="form-label">折扣名</text>
+        <input class="form-input" value="{{discount_title}}" data-field="discount_title" placeholder="请输入折扣名" bindinput="onInput"/>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">折扣开始时间</text>
+        <picker
+            mode="date"
+            value="{{startDate}}"
+            start="2026-01-01"
+            end="2030-12-31"
+            bindchange="onStartDateChange"
+          >
+            <view class="picker-box {{startDate ? 'picker-selected' : ''}}">
+
+              <view class="picker-left">
+                <text class="picker-icon">◷</text>
+
+                <text class="picker-text">
+                  {{startDate || '请选择开始日期'}}
+                </text>
+              </view>
+
+              <text class="picker-arrow">›</text>
+
+            </view>
+          </picker>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">折扣结束时间</text>
+        <picker
+            mode="date"
+            value="{{endDate}}"
+            start="2026-01-01"
+            end="2030-12-31"
+            bindchange="onEndDateChange"
+          >
+            <view class="picker-box {{endDate ? 'picker-selected' : ''}}">
+
+              <view class="picker-left">
+                <text class="picker-icon">◷</text>
+
+                <text class="picker-text">
+                  {{endDate || '请选择结束日期'}}
+                </text>
+              </view>
+
+              <text class="picker-arrow">›</text>
+
+            </view>
+          </picker>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">折扣类型</text>
+        <picker 
+          mode="selector" 
+          range="{{discountNameList}}" 
+          value="{{discountIndex}}"
+          bindchange="onDiscountChange">
+
+          <view class="form-input">
+            {{discountNameList[discountIndex] || "请选择分类"}}
+          </view>
+        </picker>
+      </view>
+      <view class="form-item {{is_storewide_discount||is_advance_booking_discount?'':'hidden'}}">
+        <text class="form-label">折扣数</text>
+        <input class="form-input" value="{{discount_rate}}" data-field="discount_rate" type="digit" placeholder="请输入打折数额" bindinput="onInput"/>
+      </view>
+
+      <view class="form-item {{is_off_over?'':'hidden'}}">
+        <text class="form-label">满额金额</text>
+        <input class="form-input" value="{{threshold_amount}}" data-field="threshold_amount" type="number" placeholder="请输入满足打折数额的金额" bindinput="onInput"/>
+      </view>
+
+      <view class="form-item {{is_off_over?'':'hidden'}}">
+        <text class="form-label">打折金额</text>
+        <input class="form-input" value="{{reduction_amount}}" data-field="reduction_amount" type="number" placeholder="请输入可以免去的金额" bindinput="onInput"/>
+      </view>
+
+      <view class="form-item {{is_advance_booking_discount?'':'hidden'}}">
+        <text class="form-label">销售时间</text>
+        <picker
+            mode="date"
+            value="{{salesDate}}"
+            start="2026-01-01"
+            end="2099-12-31"
+            bindchange="onSalesDateChange"
+          >
+            <view class="picker-box {{salesDate ? 'picker-selected' : ''}}">
+
+              <view class="picker-left">
+
+                <text class="picker-text">
+                  {{salesDate || '请选择销售日期'}}
+                </text>
+              </view>
+
+              <text class="picker-arrow">›</text>
+
+            </view>
+          </picker>
+      </view>
+      
+      <view class="form-item {{is_advance_booking_discount?'':'hidden'}}">
+        <text class="form-label">提前预约天数</text>
+        <input class="form-input" value="{{advance_days}}" data-field="advance_days" type="number" placeholder="请输入提前预约的天数" bindinput="onInput"/>
+      </view>
+    </scroll-view>
+
+    <view class="dialog-footer">
+      <button class="btn-cancel" bindtap="closeDialog">取消</button>
+      <button class="btn-confirm" data-button_event="{{button_event}}" bind:tap="onCreate">创建</button>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{showDeleteDialog}}" class="ts-del-mask">
+  <view class="ts-del-dialog">
+
+    <view class="ts-del-text">
+      确定永久删除该折扣券吗？
+    </view>
+
+    <view class="ts-del-actions">
+      <view class="ts-del-btn cancel" bindtap="onCancelDelete">
+        取消
+      </view>
+      <view class="ts-del-btn confirm" bindtap="onConfirmDelete">
+        删除
+      </view>
+    </view>
+
+  </view>
+</view>
+
+<errorDialog isErrorVisible="{{isErrorVisible}}" errorMessage="{{errorMessage}}"/>
