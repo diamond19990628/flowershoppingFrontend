@@ -21,7 +21,8 @@
     "pages/member/user/myOrder",
     "pages/member/user/deliveryAddress",
     "pages/member/user/storeOwner",
-    "pages/member/shoppingCart/fails"
+    "pages/member/shoppingCart/fails",
+    "pages/manager/discount/discount"
   ],
   "window": {
     "navigationBarTextStyle": "black",

@@ -77,6 +77,11 @@ Page({
       url:'/pages/manager/information/informations'
     })
   },
+  navToDiscount(){
+    wx.navigateTo({
+      url: '/pages/manager/discount/discount',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
