@@ -266,7 +266,7 @@ Page({
       }
     }else if(discount_type_id == 3){
       discount_rate = this.data.discount_rate;
-      if(discount_rate <=0 || discount_rate > 1){
+      if(discount_rate <=1 || discount_rate > 10){
         this.setData({
           isErrorVisible:true,
           errorMessage:"折扣数只能为0~1之间"
@@ -295,7 +295,7 @@ Page({
         threshold_amount:Number(threshold_amount),
         reduction_amount:Number(reduction_amount),
         booking_time:salesDate+" "+"00:00:00",
-        advance_days:advance_days
+        advance_days:Number(advance_days)
       },
       header: {
         "Content-Type": "application/json",
