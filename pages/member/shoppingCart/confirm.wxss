@@ -442,3 +442,111 @@ button {
 .chevron {
   margin-left: 15rpx;
 }
+
+/* ========================
+   优惠明细
+======================== */
+
+.discount-section {
+  flex-shrink: 0;
+  padding: 20rpx 10rpx 10rpx;
+  border-top: 1rpx solid #f5f5f5;
+}
+
+/* 每一行 */
+.discount-row {
+  min-height: 52rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 左侧普通文字 */
+.discount-label {
+  font-size: 27rpx;
+  color: #666;
+}
+
+/* 商品原价 */
+.discount-original-price {
+  font-size: 27rpx;
+  color: #666;
+}
+
+/* 优惠左侧区域 */
+.discount-info {
+  flex: 1;
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  padding-right: 20rpx;
+}
+
+/* 惠 字小标签 */
+.discount-badge {
+  flex-shrink: 0;
+
+  padding: 2rpx 8rpx;
+  margin-right: 10rpx;
+
+  border-radius: 6rpx;
+
+  background-color: #F3EFE0;
+  color: #7A6E39;
+
+  font-size: 20rpx;
+  line-height: 30rpx;
+}
+
+/* 优惠名称 */
+.discount-name {
+  flex-shrink: 1;
+
+  font-size: 26rpx;
+  color: #555;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* 优惠说明，比如 9折 / 提前3天 */
+.discount-desc {
+  flex-shrink: 0;
+
+  margin-left: 8rpx;
+
+  font-size: 22rpx;
+  color: #999;
+}
+
+/* 单项优惠金额 */
+.discount-minus {
+  flex-shrink: 0;
+
+  font-size: 27rpx;
+  color: #C15C4A;
+}
+
+/* 已优惠这一行 */
+.discount-total-row {
+  margin-top: 8rpx;
+  padding-top: 8rpx;
+
+  border-top: 1rpx dashed #E8E2D0;
+}
+
+/* 已优惠 */
+.discount-save-label {
+  font-size: 27rpx;
+  color: #7A6E39;
+}
+
+/* 优惠总金额 */
+.discount-save-price {
+  font-size: 28rpx;
+  color: #C15C4A;
+  font-weight: 600;
+}

@@ -31,7 +31,7 @@
   mode="date" 
   value="{{deliveryDate}}" 
   start="2024-01-01" 
-  end="2030-12-31" 
+  end="2099-12-31" 
   bindchange="bindDateChange" 
   class="list-row"
 >
@@ -85,13 +85,49 @@
       </view>
     </scroll-view>
 
-    <view class="total-section">
-      <text class="total-label">合计金额</text>
-      <view class="total-amount">
-        <text class="symbol">¥</text>
-        <text class="number">{{total_amount}}</text>
+      <!-- 优惠明细 -->
+      <view class="discount-section" wx:if="{{discountList && discountList.length > 0}}">
+
+        <!-- 原始金额 -->
+        <view class="discount-row">
+          <text class="discount-label">商品金额</text>
+          <text class="discount-original-price">¥{{original_amount}}</text>
+        </view>
+
+        <!-- 每一个优惠 -->
+        <view
+          class="discount-row"
+          wx:for="{{discountList}}"
+          wx:key="discount_id"
+        >
+          <view class="discount-info">
+            <text class="discount-badge">惠</text>
+            <text class="discount-name">{{item.discount_title}}</text>
+            <text class="discount-desc" wx:if="{{item.discount_desc}}">
+              {{item.discount_desc}}
+            </text>
+          </view>
+
+          <text class="discount-minus">
+            -¥{{item.discount_count}}
+          </text>
+        </view>
+
+        <!-- 总共优惠 -->
+        <view class="discount-row discount-total-row">
+          <text class="discount-save-label">已优惠</text>
+          <text class="discount-save-price">-¥{{sum_discount_amount}}</text>
+        </view>
+
       </view>
-    </view>
+
+      <view class="total-section">
+        <text class="total-label">合计金额</text>
+        <view class="total-amount">
+          <text class="symbol">¥</text>
+          <text class="number">{{total_amount}}</text>
+        </view>
+      </view>
 
     <view class="action-area">
       <button class="btn-gold" bindtap="onPay" disabled="{{isSubmitting}}">付款</button>

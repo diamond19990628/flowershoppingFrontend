@@ -25,6 +25,10 @@ Page({
     isFeeDialogVisible:false,
     feeDialogText:"",
 
+    discountList:[],
+    original_amount:0,
+    sum_discount_amount:0,
+
     // 传输专用
     param_product_info_array:null,
     param_user_id:0,
@@ -114,7 +118,6 @@ Page({
         "Cookie": "JSESSIONID=" + wx.getStorageSync("JSESSIONID")
       },
       success:(res)=>{
-        console.log(res.data.data);
         switch(res.statusCode){
           case 200:
             this.setData({
@@ -130,11 +133,26 @@ Page({
         }
       }
     })
+
+    this.getDiscountAndAmount();
+  },
+  onAddressChange(e){
+    const index = e.detail.value;
+    this.setData({
+      addressIndex:index,
+      delivery_address_id:this.data.addressList[index].delivery_address_id
+    })
+  },
+  /**
+   * 获取优惠券以及优惠后的价格信息api
+   */
+  getDiscountAndAmount() {
     wx.request({
       url:this.data.config.BASE_URL+"/member/shoppingCart/totalAmount",
       method:"POST",
       data:{
-        shoppingCart:shoppingCartList
+        shoppingCart:this.data.shoppingCartList,
+        deliveryDate:this.data.deliveryDate
       },
       header: {
         "Content-Type": "application/json",
@@ -144,9 +162,12 @@ Page({
       success:(res)=>{
         switch(res.statusCode){
           case 200:
-            const total_amount = res.data.data;
+            const data = res.data.data;
             this.setData({
-              total_amount:total_amount
+              discountList:data.discount_data,
+              total_amount:data.total_amount,
+              original_amount:data.original_amount,
+              sum_discount_amount:data.sum_discount_amount
             })
           break;
           case 401:
@@ -170,14 +191,6 @@ Page({
       }
     })
   },
-  onAddressChange(e){
-    const index = e.detail.value;
-    this.setData({
-      addressIndex:index,
-      delivery_address_id:this.data.addressList[index].delivery_address_id
-    })
-  },
-
   /**
    * 切换配送日期
    */
@@ -186,6 +199,7 @@ Page({
     this.setData({
       deliveryDate:deliveryDate
     })
+    this.getDiscountAndAmount();
   },
 
   /**
@@ -284,7 +298,6 @@ Page({
           switch(res.statusCode){
             case 200:
               const distance = res.data.data.distance;
-              console.log(distance);
               if(distance > 20000){
                 this.setData({
                   isErrorVisible:true,
