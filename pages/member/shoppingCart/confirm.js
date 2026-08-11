@@ -130,6 +130,45 @@ Page({
         }
       }
     })
+    wx.request({
+      url:this.data.config.BASE_URL+"/member/shoppingCart/totalAmount",
+      method:"POST",
+      data:{
+        shoppingCart:shoppingCartList
+      },
+      header: {
+        "Content-Type": "application/json",
+        "token": wx.getStorageSync("token"),
+        "Cookie": "JSESSIONID=" + wx.getStorageSync("JSESSIONID")
+      },
+      success:(res)=>{
+        switch(res.statusCode){
+          case 200:
+            const total_amount = res.data.data;
+            this.setData({
+              total_amount:total_amount
+            })
+          break;
+          case 401:
+            this.setData({
+              isErrorVisible:true,
+              errorMessage:"登录已失效，请重新登录"
+            })
+            wx.redirectTo({
+              url:"/pages/member/user/user"
+            })
+          break;
+          case 400:
+            const msg = res.data.msg;
+            this.setData({
+              isErrorVisible:true,
+              errorMessage:msg
+            })
+          break;
+
+        }
+      }
+    })
   },
   onAddressChange(e){
     const index = e.detail.value;
@@ -158,27 +197,6 @@ Page({
       deliveryTime:deliveryTime
     })
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-    let sum_price = 0;
-    for(let i = 0;i<this.data.shoppingCartList.length;i++){
-      let product_price = this.data.shoppingCartList[i].product.amount*this.data.shoppingCartList[i].quantity;
-      sum_price = sum_price+product_price;
-    };
-    this.setData({
-      total_amount:sum_price
-    })
-  },
-
   /**
    * 付款
    */
