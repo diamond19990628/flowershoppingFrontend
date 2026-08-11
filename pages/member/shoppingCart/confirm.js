@@ -159,9 +159,10 @@ Page({
             })
           break;
           case 400:
+            const msg = res.data.msg;
             this.setData({
               isErrorVisible:true,
-              errorMessage:"该地址无法解析，请重新输入"
+              errorMessage:msg
             })
           break;
 
