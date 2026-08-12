@@ -41,6 +41,11 @@
           </view>
 
           <view class="goods-extra-item">
+            <text class="goods-extra-label">是否匿名</text>
+            <text class="goods-extra-value">{{orderItem.is_anonymous==1?'匿名':'不匿名'}}</text>
+          </view>
+
+          <view class="goods-extra-item">
             <text class="goods-extra-label">备注</text>
             <text class="goods-extra-value">{{orderItem.comment || '无'}}</text>
           </view>
