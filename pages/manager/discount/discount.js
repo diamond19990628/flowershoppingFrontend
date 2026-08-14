@@ -230,7 +230,6 @@ Page({
       });
       return false;
     }
-    console.log(discount_type_id);
     if(discount_type_id == 1){
       discount_rate = this.data.discount_rate;
       if(discount_rate == ""){
