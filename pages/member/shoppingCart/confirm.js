@@ -24,6 +24,7 @@ Page({
     payLoadingVisible:false,
     isFeeDialogVisible:false,
     feeDialogText:"",
+    nowDate:"",
 
     discountList:[],
     original_amount:0,
@@ -46,6 +47,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    // 获取当前时间
+    const nowdate = new Date();
+    const year = nowdate.getFullYear()
+    const month = String(nowdate.getMonth() + 1).padStart(2, '0')
+    const day = String(nowdate.getDate()).padStart(2, '0')
+
+    const currentDate = `${year}-${month}-${day}`
+    this.setData({
+      nowDate:currentDate
+    })
     const shoppingCartList = wx.getStorageSync("confirmShoppingCartList") || [];
     if(shoppingCartList.length === 0){
       this.setData({
@@ -197,7 +208,8 @@ Page({
   bindDateChange(e){
     const deliveryDate = e.detail.value;
     this.setData({
-      deliveryDate:deliveryDate
+      deliveryDate:deliveryDate,
+      deliveryTime:null,
     })
     this.getDiscountAndAmount();
   },
