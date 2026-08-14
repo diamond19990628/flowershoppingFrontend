@@ -66,6 +66,9 @@ Component({
         success:(res)=>{
           switch(res.statusCode){
             case 200:
+              this.setData({
+                noticeList:res.data.data
+              })
               if(!getApp().globalData.noticeLoaded){
                 const now = new Date();
                 for(let i = 0;i<res.data.data.length;i++){
@@ -77,11 +80,7 @@ Component({
                     });
                   }
                 }
-                this.setData({
-                  noticeList:res.data.data
-                })
               }
-              
             break;
           }
         },
