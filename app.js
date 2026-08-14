@@ -4,7 +4,8 @@ App({
   globalData:{
     isLogined:false,
     userInfo:null,
-    loading:false
+    loading:false,
+    noticeLoaded:false
   },
   onLaunch() {
     wx.loadFontFace({

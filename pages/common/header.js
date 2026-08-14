@@ -6,7 +6,7 @@ Component({
     currentIndex:null,
     initCategory_id:0,
     showNotice:false,
-    noticeList:[]
+    noticeList:[],
   },
   lifetimes: {
     attached() {
@@ -52,6 +52,7 @@ Component({
       this.setData({
         showNotice:false
       })
+      getApp().globalData.noticeLoaded = true
     },
     onJoinUs(){
       wx.redirectTo({
@@ -73,7 +74,6 @@ Component({
                   this.setData({
                     showNotice:true
                   });
-                  break;
                 }
               }
               this.setData({
@@ -82,6 +82,13 @@ Component({
             break;
           }
         },
+        complete:()=>{
+          if(getApp().globalData.noticeLoaded){
+            this.setData({
+              showNotice:false
+            })
+          }
+        }
       })
     },
   }
