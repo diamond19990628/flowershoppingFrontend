@@ -66,29 +66,24 @@ Component({
         success:(res)=>{
           switch(res.statusCode){
             case 200:
-              const now = new Date();
-              for(let i = 0;i<res.data.data.length;i++){
-                const notice_public_start_date = new Date(res.data.data[i].publishStartDate);
-                const notice_public_end_date = new Date(res.data.data[i].publishEndDate);
-                if(notice_public_start_date <= now && now <= notice_public_end_date){
-                  this.setData({
-                    showNotice:true
-                  });
-                }
-              }
               this.setData({
                 noticeList:res.data.data
               })
+              if(!getApp().globalData.noticeLoaded){
+                const now = new Date();
+                for(let i = 0;i<res.data.data.length;i++){
+                  const notice_public_start_date = new Date(res.data.data[i].publishStartDate);
+                  const notice_public_end_date = new Date(res.data.data[i].publishEndDate);
+                  if(notice_public_start_date <= now && now <= notice_public_end_date){
+                    this.setData({
+                      showNotice:true
+                    });
+                  }
+                }
+              }
             break;
           }
         },
-        complete:()=>{
-          if(getApp().globalData.noticeLoaded){
-            this.setData({
-              showNotice:false
-            })
-          }
-        }
       })
     },
   }
