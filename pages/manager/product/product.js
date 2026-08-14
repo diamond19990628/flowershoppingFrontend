@@ -478,7 +478,6 @@ Page({
             "Cookie": "JSESSIONID=" + wx.getStorageSync("JSESSIONID")
           },
           success:(res)=>{
-            console.log(res);
             switch(res.statusCode){
               case 200:
                 this.setData({

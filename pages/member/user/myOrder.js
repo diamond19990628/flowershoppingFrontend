@@ -264,7 +264,6 @@ Page({
    * 执行删除订单
    */
   onConfirmCancel(){
-    console.log();
     wx.request({
       url:this.data.config.BASE_URL+"/member/orders/"+this.data.cancel_target_orderNo,
       method:"DELETE",
