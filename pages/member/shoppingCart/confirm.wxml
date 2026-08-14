@@ -30,7 +30,7 @@
       <picker 
   mode="date" 
   value="{{deliveryDate}}" 
-  start="2024-01-01" 
+  start="{{nowDate}}" 
   end="2099-12-31" 
   bindchange="bindDateChange" 
   class="list-row"
@@ -49,8 +49,8 @@
 <picker 
   mode="time" 
   value="{{deliveryTime}}" 
-  start="09:00" 
-  end="21:00" 
+  start="{{deliveryDate==nowDate?'13:00':'09:00'}}" 
+  end="19:30" 
   bindchange="bindTimeChange" 
   class="list-row"
 >
